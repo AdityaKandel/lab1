@@ -6,10 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText textField;
+    TextView textField;
     String add = "add";
     String divide = "divide";
     String multiply = "multiply";
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textField = (EditText) findViewById(R.id.textView3);
+        textField = (TextView) findViewById(R.id.textView3);
     }
 
     //clear the Text and the curValue to empty
