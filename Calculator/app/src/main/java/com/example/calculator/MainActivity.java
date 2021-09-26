@@ -2,6 +2,7 @@ package com.example.calculator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     String state = "";
     String curValue ="";
     String sum2 = "";
+    Button selectedBtn;
     boolean isInState = false; // check if the operations and equal btn was pressed
 
     @Override
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textField = (TextView) findViewById(R.id.textView3);
+
     }
 
     //clear the Text and the curValue to empty
@@ -55,6 +58,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btnOperations(View view){
+        selectedBtn  = (Button) findViewById(view.getId());
+        //selectedBtn.setBackgroundColor( Color.WHITE);
+        //selectedBtn.setTextColor( Color.rgb(225,152,0));
+        selectedBtn.setSelected(true);
         if(state.equals("") || !sum2.equals("")){
                 curValue = textField.getText().toString();
                 sum2 = "";
@@ -64,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.btnSubtract:
                     state = subtract;
+
                     break;
                 case R.id.btnDivide:
                     state = divide;
@@ -75,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }else {
             sum2  = textField.getText().toString();
-            System.out.println(sum2+ "sum2");
             curValue = calculate(state, curValue);
             textField.setText(curValue);
         }
@@ -88,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         switch (state){
 
             case "add":
-                System.out.println(sum2 + "lol");
+
                 result = (Double.parseDouble(sum1)+Double.parseDouble(sum2)); // convert result to decimal
 
                 if(result % 1 == 0){ // if result has no decimal place convert it int
@@ -132,9 +139,12 @@ public class MainActivity extends AppCompatActivity {
 
         if(isInState){ // clear the text to get New value
             textField.setText("");
+          // selectedBtn.setBackgroundTintList(  Color.rgb(225,152,0));
+            selectedBtn.setSelected(false);
+
+           // selectedBtn.setTextColor(Color.WHITE);
             isInState = false;
         }
-
         if(textField.getText().toString().equals("0")){
             textField.setText(btn.getText().toString());
         }else{

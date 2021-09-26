@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Aker/Desktop/Seg Projects/Calculator/app/src/main/res/layout/activity_main.xml" value="0.29483695652173914" />
+        <entry key="..\:/Users/Aker/Desktop/Seg Projects/Calculator/app/src/main/res/drawable/button_color_control.xml" value="0.21875" />
+        <entry key="..\:/Users/Aker/Desktop/Seg Projects/Calculator/app/src/main/res/drawable/text_color_control.xml" value="0.21128205128205127" />
+        <entry key="..\:/Users/Aker/Desktop/Seg Projects/Calculator/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/Aker/Desktop/Seg Projects/Calculator/app/src/main/res/layout/button_bg.xml" value="0.1984375" />
+        <entry key="..\:/Users/Aker/Desktop/Seg Projects/Calculator/app/src/main/res/layout/button_color_control.xml" value="0.1984375" />
       </map>
     </option>
   </component>

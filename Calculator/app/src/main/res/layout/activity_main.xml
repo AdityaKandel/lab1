@@ -91,13 +91,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:backgroundTint="#FF9800"
+                    android:backgroundTint="@drawable/button_color_control"
                     android:insetLeft="10dp"
                     android:insetTop="10dp"
                     android:insetRight="10dp"
                     android:insetBottom="10dp"
                     android:onClick="btnOperations"
                     android:text="@string/plus"
+                    android:textColor="@drawable/text_color_control"
                     android:textAlignment="center"
                     android:textSize="34sp" />
             </LinearLayout>
@@ -166,7 +167,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:backgroundTint="#FF9800"
+                    android:backgroundTint="@drawable/button_color_control"
                     android:fontFamily="sans-serif-black"
                     android:insetLeft="10dp"
                     android:insetTop="10dp"
@@ -174,6 +175,7 @@
                     android:insetBottom="10dp"
                     android:onClick="btnOperations"
                     android:text="@string/minus"
+                    android:textColor="@drawable/text_color_control"
                     android:textAlignment="center"
                     android:textSize="34sp"
                     android:typeface="normal" />
@@ -243,7 +245,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:backgroundTint="#FF9800"
+                    android:backgroundTint="@drawable/button_color_control"
                     android:fontFamily="sans-serif-black"
                     android:insetLeft="10dp"
                     android:insetTop="10dp"
@@ -252,6 +254,7 @@
                     android:onClick="btnOperations"
                     android:text="X"
                     android:textAlignment="center"
+                    android:textColor="@drawable/text_color_control"
                     android:textSize="34sp"
                     android:typeface="normal" />
 
@@ -322,7 +325,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:backgroundTint="#FF9800"
+                    android:backgroundTint="@drawable/button_color_control"
                     android:fontFamily="sans-serif-black"
                     android:insetLeft="10dp"
                     android:insetTop="10dp"
@@ -330,6 +333,7 @@
                     android:insetBottom="10dp"
                     android:onClick="btnOperations"
                     android:text="/"
+                    android:textColor="@drawable/text_color_control"
                     android:textAlignment="center"
                     android:textSize="34sp"
                     android:typeface="normal" />
