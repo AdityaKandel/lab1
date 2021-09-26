@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     public void btnDecimal(View view){
             if(!textField.getText().toString().contains(".") && !isInState) { //add decimal if not there already and not in a state;
                 textField.setText(textField.getText() + ".");
-            }else{
+            }else if(isInState){
                 textField.setText("0.");
                 isInState = false;
             }
