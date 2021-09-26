@@ -7,55 +7,137 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
+
+    EditText textField;
+    String add = "add";
+    String divide = "divide";
+    String multiply = "multiply";
+    String subtract = "subtract";
+    String state = "";
+    String curValue ="";
+    String sum2 = "";
+    boolean isInState = false; // check if the operations and equal btn was pressed
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        textField = (EditText) findViewById(R.id.textView3);
     }
 
+    //clear the Text and the curValue to empty
     public void btnClear(View view){
-        EditText textField = (EditText) findViewById(R.id.textView3);
-
         textField.setText("0");
+        curValue = "";
     }
+
+
     public void btnDecimal(View view){
-        EditText textField = (EditText) findViewById(R.id.textView3);
-            if(!textField.getText().toString().contains(".")) {
+            if(!textField.getText().toString().contains(".") && !isInState) { //add decimal if not there already and not in a state;
                 textField.setText(textField.getText() + ".");
+            }else{
+                textField.setText("0.");
+                isInState = false;
             }
     }
+
     public void btnEqual(View view){
-        EditText textField = (EditText) findViewById(R.id.textView3);
-
-    }
-    public void btnAdd(View view){
-        EditText textField = (EditText) findViewById(R.id.textView3);
-        view.setSelected(true);
-
-    }
-    public void btnSubtract(View view){
-        EditText textField = (EditText) findViewById(R.id.textView3);
-
-    }
-    public void btnDivide(View view){
-        EditText textField = (EditText) findViewById(R.id.textView3);
-
-    }
-    public void btnMultiply(View view){
-        EditText textField = (EditText) findViewById(R.id.textView3);
-
+        if(!curValue.equals("")) {
+            if (sum2.equals("")) {
+                sum2 = textField.getText().toString();
+            }
+            curValue = calculate(state, curValue);
+            textField.setText(curValue);
+            isInState = true;
+        }
     }
 
+    public void btnOperations(View view){
+        if(state.equals("") || !sum2.equals("")){
+                curValue = textField.getText().toString();
+                sum2 = "";
+            switch (view.getId()) {
+                case R.id.btnAdd:
+                    state = add;
+                    break;
+                case R.id.btnSubtract:
+                    state = subtract;
+                    break;
+                case R.id.btnDivide:
+                    state = divide;
+                    break;
+                case R.id.btnMultiply:
+                    state = multiply;
+                    break;
+                default:
+            }
+        }else {
+            sum2  = textField.getText().toString();
+            System.out.println(sum2+ "sum2");
+            curValue = calculate(state, curValue);
+            textField.setText(curValue);
+        }
+        isInState = true;
+    }
 
-    @Override
-    public void onClick(View view) {
-        EditText textField = (EditText) findViewById(R.id.textView3);
+    // do the calculations
+    public String calculate(String state, String sum1) {
+        double result=0.0;
+        switch (state){
+
+            case "add":
+                System.out.println(sum2 + "lol");
+                result = (Double.parseDouble(sum1)+Double.parseDouble(sum2)); // convert result to decimal
+
+                if(result % 1 == 0){ // if result has no decimal place convert it int
+                    return Integer.toString((int)result);
+                }
+                return Double.toString(result);
+
+            case "subtract":
+                result = (Double.parseDouble(sum1)-Double.parseDouble(sum2));
+                if(result % 1 == 0){
+                    return Integer.toString((int)result);
+                }
+                return Double.toString(result);
+
+            case "divide":
+                if(Double.isNaN((Double.parseDouble(sum1)/Double.parseDouble(sum2)))){ //avoid 0/0
+                    state="";
+                    isInState =true;
+                    return "Error";
+                }
+                result = (Double.parseDouble(sum1)/Double.parseDouble(sum2));
+                if(result % 1 == 0){
+                    return Integer.toString((int)result);
+                }
+                return Double.toString(result);
+
+            case "multiply":
+                result = (Double.parseDouble(sum1)*Double.parseDouble(sum2));
+                if(result % 1 == 0){
+                    return Integer.toString((int)result);
+                }
+                return Double.toString(result);
+
+            default:
+        }
+        return "";
     }
 
     public void btnNumbers(View view){
-        EditText textField = (EditText) findViewById(R.id.textView3);
         Button btn = (Button) view;
-        textField.setText(textField.getText()+ btn.getText().toString());
+
+        if(isInState){ // clear the text to get New value
+            textField.setText("");
+            isInState = false;
+        }
+
+        if(textField.getText().toString().equals("0")){
+            textField.setText(btn.getText().toString());
+        }else{
+            textField.setText(textField.getText()+ btn.getText().toString());
+        }
     }
 }
