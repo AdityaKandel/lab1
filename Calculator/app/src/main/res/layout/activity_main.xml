@@ -23,17 +23,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="#FFFFFF"
+                android:background="#000000"
                 android:gravity="bottom|end"
                 android:text="0"
                 android:textAlignment="textEnd"
+                android:textColor="#FFFFFF"
                 android:textSize="48sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1.5"
-                android:background="#FFFFFF"
+                android:background="#000000"
+                android:backgroundTint="#000000"
                 android:orientation="horizontal">
 
                 <Button
@@ -41,6 +43,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:backgroundTint="#303030"
                     android:insetLeft="10dp"
                     android:insetTop="10dp"
                     android:insetRight="10dp"
@@ -55,6 +58,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:backgroundTint="#303030"
                     android:insetLeft="10dp"
                     android:insetTop="10dp"
                     android:insetRight="10dp"
@@ -69,6 +73,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:backgroundTint="#303030"
                     android:insetLeft="10dp"
                     android:insetTop="10dp"
                     android:insetRight="10dp"
@@ -83,6 +88,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:backgroundTint="#FF9800"
                     android:insetLeft="10dp"
                     android:insetTop="10dp"
                     android:insetRight="10dp"
@@ -97,6 +103,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1.5"
+                android:background="#000000"
+                android:backgroundTint="#000000"
                 android:orientation="horizontal">
 
                 <Button
@@ -104,6 +112,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:backgroundTint="#303030"
                     android:fontFamily="sans-serif-black"
                     android:insetLeft="10dp"
                     android:insetTop="10dp"
@@ -120,6 +129,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:backgroundTint="#303030"
                     android:fontFamily="sans-serif-black"
                     android:insetLeft="10dp"
                     android:insetTop="10dp"
@@ -136,6 +146,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:backgroundTint="#303030"
                     android:fontFamily="sans-serif-black"
                     android:insetLeft="10dp"
                     android:insetTop="10dp"
@@ -152,6 +163,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:backgroundTint="#FF9800"
                     android:fontFamily="sans-serif-black"
                     android:insetLeft="10dp"
                     android:insetTop="10dp"
@@ -168,6 +180,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1.5"
+                android:background="#050505"
+                android:backgroundTint="#000000"
                 android:orientation="horizontal">
 
                 <Button
@@ -175,6 +189,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:backgroundTint="#303030"
                     android:fontFamily="sans-serif-black"
                     android:insetLeft="10dp"
                     android:insetTop="10dp"
@@ -191,6 +206,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:backgroundTint="#303030"
                     android:fontFamily="sans-serif-black"
                     android:insetLeft="10dp"
                     android:insetTop="10dp"
@@ -207,6 +223,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:backgroundTint="#303030"
                     android:fontFamily="sans-serif-black"
                     android:insetLeft="10dp"
                     android:insetTop="10dp"
@@ -223,6 +240,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:backgroundTint="#FF9800"
                     android:fontFamily="sans-serif-black"
                     android:insetLeft="10dp"
                     android:insetTop="10dp"
@@ -240,6 +258,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1.5"
+                android:background="#000000"
+                android:backgroundTint="#000000"
                 android:orientation="horizontal">
 
                 <Button
@@ -247,6 +267,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:backgroundTint="#6A6868"
                     android:fontFamily="sans-serif-black"
                     android:insetLeft="10dp"
                     android:insetTop="10dp"
@@ -264,6 +285,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:backgroundTint="#303030"
                     android:fontFamily="sans-serif-black"
                     android:insetLeft="10dp"
                     android:insetTop="10dp"
@@ -280,6 +302,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:backgroundTint="#6A6868"
                     android:fontFamily="sans-serif-black"
                     android:insetLeft="10dp"
                     android:insetTop="10dp"
@@ -296,6 +319,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:backgroundTint="#FF9800"
                     android:fontFamily="sans-serif-black"
                     android:insetLeft="10dp"
                     android:insetTop="10dp"
@@ -312,6 +336,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1.5"
+                android:background="#000000"
+                android:backgroundTint="#000000"
                 android:orientation="horizontal">
 
                 <Button
@@ -319,6 +345,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:backgroundTint="#FF9800"
                     android:fontFamily="sans-serif-black"
                     android:insetLeft="10dp"
                     android:insetTop="10dp"
