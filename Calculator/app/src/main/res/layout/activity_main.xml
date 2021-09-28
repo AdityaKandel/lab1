@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:onClick="btnOperations"
     tools:context=".MainActivity">
 
     <RelativeLayout
@@ -98,8 +99,8 @@
                     android:insetBottom="10dp"
                     android:onClick="btnOperations"
                     android:text="@string/plus"
-                    android:textColor="@drawable/text_color_control"
                     android:textAlignment="center"
+                    android:textColor="@drawable/text_color_control"
                     android:textSize="34sp" />
             </LinearLayout>
 
@@ -175,8 +176,8 @@
                     android:insetBottom="10dp"
                     android:onClick="btnOperations"
                     android:text="@string/minus"
-                    android:textColor="@drawable/text_color_control"
                     android:textAlignment="center"
+                    android:textColor="@drawable/text_color_control"
                     android:textSize="34sp"
                     android:typeface="normal" />
             </LinearLayout>
@@ -279,7 +280,7 @@
                     android:insetTop="10dp"
                     android:insetRight="10dp"
                     android:insetBottom="10dp"
-                    android:onClick="btnClear"
+                    android:onClick="btnOperations"
                     android:text="C"
                     android:textAlignment="center"
                     android:textSize="34sp"
@@ -314,7 +315,7 @@
                     android:insetTop="10dp"
                     android:insetRight="10dp"
                     android:insetBottom="10dp"
-                    android:onClick="btnDecimal"
+                    android:onClick="btnNumbers"
                     android:text="."
                     android:textAlignment="center"
                     android:textSize="34sp"
@@ -333,8 +334,8 @@
                     android:insetBottom="10dp"
                     android:onClick="btnOperations"
                     android:text="/"
-                    android:textColor="@drawable/text_color_control"
                     android:textAlignment="center"
+                    android:textColor="@drawable/text_color_control"
                     android:textSize="34sp"
                     android:typeface="normal" />
             </LinearLayout>
@@ -358,7 +359,7 @@
                     android:insetTop="10dp"
                     android:insetRight="10dp"
                     android:insetBottom="10dp"
-                    android:onClick="btnEqual"
+                    android:onClick="btnOperations"
                     android:text="="
                     android:textAlignment="center"
                     android:textSize="34sp"
