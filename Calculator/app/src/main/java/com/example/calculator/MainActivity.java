@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     String sum1 ="";
     String sum2 = "";
     Button selectedBtn;
-    String previousState="";
+    boolean setSum1Deafult= false;
     boolean isInState = false; // check if the operations and equal btn was pressed
 
     @Override
@@ -33,10 +33,10 @@ public class MainActivity extends AppCompatActivity {
     }
     public void equals(){
         System.out.println(sum1+operation + sum2);
-        if(!(sum1.equals("") ||sum2.equals(""))){
-        sum1 = calculate(sum1, operation, sum2);}
+        if(!(sum1.equals("") ||sum2.equals(""))){sum1 = calculate(sum1, operation, sum2);}
         System.out.println("result"+sum1);
         textField.setText(sum1);
+
         System.out.println("equalbtn_pressed");
     }
 
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         selectedBtn.setSelected(false);
         }
         selectedBtn  = (Button) findViewById(view.getId());
-        selectedBtn.setSelected(true);
+        selectedBtn.setSelected(true); //error
         if(sum1.equals("")){
             sum1 = textField.getText().toString();
             System.out.println("getting sum1" + sum1);
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
             sum2 = textField.getText().toString();
             System.out.println("getting sum1" + sum2);
             equals();
-        }else if(btnpressed == R.id.btnEqual) {equals();}
+        }else if(btnpressed == R.id.btnEqual) {equals(); setSum1Deafult=true;}
         System.out.println("button pressed:" +((Button) findViewById(view.getId())).getText());
 
             isInState = true;
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
     }
-
+        // reduce the if statement.
     // do the calculations
     public String calculate(String sum1, String operation,String sum2) {
         double result;
@@ -114,7 +114,9 @@ public class MainActivity extends AppCompatActivity {
                 if(Double.isNaN((Double.parseDouble(sum1)/Double.parseDouble(sum2)))){ //avoid 0/0
                     operation="";
                     isInState =true;
+                    setSum1Deafult=true;
                     return "Error";
+
                 }
                 result = (Double.parseDouble(sum1)/Double.parseDouble(sum2));
                 if(result % 1 == 0){
@@ -144,8 +146,9 @@ public class MainActivity extends AppCompatActivity {
             textField.setText("0");
             isInState = false;
             selectedBtn.setSelected(false);
-            if(selectedBtn.getId() == R.id.btnEqual){
+            if(selectedBtn.getId() == R.id.btnEqual|| setSum1Deafult){
                 sum1="";
+                setSum1Deafult = false;
             }
         }
         if(view.getId()== R.id.btnDecimal){
