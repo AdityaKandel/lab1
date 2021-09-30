@@ -31,8 +31,6 @@ public class MainActivity extends AppCompatActivity {
         textField = (TextView) findViewById(R.id.textView3);
 
     }
-    public void noOp(View view){}
-
     public void equals(){
         System.out.println(sum1+operation + sum2);
         if(!(sum1.equals("") ||sum2.equals(""))){sum1 = calculate(sum1, operation, sum2);}
@@ -97,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
             case "add":
                 result = (Double.parseDouble(sum1)+Double.parseDouble(sum2)); // convert result to decimal
                 if(result % 1 == 0) { // if result has no decimal place convert it int
-                    return Integer.toString((int) result);
+                    return Long.toString((long) result);
                 }
                 sum2="";
                 return Double.toString(result);
@@ -107,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
 
                 System.out.println("result form the calcualte method"+ result);
                 if(result % 1 == 0){
-                    return Integer.toString((int)result);
+                    return Long.toString((long) result);
                 }
                 sum2="";
                 return Double.toString(result);
@@ -122,15 +120,14 @@ public class MainActivity extends AppCompatActivity {
                 }
                 result = (Double.parseDouble(sum1)/Double.parseDouble(sum2));
                 if(result % 1 == 0){
-                    return Integer.toString((int)result);
-                }
+                    return Long.toString((long) result);                }
                 sum2="";
                 return Double.toString(result);
 
             case "multiply":
                 result = (Double.parseDouble(sum1)*Double.parseDouble(sum2));
                 if(result % 1 == 0){
-                    return Integer.toString((int)result);
+                    return Long.toString((long) result);
                 }
                 sum2="";
                 return Double.toString(result);

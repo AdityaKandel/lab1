@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:onClick="btnOperations"
     tools:context=".MainActivity">
 
     <RelativeLayout
@@ -19,7 +18,9 @@
             android:layout_height="match_parent"
             android:background="#232020"
             android:backgroundTint="#000000"
-            android:orientation="vertical">
+            android:clickable="false"
+            android:orientation="vertical"
+            android:saveEnabled="false">
 
             <TextView
                 android:id="@+id/textView3"
@@ -30,7 +31,6 @@
                 android:background="#000000"
                 android:gravity="bottom|end"
                 android:text="0"
-                android:onClick="noOp"
                 android:textAlignment="textEnd"
                 android:textColor="#FFFFFF"
                 android:textSize="48sp" />
