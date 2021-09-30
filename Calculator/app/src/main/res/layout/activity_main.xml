@@ -30,6 +30,7 @@
                 android:background="#000000"
                 android:gravity="bottom|end"
                 android:text="0"
+                android:onClick="noOp"
                 android:textAlignment="textEnd"
                 android:textColor="#FFFFFF"
                 android:textSize="48sp" />

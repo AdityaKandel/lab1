@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
         textField = (TextView) findViewById(R.id.textView3);
 
     }
+    public void noOp(View view){}
+
     public void equals(){
         System.out.println(sum1+operation + sum2);
         if(!(sum1.equals("") ||sum2.equals(""))){sum1 = calculate(sum1, operation, sum2);}
