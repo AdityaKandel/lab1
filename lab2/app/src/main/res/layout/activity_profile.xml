@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#61FFC107"
+    tools:context=".ProfileActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="216dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="16dp"
+        android:hint="Select a new Avatar"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#000000"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="200dp"
+        android:stretchColumns="*"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+            android:gravity="bottom|center">
+
+            <ImageView
+                android:id="@+id/flagid00"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:onClick="SetTeamIcon"
+                android:padding="10dp"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="10dp"
+                android:paddingRight="10dp"
+                app:srcCompat="@drawable/flag_00" />
+
+            <ImageView
+                android:id="@+id/flagid01"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:onClick="SetTeamIcon"
+                android:padding="10dp"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="10dp"
+                android:paddingRight="10dp"
+                app:srcCompat="@drawable/flag_01" />
+
+            <ImageView
+                android:id="@+id/flagid02"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:onClick="SetTeamIcon"
+                android:padding="10dp"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="10dp"
+                android:paddingRight="10dp"
+                app:srcCompat="@drawable/flag_02" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/flagid03"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:onClick="SetTeamIcon"
+                android:padding="10dp"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="10dp"
+                android:paddingRight="10dp"
+                app:srcCompat="@drawable/flag_03" />
+
+            <ImageView
+                android:id="@+id/flagid04"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:onClick="SetTeamIcon"
+                android:padding="10dp"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="10dp"
+                android:paddingRight="10dp"
+                app:srcCompat="@drawable/flag_04" />
+
+            <ImageView
+                android:id="@+id/flagid05"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:onClick="SetTeamIcon"
+                android:padding="10dp"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="10dp"
+                android:paddingRight="10dp"
+                app:srcCompat="@drawable/flag_05" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/flagid06"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:onClick="SetTeamIcon"
+                android:padding="10dp"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="10dp"
+                android:paddingRight="10dp"
+                app:srcCompat="@drawable/flag_06" />
+
+            <ImageView
+                android:id="@+id/flagid07"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:backgroundTint="#1B0404"
+                android:backgroundTintMode="add"
+                android:onClick="SetTeamIcon"
+                android:padding="10dp"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="10dp"
+                android:paddingRight="10dp"
+                app:srcCompat="@drawable/flag_07" />
+
+            <ImageView
+                android:id="@+id/flagid08"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:onClick="SetTeamIcon"
+                android:padding="10dp"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="10dp"
+                android:paddingRight="10dp"
+                app:srcCompat="@drawable/flag_08" />
+        </TableRow>
+
+    </TableLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
