@@ -1,4 +1,4 @@
 package com.example.fitnesscentrebooking;
 
-public class Instructor {
+public class Instructor extends User{
 }

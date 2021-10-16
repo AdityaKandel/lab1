@@ -1,4 +1,4 @@
 package com.example.fitnesscentrebooking;
 
-public class Administrator {
+public class Administrator extends User{
 }

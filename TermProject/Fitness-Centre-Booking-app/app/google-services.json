@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "430966851959",
+    "project_id": "fitness-booking-center",
+    "storage_bucket": "fitness-booking-center.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:430966851959:android:8c6167badd7896f4bbb972",
+        "android_client_info": {
+          "package_name": "com.SEG.FitnessApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "430966851959-u3b52r7b9up863kv2dvsjgnagmamubjm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAI7bsp02C4nQ884lfwi4MiXxpt1g2hhxA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "430966851959-u3b52r7b9up863kv2dvsjgnagmamubjm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:430966851959:android:3b3e21ee888b12fbbbb972",
+        "android_client_info": {
+          "package_name": "com.example.fitnesscentrebooking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "430966851959-u3b52r7b9up863kv2dvsjgnagmamubjm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAI7bsp02C4nQ884lfwi4MiXxpt1g2hhxA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "430966851959-u3b52r7b9up863kv2dvsjgnagmamubjm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
