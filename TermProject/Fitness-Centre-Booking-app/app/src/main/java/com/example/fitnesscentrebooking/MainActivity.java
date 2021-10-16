@@ -10,17 +10,22 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
-
+    EditText textUsername;
+    EditText textPassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        textPassword = findViewById(R.id.textPassword_Login);
+        textUsername = findViewById(R.id.textUsername_Login);
     }
 
 
@@ -32,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onActivityResult(ActivityResult result){
                     if(result.getResultCode() == Activity.RESULT_OK){
                         Intent data = result.getData();
+                        textUsername.setText(data.getStringExtra("username"));
                     }
                 }
 
@@ -39,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
     public void onCreateNewUser(View view) {
         Intent intent = new Intent(getApplicationContext(), CreateUser.class);
         CreateUserLauncher.launch(intent);
+    }
+
+    public void Login(){
+
     }
 }
 
