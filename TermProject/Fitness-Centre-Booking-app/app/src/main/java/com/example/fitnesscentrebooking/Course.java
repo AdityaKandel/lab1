@@ -1,6 +1,6 @@
 package com.example.fitnesscentrebooking;
 
-public class Class {
+public class Course {
     protected String date;
     protected String name;
     protected String description;

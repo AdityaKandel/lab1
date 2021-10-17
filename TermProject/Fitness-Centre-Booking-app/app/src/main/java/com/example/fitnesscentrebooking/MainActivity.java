@@ -24,13 +24,15 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     String username;
     String password;
+
+    User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance();
-        textPassword = findViewById(R.id.textPassword_Login);
-        textUsername = findViewById(R.id.textUsername_Login);
+        textPassword = (EditText) findViewById(R.id.textPassword_Login);
+        textUsername = (EditText) findViewById(R.id.textUsername_Login);
     }
 
 
@@ -54,8 +56,8 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onActivityResult(ActivityResult result){
                     if(result.getResultCode() == Activity.RESULT_OK){
-                      //  Intent data = result.getData();
-                       // textUsername.setText(data.getStringExtra("username"));
+                        Intent data = result.getData();
+                        textUsername.setText(data.getStringExtra("username"));
                     }
                 }
 
@@ -69,12 +71,18 @@ public class MainActivity extends AppCompatActivity {
     ValueEventListener listener = new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
-            String Database_password=dataSnapshot.child("password").getValue(String.class);
-            if(Database_password.equals(password)){
-                Intent intent = new Intent(getApplicationContext(), main_page.class);
-                CreateUserLauncher.launch(intent);
-            }
 
+            String Database_password=dataSnapshot.child("password").getValue(String.class);
+                if(Database_password!=null) {
+                    if (Database_password.equals(password)) {
+                        user = new User();
+                            user    = dataSnapshot.child("userData").getValue(User.class);
+                        Intent intent = new Intent(getApplicationContext(), main_page.class);
+                        CreateUserLauncher.launch(intent);
+                    }else{
+                        textPassword.setError("Password Do not Match");
+                    }
+                }
         }
 
         @Override
@@ -86,8 +94,9 @@ public class MainActivity extends AppCompatActivity {
     public void onLogin(View view){
          username =textUsername.getText().toString().toLowerCase() ;
          password = textPassword.getText().toString();
-        FirebaseDatabase.getInstance().getReference().child("Users").child(username).addValueEventListener(listener);
-
+         if(!(password.equals("") || username.equals(""))){
+            FirebaseDatabase.getInstance().getReference().child("Users").child(username).addValueEventListener(listener);
+        }
     }
 }
 
