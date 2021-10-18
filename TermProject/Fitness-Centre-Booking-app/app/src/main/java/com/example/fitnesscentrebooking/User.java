@@ -8,13 +8,14 @@ public class User {
     protected String username;
     protected String email;
     protected List<Course> courses;
+    protected String role;
 
     public User(){
         username= "";
         email = "";
         courses = new ArrayList<>();
     }
-    public User(String username, String email){
+    public User(String username, String email, String role){
         this.email = email;
         this.username = username;
     }
@@ -41,6 +42,14 @@ public class User {
 
     public void setCourses(Course course) {
         courses.add(course);
+    }
+
+    public void setRole(String role){
+        this.role = role;
+    }
+
+    public  String getRole(){
+        return role;
     }
 
 

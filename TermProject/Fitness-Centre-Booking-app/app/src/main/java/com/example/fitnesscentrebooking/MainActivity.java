@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -18,14 +19,17 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class MainActivity extends AppCompatActivity {
-    EditText textUsername;
-    EditText textPassword;
-    private FirebaseAuth mAuth;
-    String username;
-    String password;
+import java.util.ArrayList;
 
-    User user;
+
+public class MainActivity extends AppCompatActivity {
+    protected EditText textUsername;
+    protected EditText textPassword;
+    private FirebaseAuth mAuth;
+    protected String username;
+    protected String password;
+   protected static User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         textPassword = (EditText) findViewById(R.id.textPassword_Login);
         textUsername = (EditText) findViewById(R.id.textUsername_Login);
+
     }
 
 
@@ -76,15 +81,14 @@ public class MainActivity extends AppCompatActivity {
                 if(Database_password!=null) {
                     if (Database_password.equals(password)) {
                         user = new User();
-                            user    = dataSnapshot.child("userData").getValue(User.class);
+                        user = dataSnapshot.child("userData").getValue(User.class);
                         Intent intent = new Intent(getApplicationContext(), main_page.class);
-                        CreateUserLauncher.launch(intent);
+                        mainPageLauncher.launch(intent);
                     }else{
                         textPassword.setError("Password Do not Match");
                     }
                 }
         }
-
         @Override
         public void onCancelled(DatabaseError databaseError) {
             // Getting Post failed, log a message
@@ -98,5 +102,10 @@ public class MainActivity extends AppCompatActivity {
             FirebaseDatabase.getInstance().getReference().child("Users").child(username).addValueEventListener(listener);
         }
     }
+
+    public static User getUser(){
+        return user;
+    }
+
 }
 
