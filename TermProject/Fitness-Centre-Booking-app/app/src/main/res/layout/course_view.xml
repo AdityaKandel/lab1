@@ -9,32 +9,38 @@
 
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/background_courseView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#ED7070"
+        android:background="@drawable/gradient"
+
+        android:contextClickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/time"
-        android:layout_width="187dp"
-        android:layout_height="43dp"
+        android:layout_width="185dp"
+        android:layout_height="30dp"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="144dp"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="#FDFDFD"
         app:layout_constraintEnd_toStartOf="@+id/capacity"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/enroll" />
+        app:layout_constraintStart_toEndOf="@+id/enroll"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/courseName"
-        android:layout_width="425dp"
-        android:layout_height="30dp"
+        android:layout_width="350dp"
+        android:layout_height="31dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:text="TextView"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
@@ -46,15 +52,16 @@
 
     <Button
         android:id="@+id/enroll"
-        android:layout_width="66dp"
-        android:layout_height="177dp"
-        android:text="Button"
+        android:layout_width="49dp"
+        android:layout_height="166dp"
+        android:text="Enroll"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.004"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.216" />
 
     <TextView
         android:id="@+id/description"
@@ -62,19 +69,33 @@
         android:layout_height="0dp"
         android:layout_marginLeft="10dp"
         android:text="TextView"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/time"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/enroll"
-        app:layout_constraintTop_toBottomOf="@+id/courseName" />
+        app:layout_constraintTop_toBottomOf="@+id/courseName"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/capacity"
-        android:layout_width="237dp"
-        android:layout_height="43dp"
+        android:layout_width="165dp"
+        android:layout_height="31dp"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/description" />
+
+    <Button
+        android:id="@+id/remove_courseview"
+        android:layout_width="69dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="8dp"
+        android:onClick="removeCourse"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

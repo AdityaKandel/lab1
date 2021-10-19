@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -51,26 +52,14 @@ public class main_page extends AppCompatActivity {
         text_Username = (TextView) findViewById(R.id.textUserName_main);
         text_Role = (TextView) findViewById(R.id.textRole_main);
         recyclerView = findViewById(R.id.recycleView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+       recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         setUserData(user.getUsername(), user.getRole());
         updateUI();
         System.out.println("getting value");
         OnUpdateClassUI();
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        adapter.startListening();
-    }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        if(adapter != null) {
-            adapter.stopListening();
-        }
-    }
 
     public void updateUI() {
         switch (user.getRole()) {
@@ -89,15 +78,12 @@ public class main_page extends AppCompatActivity {
 
 
 
-
-
     public void setUserData(String name, String role){
         text_Username.setText("Username: "+name);
         text_Role.setText("Role: "+role);
        // FirebaseDatabase.getInstance().getReference().child("courses").addValueEventListener(listener);
 
     }
-
 
     ActivityResultLauncher<Intent> addCourseLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -106,18 +92,15 @@ public class main_page extends AppCompatActivity {
                 public void onActivityResult(ActivityResult result){
                     if(result.getResultCode() == Activity.RESULT_OK){
                         Intent data = result.getData();
-                        System.out.println("Cancelation of adding course");
+                        text_Username.setText(data.getStringExtra("username"));
                     }
                 }
-
             });
 
     public void onAddCourse(View view){
-      //  Intent intent = new Intent(getApplicationContext(), addcourse.class);
-       // addCourseLauncher.launch(intent);
-        setContentView(R.layout.activity_course_add_page);
-    }
-
+       Intent intent = new Intent(getApplicationContext(), courseAddPage.class);
+       addCourseLauncher.launch(intent);
+}
 
     public void removeCourse(View view){
 
@@ -127,21 +110,27 @@ public class main_page extends AppCompatActivity {
     }
 
     public void OnUpdateClassUI(){
+
         courses = new FirebaseRecyclerOptions.Builder<Course>().setQuery(mDatabase,Course.class).build();
         adapter = new FirebaseRecyclerAdapter<Course, CourserViewUi>(courses) {
+            String key;
                 @Override
                 protected void onBindViewHolder(@NonNull CourserViewUi holder, int position, @NonNull Course model) {
                     holder.courseName.setText(model.getName());
                   //  holder.capacity.setText(model.getCapacity());
                     holder.description.setText(model.getDescription());
                     //holder.time.setText(model.getTime());
+                    System.out.println(key);
+                    holder.setKey(model.getId());
+
                 }
                 @NonNull
                 @Override
                 public CourserViewUi onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                    View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.course_view,parent, false);
+                    System.out.println("key for the course create holder" + key);
 
-                    return new CourserViewUi(v);
+                    View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.course_view,parent, false);
+                    return new CourserViewUi(v,key);
                 }
             };
             adapter.startListening();

@@ -3,13 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/drawable/gradient.xml" value="0.17447916666666666" />
         <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/drawable/single_row.xml" value="0.2989583333333333" />
         <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/layout/activity_addcourse.xml" value="0.25" />
         <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/layout/activity_course_add_page.xml" value="0.3098958333333333" />
         <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/layout/activity_main_page.xml" value="0.16" />
+        <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/layout/activity_main_page.xml" value="0.22" />
         <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/layout/addcourse_layout.xml" value="0.3098958333333333" />
-        <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/layout/course_view.xml" value="0.5" />
+        <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/layout/course_view.xml" value="0.67" />
         <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/layout/courseview.xml" value="0.2828125" />
         <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/layout/loginscreen.xml" value="0.25" />
         <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/layout/registration_page.xml" value="0.25" />

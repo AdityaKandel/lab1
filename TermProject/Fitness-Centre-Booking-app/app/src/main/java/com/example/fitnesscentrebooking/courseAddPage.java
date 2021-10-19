@@ -2,11 +2,14 @@ package com.example.fitnesscentrebooking;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.sql.SQLSyntaxErrorException;
 
 public class courseAddPage extends AppCompatActivity {
     TextView textDescription;
@@ -32,13 +35,14 @@ public class courseAddPage extends AppCompatActivity {
         String time = textTime.getText().toString();
         String date = textDate.getText().toString();
         String capacity = textCapacity.getText().toString().trim();
+        System.out.println(key+"Key from the addData");
 
-        Course newCourse = new Course(name, description, date, time, Integer.parseInt(capacity));
+        Course newCourse = new Course(name, description, date, time, Integer.parseInt(capacity), key);
         FirebaseDatabase.getInstance().getReference().child("courses").child(key).setValue(newCourse);
-        setContentView(R.layout.activity_main_page);
+       finish();
     }
 
     public void cancelprocess(View view) {
-      System.out.println("Look you can find it");
+        finish();
     }
 }

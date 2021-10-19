@@ -90,4 +90,8 @@ public class CreateUser extends AppCompatActivity {
         return isValid;
 
     }
+    public void onLog(View view){
+        finish();
+
+    }
 }

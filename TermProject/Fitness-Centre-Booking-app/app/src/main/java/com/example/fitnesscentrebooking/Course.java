@@ -6,16 +6,24 @@ public class Course {
     protected String description;
     protected String time;
     protected int capacity;
+    protected String id;
 
-    public Course(String name, String description,String date, String time, int capacity){
+    public Course(String name, String description,String date, String time, int capacity, String id){
         this.date = date;
         this.name = name;
         this.description =description;
         this.time = time;
         this.capacity = capacity;
+        this.id =id;
     }
     public Course(){
 
+    }
+    public String getId(){
+        return id;
+    }
+    public void setId(String id){
+        this.id = id;
     }
     public int getCapacity() {
         return capacity;

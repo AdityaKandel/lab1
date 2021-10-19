@@ -29,6 +29,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textConfirmPassword" />
 
+    <Button
+        android:id="@+id/Login_registration"
+        android:layout_width="317dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="92dp"
+        android:onClick="onLog"
+        android:orientation="vertical"
+        android:text="Login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textConfirmPassword" />
+
     <EditText
         android:id="@+id/textPassword"
         android:layout_width="330dp"

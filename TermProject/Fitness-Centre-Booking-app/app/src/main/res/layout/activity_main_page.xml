@@ -48,20 +48,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textRole_main"
         app:layout_constraintVertical_bias="1.0" />
 
-    <Button
-        android:id="@+id/removeCourse"
-        android:layout_width="99dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="76dp"
-        android:onClick="onAddCourse"
-        android:text="Remove"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.051"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textRole_main"
-        app:layout_constraintVertical_bias="1.0" />
-
     <TextView
         android:id="@+id/textUserName_main"
         android:layout_width="123dp"
@@ -81,8 +67,10 @@
         android:layout_marginTop="60dp"
         android:text="Role"
         android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.804"
+        app:layout_constraintStart_toEndOf="@+id/textUserName_main"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="258dp"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
