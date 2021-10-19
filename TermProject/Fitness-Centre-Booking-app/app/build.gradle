@@ -48,7 +48,16 @@ dependencies {
 
         // Import the BoM for the Firebase platform
         implementation platform('com.google.firebase:firebase-bom:28.4.2')
+    implementation 'com.firebaseui:firebase-ui-database:8.0.0'
 
+    // FirebaseUI for Cloud Firestore
+    implementation 'com.firebaseui:firebase-ui-firestore:8.0.0'
+
+    // FirebaseUI for Firebase Auth
+    implementation 'com.firebaseui:firebase-ui-auth:8.0.0'
+
+    // FirebaseUI for Cloud Storage
+    implementation 'com.firebaseui:firebase-ui-storage:8.0.0'
         // Declare the dependencies for the desired Firebase products without specifying versions
         // For example, declare the dependencies for Firebase Authentication and Cloud Firestore
         implementation 'com.google.firebase:firebase-auth'

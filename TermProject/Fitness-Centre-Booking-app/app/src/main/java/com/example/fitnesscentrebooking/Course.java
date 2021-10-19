@@ -5,16 +5,26 @@ public class Course {
     protected String name;
     protected String description;
     protected String time;
+    protected int capacity;
 
+    public Course(String name, String description,String date, String time, int capacity){
+        this.date = date;
+        this.name = name;
+        this.description =description;
+        this.time = time;
+        this.capacity = capacity;
+    }
+    public Course(){
+
+    }
     public int getCapacity() {
-        return Capacity;
+        return capacity;
     }
 
     public void setCapacity(int capacity) {
-        Capacity = capacity;
+        this.capacity = capacity;
     }
 
-    protected int Capacity;
 
     public String getDate() {
         return date;

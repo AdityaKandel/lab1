@@ -28,29 +28,36 @@
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ScrollView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <LinearLayout
-                android:id="@+id/ListCourses"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" />
-        </ScrollView>
-
+            android:layout_height="match_parent" />
     </LinearLayout>
 
     <Button
-        android:id="@+id/editCourse"
-        android:layout_width="156dp"
-        android:layout_height="39dp"
+        android:id="@+id/addCourse"
+        android:layout_width="99dp"
+        android:layout_height="48dp"
         android:layout_marginTop="76dp"
         android:onClick="onAddCourse"
-        android:text="Add Courses"
+        android:text="Add"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.937"
+        app:layout_constraintHorizontal_bias="0.948"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textRole_main"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/removeCourse"
+        android:layout_width="99dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="76dp"
+        android:onClick="onAddCourse"
+        android:text="Remove"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.051"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textRole_main"
         app:layout_constraintVertical_bias="1.0" />
@@ -59,11 +66,11 @@
         android:id="@+id/textUserName_main"
         android:layout_width="123dp"
         android:layout_height="25dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="60dp"
         android:text="UserName"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.944"
+        app:layout_constraintHorizontal_bias="0.055"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -71,11 +78,11 @@
         android:id="@+id/textRole_main"
         android:layout_width="124dp"
         android:layout_height="21dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="60dp"
         android:text="Role"
         android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.947"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textUserName_main" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="258dp"
+        tools:ignore="MissingConstraints" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
