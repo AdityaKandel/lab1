@@ -124,7 +124,6 @@ public class main_page extends AppCompatActivity {
                     holder.description.setText(model.getDescription());
                     holder.date.setText(model.getDate());
                     //holder.time.setText(model.getTime());
-                    System.out.println(key);
                     holder.setKey(model.getId());
                 }
                 @NonNull

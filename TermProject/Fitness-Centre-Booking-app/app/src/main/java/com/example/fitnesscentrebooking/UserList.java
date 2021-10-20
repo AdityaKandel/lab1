@@ -1,5 +1,6 @@
 package com.example.fitnesscentrebooking;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,5 +53,11 @@ public class UserList extends AppCompatActivity {
 
     public void goback(View view){
         finish();
+    }
+
+
+    public void createNewAccount(View view){
+        Intent intent = new Intent(getApplicationContext(), CreateUser.class);
+        startActivity(intent);
     }
 }
