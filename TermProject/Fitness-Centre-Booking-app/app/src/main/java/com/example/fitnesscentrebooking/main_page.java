@@ -41,8 +41,9 @@ public class main_page extends AppCompatActivity {
     RecyclerView recyclerView;
     FirebaseRecyclerOptions<Course> courses;
     FirebaseRecyclerAdapter<Course, CourserViewUi> adapter;
+    static String curCourseKey;
 
-
+    Button editCourse;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,9 +55,14 @@ public class main_page extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycleView);
        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         setUserData(user.getUsername(), user.getRole());
+
+
+
+
         updateUI();
         System.out.println("getting value");
         OnUpdateClassUI();
+
     }
 
 
@@ -97,15 +103,27 @@ public class main_page extends AppCompatActivity {
                 }
             });
 
+
+
+    ActivityResultLauncher<Intent> editCourselauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>(){
+                @Override
+                public void onActivityResult(ActivityResult result){
+                    if(result.getResultCode() == Activity.RESULT_OK){
+                        Intent data = result.getData();
+                        text_Username.setText(data.getStringExtra("username"));
+                    }
+                }
+            });
+
     public void onAddCourse(View view){
        Intent intent = new Intent(getApplicationContext(), courseAddPage.class);
        addCourseLauncher.launch(intent);
 }
 
-    public void removeCourse(View view){
 
-    }
-    public void enrollCourse(View view) {
+    public static void editCourse(String key) {
 
     }
 
@@ -135,5 +153,9 @@ public class main_page extends AppCompatActivity {
             };
             adapter.startListening();
             recyclerView.setAdapter(adapter);
+        }
+
+        public void editCourse(){
+
         }
 }

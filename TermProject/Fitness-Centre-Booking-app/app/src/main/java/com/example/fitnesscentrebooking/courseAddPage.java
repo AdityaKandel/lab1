@@ -2,14 +2,11 @@ package com.example.fitnesscentrebooking;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.sql.SQLSyntaxErrorException;
 
 public class courseAddPage extends AppCompatActivity {
     TextView textDescription;
@@ -21,11 +18,11 @@ public class courseAddPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_add_page);
-        textDescription = findViewById(R.id.textDescripton);
-        textName = findViewById(R.id.textcourseName);
-        textTime = findViewById(R.id.editTextTime);
-        textDate = findViewById(R.id.editTextDate);
-        textCapacity = findViewById(R.id.textCapacity_Addcourse);
+        textDescription = findViewById(R.id.textDescripton_editCourse);
+        textName = findViewById(R.id.textcourseName_editcourse);
+        textTime = findViewById(R.id.editTextTime_editCourse);
+        textDate = findViewById(R.id.editTextDate_editcourse);
+        textCapacity = findViewById(R.id.textCapacity_editCourse);
     }
 
     public void addData(View view) {
@@ -45,4 +42,9 @@ public class courseAddPage extends AppCompatActivity {
     public void cancelprocess(View view) {
         finish();
     }
+
+    public void editCourse(View view){
+
+    }
+
 }
