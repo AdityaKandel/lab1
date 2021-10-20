@@ -34,16 +34,13 @@ import java.util.ArrayList;
 
 public class main_page extends AppCompatActivity {
     protected User user;
-    //protected ArrayList<Course> courses;
     protected TextView text_Username;
     private DatabaseReference mDatabase;
     protected TextView text_Role;
     RecyclerView recyclerView;
     FirebaseRecyclerOptions<Course> courses;
     FirebaseRecyclerAdapter<Course, CourserViewUi> adapter;
-    static String curCourseKey;
 
-    Button editCourse;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,16 +53,11 @@ public class main_page extends AppCompatActivity {
        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         setUserData(user.getUsername(), user.getRole());
 
-
-
-
         updateUI();
         System.out.println("getting value");
         OnUpdateClassUI();
 
     }
-
-
 
     public void updateUI() {
         switch (user.getRole()) {
@@ -82,13 +74,9 @@ public class main_page extends AppCompatActivity {
         }
     }
 
-
-
     public void setUserData(String name, String role){
         text_Username.setText("Username: "+name);
         text_Role.setText("Role: "+role);
-       // FirebaseDatabase.getInstance().getReference().child("courses").addValueEventListener(listener);
-
     }
 
     ActivityResultLauncher<Intent> addCourseLauncher = registerForActivityResult(
@@ -102,7 +90,6 @@ public class main_page extends AppCompatActivity {
                     }
                 }
             });
-
 
 
     ActivityResultLauncher<Intent> editCourselauncher = registerForActivityResult(
@@ -120,7 +107,7 @@ public class main_page extends AppCompatActivity {
     public void onAddCourse(View view){
        Intent intent = new Intent(getApplicationContext(), courseAddPage.class);
        addCourseLauncher.launch(intent);
-}
+    }
 
 
     public static void editCourse(String key) {
@@ -153,9 +140,5 @@ public class main_page extends AppCompatActivity {
             };
             adapter.startListening();
             recyclerView.setAdapter(adapter);
-        }
-
-        public void editCourse(){
-
         }
 }

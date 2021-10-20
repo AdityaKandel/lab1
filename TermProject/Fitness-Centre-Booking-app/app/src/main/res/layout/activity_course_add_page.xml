@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".courseAddPage">
     <EditText
-        android:id="@+id/textcourseName_editcourse"
+        android:id="@+id/textcourseName_addCourse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
@@ -18,11 +18,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_editcourse"
+        app:layout_constraintTop_toBottomOf="@+id/title_addCourse"
         tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
 
     <Button
-        android:id="@+id/save_editCourse"
+        android:id="@+id/add_addcourse"
         android:layout_width="183dp"
         android:layout_height="55dp"
         android:onClick="addData"
@@ -31,11 +31,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.982"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textDescripton_editCourse"
+        app:layout_constraintTop_toBottomOf="@+id/textDescripton_addCourse"
         app:layout_constraintVertical_bias="0.23" />
 
     <Button
-        android:id="@+id/btnCancel_editCourse"
+        android:id="@+id/btnCancel_addCourse"
         android:layout_width="183dp"
         android:layout_height="55dp"
         android:onClick="cancelprocess"
@@ -44,11 +44,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.021"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textDescripton_editCourse"
+        app:layout_constraintTop_toBottomOf="@+id/textDescripton_addCourse"
         app:layout_constraintVertical_bias="0.223" />
 
     <EditText
-        android:id="@+id/editTextDate_editcourse"
+        android:id="@+id/editTextDate_addCourse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
@@ -60,10 +60,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textcourseName_editcourse" />
+        app:layout_constraintTop_toBottomOf="@+id/textcourseName_addCourse" />
 
     <EditText
-        android:id="@+id/editTextTime_editCourse"
+        android:id="@+id/editTextTime_addCourse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
@@ -74,11 +74,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDate_editcourse"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDate_addCourse"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
-        android:id="@+id/textDescripton_editCourse"
+        android:id="@+id/textDescripton_addCourse"
         android:layout_width="302dp"
         android:layout_height="92dp"
         android:layout_marginTop="32dp"
@@ -90,12 +90,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textCapacity_editCourse"
+        app:layout_constraintTop_toBottomOf="@+id/textCapacity_addCourse"
         app:layout_constraintVertical_bias="0.03"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/title_editcourse"
+        android:id="@+id/title_addCourse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -108,7 +108,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/textCapacity_editCourse"
+        android:id="@+id/textCapacity_addCourse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
@@ -119,5 +119,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTime_editCourse" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTime_addCourse" />
 </androidx.constraintlayout.widget.ConstraintLayout>

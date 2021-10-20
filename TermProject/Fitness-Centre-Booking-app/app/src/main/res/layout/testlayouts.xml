@@ -5,15 +5,11 @@
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="10dp"
-    android:layout_marginTop="10dp"
-    android:layout_marginRight="10dp"
-    android:layout_marginBottom="10dp"
     android:onClick="onAddCourse">
 
     <ImageView
         android:id="@+id/background_courseView"
-        android:layout_width="380dp"
+        android:layout_width="411dp"
         android:layout_height="245dp"
 
         android:background="@drawable/gradient"
@@ -96,11 +92,9 @@
     <Button
         android:id="@+id/editCourse_courseview"
         android:layout_width="69dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="100dp"
+        android:layout_height="24dp"
         android:onClick="editCourse"
-        android:text="Edit"
-        android:textSize="8sp"
+        android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/background_courseView"
         app:layout_constraintHorizontal_bias="0.055"
@@ -111,11 +105,9 @@
     <Button
         android:id="@+id/remove_courseview"
         android:layout_width="69dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="100dp"
+        android:layout_height="24dp"
         android:onClick="editCourse"
-        android:text="Remove"
-        android:textSize="8sp"
+        android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.953"

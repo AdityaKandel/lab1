@@ -14,15 +14,16 @@ public class courseAddPage extends AppCompatActivity {
     TextView textCapacity;
     TextView textTime;
     TextView textDate;
+    static String key2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_add_page);
-        textDescription = findViewById(R.id.textDescripton_editCourse);
-        textName = findViewById(R.id.textcourseName_editcourse);
-        textTime = findViewById(R.id.editTextTime_editCourse);
-        textDate = findViewById(R.id.editTextDate_editcourse);
-        textCapacity = findViewById(R.id.textCapacity_editCourse);
+        textDescription = findViewById(R.id.textDescripton_addCourse);
+        textName = findViewById(R.id.textcourseName_addCourse);
+        textTime = findViewById(R.id.editTextTime_addCourse);
+        textDate = findViewById(R.id.editTextDate_addCourse);
+        textCapacity = findViewById(R.id.textCapacity_addCourse);
     }
 
     public void addData(View view) {
@@ -33,18 +34,20 @@ public class courseAddPage extends AppCompatActivity {
         String date = textDate.getText().toString();
         String capacity = textCapacity.getText().toString().trim();
         System.out.println(key+"Key from the addData");
-
-        Course newCourse = new Course(name, description, date, time, Integer.parseInt(capacity), key);
-        FirebaseDatabase.getInstance().getReference().child("courses").child(key).setValue(newCourse);
-       finish();
+        if(key2.equals("")){
+            Course newCourse = new Course(name, description, date, time, Integer.parseInt(capacity), key);
+            FirebaseDatabase.getInstance().getReference().child("courses").child(key).setValue(newCourse);
+        }else {
+            Course newCourse = new Course(name, description, date, time, Integer.parseInt(capacity), key);
+            FirebaseDatabase.getInstance().getReference().child("courses").child(key2).setValue(newCourse);
+        }
+        finish();
     }
 
     public void cancelprocess(View view) {
         finish();
     }
 
-    public void editCourse(View view){
 
-    }
 
 }

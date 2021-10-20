@@ -48,6 +48,7 @@ public class CourserViewUi extends RecyclerView.ViewHolder {
         capacity = itemView.findViewById(R.id.capacity);
         enroll = itemView.findViewById(R.id.enroll);
         remove = itemView.findViewById(R.id.remove_courseview);
+
         editCourse= itemView.findViewById(R.id.editCourse_courseview);
         editCourse.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,13 +84,20 @@ public class CourserViewUi extends RecyclerView.ViewHolder {
         switch (user.getRole()){
             case "member":
                 remove.setVisibility(View.GONE);
+                editCourse.setVisibility(View.GONE);
                     break;
+            case"admin":
+                enroll.setVisibility(View.GONE);
+                break;
 
         }
     }
     public int colorpicker(){
         Random r = new Random();
-        String[] colors = new String[]{ "#f2b705", "#f6b20b", "#faad12", "#fda718", "#ffa21e", "#ff9d24", "#ff9729", "#ff922f", "#ff8d34", "#ff8739", "#ff823e", "#ff7c44", "#ff7749", "#ff724e", "#ff6d53", "#ff6858", "#ff635d", "#ff5e62", "#ff5a67", "#ff566c", "#ff5272", "#ff4f77", "#ff4c7c", "#fd4981", "#f94785", "#f5458a", "#f0448f", "#eb4394", "#e64398", "#e0439c", "#da43a1", "#d444a5", "#cd45a8", "#c647ac", "#be48af", "#b64ab2", "#ae4bb5", "#a54db8", "#9c4eba", "#9250bc"  };
+        String[] colors = new String[]{ "#f2b705", "#f6b20b", "#faad12", "#fda718", "#ffa21e", "#ff9d24", "#ff9729", "#ff922f", "#ff8d34", "#ff8739", "#ff823e", "#ff7c44",
+                "#ff7749", "#ff724e", "#ff6d53", "#ff6858", "#ff635d", "#ff5e62", "#ff5a67", "#ff566c", "#ff5272", "#ff4f77", "#ff4c7c", "#fd4981", "#f94785", "#f5458a",
+                "#f0448f", "#eb4394", "#e64398", "#e0439c", "#da43a1", "#d444a5", "#cd45a8", "#c647ac", "#be48af", "#b64ab2", "#ae4bb5", "#a54db8", "#9c4eba", "#9250bc",
+                "#cd9dfd", "#e199f4", "#f294ea", "#ff91de", "#ff8fd1", "#ff8ec3", "#ff8eb5", "#ff90a6", "#ff9498", "#ff998a", "#ffa07d", "#ffa772", "#ffae67", "#ffb65f", "#febe59" };
         return Color.parseColor(colors[r.nextInt(colors.length)]);
     }
 
@@ -99,9 +107,11 @@ public class CourserViewUi extends RecyclerView.ViewHolder {
     }
 
     public void setEditCourse(){
-        TextView test= itemView.findViewById(R.id.textView);
+
         Intent intent = new Intent(context, courseAddPage.class);
+        courseAddPage.key2=key;
         context.startActivity(intent);
+
 
     }
 
