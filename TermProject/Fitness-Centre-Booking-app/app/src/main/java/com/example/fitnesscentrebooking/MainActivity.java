@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(getApplicationContext(), main_page.class);
                         mainPageLauncher.launch(intent);
                     }else{
-                        textPassword.setError("Password Do not Match");
+                        textPassword.setError("Password or Username are Incorrect");
                     }
                 }
         }
@@ -98,14 +98,20 @@ public class MainActivity extends AppCompatActivity {
     public void onLogin(View view){
          username =textUsername.getText().toString().toLowerCase() ;
          password = textPassword.getText().toString();
+         System.out.println("trying to login");
+
          if(!(password.equals("") || username.equals(""))){
             FirebaseDatabase.getInstance().getReference().child("Users").child(username).addValueEventListener(listener);
-        }
+             System.out.println("should login");
+        }else{
+             System.out.println("username not found");
+             textPassword.setError("Password or Username are Incorrect");
+         }
     }
 
     public static User getUser(){
         return user;
     }
 
-}
+    }
 

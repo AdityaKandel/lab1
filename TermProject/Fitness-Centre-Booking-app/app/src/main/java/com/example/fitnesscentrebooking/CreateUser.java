@@ -48,10 +48,12 @@ public class CreateUser extends AppCompatActivity {
         String username = text_Username.getText().toString().toLowerCase();
         String password  = text_Password.getText().toString();
         String confrimPassword = text_ConfrimPassword.getText().toString();
-        User newMember = new Member(username,email, "member");
+        String key = FirebaseDatabase.getInstance().getReference().push().getKey();
+        User newMember = new Member(username,email, "member",key);
         if(CheckFieldvalidity(username, email, password,confrimPassword)) {
             FirebaseDatabase.getInstance().getReference().child("Users").child(username).child("password").setValue(password);
             FirebaseDatabase.getInstance().getReference().child("Users").child(username).child("userData").setValue(newMember);
+            FirebaseDatabase.getInstance().getReference().child("UsersList").child(key).setValue(newMember);
 
             Intent returnIntent = new Intent();
             returnIntent.putExtra("username", text_Username.getText().toString());

@@ -7,6 +7,16 @@ public class User {
 
     protected String username;
     protected String email;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    protected String id;
     protected List<Course> courses;
     protected String role;
 
@@ -14,11 +24,13 @@ public class User {
         username= "";
         email = "";
         courses = new ArrayList<>();
+        id = "";
     }
-    public User(String username, String email, String role){
+    public User(String username, String email, String role,String id){
         this.email = email;
         this.username = username;
         this.role = role;
+        this.id = id;
     }
 
     public String getEmail() {

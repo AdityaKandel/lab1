@@ -9,6 +9,11 @@ import android.widget.TextView;
 
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class courseAddPage extends AppCompatActivity {
     TextView textDescription;
     TextView textName;
@@ -33,11 +38,19 @@ public class courseAddPage extends AppCompatActivity {
     }
 
     public void addData(View view) {
+        DateFormat givenFormat = new SimpleDateFormat("MM/dd/yyyy");
+        DateFormat outputformat = new SimpleDateFormat("MMMM dd, yyyy");
         String key = FirebaseDatabase.getInstance().getReference().push().getKey();
         String name = textName.getText().toString();
         String description = textDescription.getText().toString();
         String time = textTime.getText().toString();
-        String date = textDate.getText().toString();
+        String date = "";
+        try {
+            Date dateformated = givenFormat.parse((textDate.getText().toString()));
+            date = outputformat.format(dateformated);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         String capacity = textCapacity.getText().toString().trim();
         System.out.println(key+"Key from the addData");
         capacity = capacity.equals("") ? "0": capacity;

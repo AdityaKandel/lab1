@@ -33,7 +33,7 @@ import kotlin.comparisons.UComparisonsKt;
 
 
 public class CourserViewUi extends RecyclerView.ViewHolder {
-    TextView description, courseName, capacity, time;
+    TextView description, courseName, capacity, time,date;
     Button enroll,remove,editCourse;
     ImageView imageView;
     User user;
@@ -47,6 +47,7 @@ public class CourserViewUi extends RecyclerView.ViewHolder {
         courseName = itemView.findViewById(R.id.courseName);
         capacity = itemView.findViewById(R.id.capacity);
         enroll = itemView.findViewById(R.id.enroll);
+        date = itemView.findViewById(R.id.date_courseView);
         remove = itemView.findViewById(R.id.remove_courseview);
 
         editCourse= itemView.findViewById(R.id.editCourse_courseview);

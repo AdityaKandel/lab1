@@ -37,9 +37,11 @@ public class main_page extends AppCompatActivity {
     protected TextView text_Username;
     private DatabaseReference mDatabase;
     protected TextView text_Role;
-    RecyclerView recyclerView;
+    Button btn_listUser;
     FirebaseRecyclerOptions<Course> courses;
-    FirebaseRecyclerAdapter<Course, CourserViewUi> adapter;
+    RecyclerView recyclerViewCourseList;
+    FirebaseRecyclerAdapter<Course, CourserViewUi> adapterCourse;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +51,10 @@ public class main_page extends AppCompatActivity {
         user = MainActivity.getUser();
         text_Username = (TextView) findViewById(R.id.textUserName_main);
         text_Role = (TextView) findViewById(R.id.textRole_main);
-        recyclerView = findViewById(R.id.recycleView);
-       recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        recyclerViewCourseList = findViewById(R.id.recycleView);
+        btn_listUser = findViewById(R.id.viewUsers_main_page);
+        recyclerViewCourseList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         setUserData(user.getUsername(), user.getRole());
-
         updateUI();
         System.out.println("getting value");
         OnUpdateClassUI();
@@ -62,14 +64,15 @@ public class main_page extends AppCompatActivity {
     public void updateUI() {
         switch (user.getRole()) {
             case "member":
+            case "instructor":
                 Button editCousrse = (Button) findViewById(R.id.addCourse);
                 editCousrse.setVisibility(View.GONE);
+                btn_listUser.setVisibility(View.GONE);
                 break;
             case "admin":
                 editCousrse = (Button) findViewById(R.id.addCourse);
                 editCousrse.setVisibility(View.VISIBLE);
-                break;
-            case "instructor":
+                btn_listUser.setVisibility(View.VISIBLE);
                 break;
         }
     }
@@ -109,26 +112,20 @@ public class main_page extends AppCompatActivity {
        addCourseLauncher.launch(intent);
     }
 
-
-    public static void editCourse(String key) {
-
-    }
-
     public void OnUpdateClassUI(){
 
         courses = new FirebaseRecyclerOptions.Builder<Course>().setQuery(mDatabase,Course.class).build();
-        adapter = new FirebaseRecyclerAdapter<Course, CourserViewUi>(courses) {
+        adapterCourse = new FirebaseRecyclerAdapter<Course, CourserViewUi>(courses) {
             String key;
                 @Override
                 protected void onBindViewHolder(@NonNull CourserViewUi holder, int position, @NonNull Course model) {
                     holder.courseName.setText(model.getName());
                   //  holder.capacity.setText(model.getCapacity());
                     holder.description.setText(model.getDescription());
+                    holder.date.setText(model.getDate());
                     //holder.time.setText(model.getTime());
                     System.out.println(key);
-
                     holder.setKey(model.getId());
-
                 }
                 @NonNull
                 @Override
@@ -139,7 +136,13 @@ public class main_page extends AppCompatActivity {
                     return new CourserViewUi(v,key);
                 }
             };
-            adapter.startListening();
-            recyclerView.setAdapter(adapter);
+        adapterCourse.startListening();
+        recyclerViewCourseList.setAdapter(adapterCourse);
         }
+
+        public void viewUsers(View view){
+            Intent intent = new Intent(getApplicationContext(), UserList.class);
+          startActivity(intent);
+        }
+
 }
