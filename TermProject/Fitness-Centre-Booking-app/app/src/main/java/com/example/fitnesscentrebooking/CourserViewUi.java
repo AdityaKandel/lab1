@@ -52,7 +52,7 @@ public class CourserViewUi extends RecyclerView.ViewHolder {
         editCourse= itemView.findViewById(R.id.editCourse_courseview);
         editCourse.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {System.out.println("need to edit the corurse!!");setEditCourse(); }
+            public void onClick(View view) {setEditCourse(); }
         });
         remove.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +62,7 @@ public class CourserViewUi extends RecyclerView.ViewHolder {
         });
         setGradientColor();
         user =MainActivity.getUser();
+
         updateUI();
 
     }
@@ -110,6 +111,7 @@ public class CourserViewUi extends RecyclerView.ViewHolder {
 
         Intent intent = new Intent(context, courseAddPage.class);
         courseAddPage.key2=key;
+        System.out.println("should be editing "+key);
         context.startActivity(intent);
 
 
