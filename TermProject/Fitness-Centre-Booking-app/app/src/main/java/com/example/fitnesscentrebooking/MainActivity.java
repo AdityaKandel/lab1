@@ -100,7 +100,16 @@ public class MainActivity extends AppCompatActivity {
          password = textPassword.getText().toString();
          System.out.println("trying to login");
 
-         if(!(password.equals("") || username.equals(""))){
+        boolean illegalChar = false;
+        if(
+                username.contains(".")
+                        || username.contains("#")
+                        || username.contains("$")
+                        || username.contains("[")
+                        || username.contains("]")
+        ){illegalChar = true;}
+
+         if(!(password.equals("") || username.equals("")) && (!illegalChar)){
             FirebaseDatabase.getInstance().getReference().child("Users").child(username).addValueEventListener(listener);
              System.out.println("should login");
         }else{
