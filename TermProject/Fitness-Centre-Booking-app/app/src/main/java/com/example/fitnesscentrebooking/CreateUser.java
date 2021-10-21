@@ -43,12 +43,13 @@ public class CreateUser extends AppCompatActivity implements AdapterView.OnItemS
         text_Username = (EditText) findViewById(R.id.textUsername);
         text_Password = (EditText) findViewById(R.id.textPassword);
         text_ConfrimPassword = (EditText) findViewById(R.id.textConfirmPassword);
+        /*https://developer.android.com/guide/topics/ui/controls/spinner#java*/
         roleSelection_dropdown = (Spinner) findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.roles_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.roles_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         roleSelection_dropdown.setAdapter(adapter);
         roleSelection_dropdown.setOnItemSelectedListener(this);
+        ////////////////////////////////////////////////////////////
         roleSelected = "member";
     }
 
@@ -74,6 +75,7 @@ public class CreateUser extends AppCompatActivity implements AdapterView.OnItemS
             Intent returnIntent = new Intent();
             returnIntent.putExtra("username", text_Username.getText().toString());
             setResult(RESULT_OK, returnIntent);
+            Toast.makeText(getApplicationContext(),"Account Created Successfully",Toast.LENGTH_SHORT).show();
             finish();
         }
     }

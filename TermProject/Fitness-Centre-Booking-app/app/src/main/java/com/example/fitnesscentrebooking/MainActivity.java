@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -25,7 +26,6 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     protected EditText textUsername;
     protected EditText textPassword;
-    private FirebaseAuth mAuth;
     protected String username;
     protected String password;
    protected static User user;
@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mAuth = FirebaseAuth.getInstance();
         textPassword = (EditText) findViewById(R.id.textPassword_Login);
         textUsername = (EditText) findViewById(R.id.textUsername_Login);
 
@@ -84,8 +83,10 @@ public class MainActivity extends AppCompatActivity {
                         user = dataSnapshot.child("userData").getValue(User.class);
                         Intent intent = new Intent(getApplicationContext(), main_page.class);
                         mainPageLauncher.launch(intent);
+                        Toast.makeText(getApplicationContext(),"Logged in Successfully",Toast.LENGTH_SHORT).show();
                     }else{
                         textPassword.setError("Password or Username are Incorrect");
+                        Toast.makeText(getApplicationContext(),"Password or Username are Incorrect",Toast.LENGTH_SHORT).show();
                     }
                 }
         }

@@ -17,13 +17,13 @@ public class User {
     }
 
     protected String id;
-    protected List<Course> courses;
+    protected List<CourseType> cours;
     protected String role;
 
     public User(){
         username= "";
         email = "";
-        courses = new ArrayList<>();
+        cours = new ArrayList<>();
         id = "";
     }
     public User(String username, String email, String role,String id){
@@ -49,12 +49,12 @@ public class User {
         this.username = username;
     }
 
-    public Course getCourses(int i) {
-        return courses.get(i);
+    public CourseType getCourses(int i) {
+        return cours.get(i);
     }
 
-    public void setCourses(Course course) {
-        courses.add(course);
+    public void setCourses(CourseType courseType) {
+        cours.add(courseType);
     }
 
     public void setRole(String role){

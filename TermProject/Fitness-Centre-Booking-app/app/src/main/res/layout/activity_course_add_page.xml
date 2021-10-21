@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".courseAddPage">
+
     <EditText
         android:id="@+id/textcourseName_addCourse"
         android:layout_width="wrap_content"
@@ -16,7 +17,7 @@
         android:minHeight="48dp"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_addCourse"
         tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
@@ -48,40 +49,10 @@
         app:layout_constraintVertical_bias="0.223" />
 
     <EditText
-        android:id="@+id/editTextDate_addCourse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:ems="10"
-        android:hint="MM/DD/YYYY"
-        android:inputType="date"
-        android:minHeight="48dp"
-        android:textColorHint="#85000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textcourseName_addCourse" />
-
-    <EditText
-        android:id="@+id/editTextTime_addCourse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:ems="10"
-        android:hint="Time"
-        android:inputType="time"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDate_addCourse"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <EditText
         android:id="@+id/textDescripton_addCourse"
         android:layout_width="302dp"
         android:layout_height="92dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginBottom="336dp"
         android:ems="10"
         android:hint="@string/course_description"
         android:inputType="textPersonName"
@@ -90,8 +61,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textCapacity_addCourse"
-        app:layout_constraintVertical_bias="0.03"
+        app:layout_constraintTop_toBottomOf="@+id/textcourseName_addCourse"
+        app:layout_constraintVertical_bias="0.467"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
@@ -107,17 +78,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/textCapacity_addCourse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:ems="10"
-        android:hint="Capacity"
-        android:inputType="number"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTime_addCourse" />
 </androidx.constraintlayout.widget.ConstraintLayout>

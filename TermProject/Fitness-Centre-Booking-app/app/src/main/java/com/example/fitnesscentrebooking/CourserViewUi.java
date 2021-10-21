@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -33,24 +34,21 @@ import kotlin.comparisons.UComparisonsKt;
 
 
 public class CourserViewUi extends RecyclerView.ViewHolder {
-    TextView description, courseName, capacity, time,date;
-    Button enroll,remove,editCourse;
-    ImageView imageView;
-    User user;
-    String key;
-    Context context;
+    protected TextView description, courseName, remove,editCourse;
+    protected Button enroll;
+    protected ImageView imageView;
+    protected User user;
+    protected String key;
+    protected Context context;
     public CourserViewUi(@NonNull View itemView, String key) {
         super(itemView);
         context = itemView.getContext();
         imageView = itemView.findViewById(R.id.background_courseView);
         description = itemView.findViewById(R.id.description);
         courseName = itemView.findViewById(R.id.courseName);
-        capacity = itemView.findViewById(R.id.capacity);
         enroll = itemView.findViewById(R.id.enroll);
-        date = itemView.findViewById(R.id.date_courseView);
-        remove = itemView.findViewById(R.id.remove_courseview);
-
         editCourse= itemView.findViewById(R.id.editCourse_courseview);
+        remove = itemView.findViewById(R.id.remove_courseview);
         editCourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {setEditCourse(); }
@@ -84,7 +82,8 @@ public class CourserViewUi extends RecyclerView.ViewHolder {
 
     public void updateUI(){
         switch (user.getRole()){
-            case "member":
+            case "Member":
+            case "Instructor":
                 remove.setVisibility(View.GONE);
                 editCourse.setVisibility(View.GONE);
                     break;
@@ -106,6 +105,8 @@ public class CourserViewUi extends RecyclerView.ViewHolder {
     public void removeCourse(){
         System.out.println(key+"id of the course");
         FirebaseDatabase.getInstance().getReference().child("courses").child(key).removeValue();
+        Toast.makeText(itemView.getContext(), "Course deleted",Toast.LENGTH_SHORT).show();
+
     }
 
     public void setEditCourse(){

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -44,6 +45,8 @@ public class userListView extends RecyclerView.ViewHolder {
         System.out.println("user Id:" + id);
         FirebaseDatabase.getInstance().getReference().child("Users").child(username).removeValue();
         FirebaseDatabase.getInstance().getReference().child("UsersList").child(id).removeValue();
+        Toast.makeText(itemView.getContext(),"User deleted",Toast.LENGTH_SHORT).show();
+
     }
 
 

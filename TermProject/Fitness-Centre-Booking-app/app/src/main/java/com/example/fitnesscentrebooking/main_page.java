@@ -6,7 +6,6 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,19 +17,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
 
 public class main_page extends AppCompatActivity {
     protected User user;
@@ -38,9 +30,9 @@ public class main_page extends AppCompatActivity {
     private DatabaseReference mDatabase;
     protected TextView text_Role;
     Button btn_listUser;
-    FirebaseRecyclerOptions<Course> courses;
+    FirebaseRecyclerOptions<CourseType> courses;
     RecyclerView recyclerViewCourseList;
-    FirebaseRecyclerAdapter<Course, CourserViewUi> adapterCourse;
+    FirebaseRecyclerAdapter<CourseType, CourserViewUi> adapterCourse;
 
 
     @Override
@@ -57,28 +49,34 @@ public class main_page extends AppCompatActivity {
         setUserData(user.getUsername(), user.getRole());
         updateUI();
         System.out.println("getting value");
-        OnUpdateClassUI();
+
 
     }
 
     public void updateUI() {
         switch (user.getRole()) {
-            case "member":
-            case "instructor":
+            case "Member":
                 Button editCousrse = (Button) findViewById(R.id.addCourse);
                 editCousrse.setVisibility(View.GONE);
                 btn_listUser.setVisibility(View.GONE);
                 break;
             case "admin":
+                OnUpdateClassUI();
                 editCousrse = (Button) findViewById(R.id.addCourse);
                 editCousrse.setVisibility(View.VISIBLE);
                 btn_listUser.setVisibility(View.VISIBLE);
+                break;
+            case "Instructor":
+                 editCousrse = (Button) findViewById(R.id.addCourse);
+                editCousrse.setVisibility(View.GONE);
+                btn_listUser.setVisibility(View.GONE);
+                OnUpdateClassUI();
                 break;
         }
     }
 
     public void setUserData(String name, String role){
-        text_Username.setText("Username: "+name);
+        text_Username.setText("Welcome "+name.substring(0,1).toUpperCase()+name.substring(1));
         text_Role.setText("Role: "+role);
     }
 
@@ -113,24 +111,18 @@ public class main_page extends AppCompatActivity {
     }
 
     public void OnUpdateClassUI(){
-
-        courses = new FirebaseRecyclerOptions.Builder<Course>().setQuery(mDatabase,Course.class).build();
-        adapterCourse = new FirebaseRecyclerAdapter<Course, CourserViewUi>(courses) {
+        courses = new FirebaseRecyclerOptions.Builder<CourseType>().setQuery(mDatabase, CourseType.class).build();
+        adapterCourse = new FirebaseRecyclerAdapter<CourseType, CourserViewUi>(courses) {
             String key;
                 @Override
-                protected void onBindViewHolder(@NonNull CourserViewUi holder, int position, @NonNull Course model) {
+                protected void onBindViewHolder(@NonNull CourserViewUi holder, int position, @NonNull CourseType model) {
                     holder.courseName.setText(model.getName());
-                  //  holder.capacity.setText(model.getCapacity());
                     holder.description.setText(model.getDescription());
-                    holder.date.setText(model.getDate());
-                    //holder.time.setText(model.getTime());
                     holder.setKey(model.getId());
                 }
                 @NonNull
                 @Override
                 public CourserViewUi onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                    System.out.println("key for the course create holder" + key);
-
                     View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.course_view,parent, false);
                     return new CourserViewUi(v,key);
                 }

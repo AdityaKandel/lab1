@@ -16,9 +16,9 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class UserList extends AppCompatActivity {
-    FirebaseRecyclerOptions<User> users;
-    FirebaseRecyclerAdapter<User, userListView> adapterUsers;
-    RecyclerView recyclerViewUserList;
+    protected FirebaseRecyclerOptions<User> users;
+    protected FirebaseRecyclerAdapter<User, userListView> adapterUsers;
+    protected RecyclerView recyclerViewUserList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,6 @@ public class UserList extends AppCompatActivity {
         adapterUsers = new FirebaseRecyclerAdapter<User, userListView>(users) {
             @Override
             protected void onBindViewHolder(@NonNull userListView holder, int position, @NonNull User model) {
-                    System.out.println(model.getUsername()+"testing the user list username");
                     holder.userField.setText("User: "+model.getUsername()+" | Role: "+model.getRole());
                     holder.setUsername(model.getUsername());
                     holder.setId(model.getId());
