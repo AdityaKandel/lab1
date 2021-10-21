@@ -32,7 +32,7 @@
         android:id="@+id/Login_registration"
         android:layout_width="317dp"
         android:layout_height="55dp"
-        android:layout_marginTop="124dp"
+        android:layout_marginTop="140dp"
         android:onClick="onLog"
         android:orientation="vertical"
         android:text="Login"
