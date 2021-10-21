@@ -4,8 +4,11 @@ import android.app.people.PeopleManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,23 +26,30 @@ import org.w3c.dom.Text;
 import java.util.Arrays;
 import java.util.Locale;
 
-public class CreateUser extends AppCompatActivity {
+public class CreateUser extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     protected EditText text_Email;
     protected  EditText text_Username;
     protected  EditText text_Password;
     protected EditText text_ConfrimPassword;
-    private FirebaseAuth mAuth;
+    protected Spinner roleSelection_dropdown;
+    String roleSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent returnIntent = new Intent();
         setContentView(R.layout.registration_page);
-        mAuth = FirebaseAuth.getInstance();
         text_Email = (EditText) findViewById(R.id.textEmail);
         text_Username = (EditText) findViewById(R.id.textUsername);
         text_Password = (EditText) findViewById(R.id.textPassword);
         text_ConfrimPassword = (EditText) findViewById(R.id.textConfirmPassword);
+        roleSelection_dropdown = (Spinner) findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.roles_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        roleSelection_dropdown.setAdapter(adapter);
+        roleSelection_dropdown.setOnItemSelectedListener(this);
+        roleSelected = "member";
     }
 
 
@@ -49,12 +59,18 @@ public class CreateUser extends AppCompatActivity {
         String password  = text_Password.getText().toString();
         String confrimPassword = text_ConfrimPassword.getText().toString();
         String key = FirebaseDatabase.getInstance().getReference().push().getKey();
-        User newMember = new Member(username,email, "member",key);
+        User newAccount = new User();
+
+        if(roleSelected.equals("Member")){
+            newAccount = new Member(username,email, roleSelected,key);
+        }else if(roleSelected.equals("Instructor")){
+            newAccount = new Instructor(username,email, roleSelected,key);
+        }
+
         if(CheckFieldvalidity(username, email, password,confrimPassword)) {
             FirebaseDatabase.getInstance().getReference().child("Users").child(username).child("password").setValue(password);
-            FirebaseDatabase.getInstance().getReference().child("Users").child(username).child("userData").setValue(newMember);
-            FirebaseDatabase.getInstance().getReference().child("UsersList").child(key).setValue(newMember);
-
+            FirebaseDatabase.getInstance().getReference().child("Users").child(username).child("userData").setValue(newAccount);
+            FirebaseDatabase.getInstance().getReference().child("UsersList").child(key).setValue(newAccount);
             Intent returnIntent = new Intent();
             returnIntent.putExtra("username", text_Username.getText().toString());
             setResult(RESULT_OK, returnIntent);
@@ -94,6 +110,16 @@ public class CreateUser extends AppCompatActivity {
     }
     public void onLog(View view){
         finish();
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        roleSelected = roleSelection_dropdown.getItemAtPosition(i).toString();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
 }

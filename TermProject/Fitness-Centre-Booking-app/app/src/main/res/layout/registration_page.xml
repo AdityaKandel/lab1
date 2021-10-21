@@ -20,20 +20,19 @@
         android:id="@+id/btnCreateAccount"
         android:layout_width="317dp"
         android:layout_height="55dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="36dp"
         android:onClick="onAddUser"
         android:orientation="vertical"
         android:text="Create New Account"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textConfirmPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
     <Button
         android:id="@+id/Login_registration"
         android:layout_width="317dp"
         android:layout_height="55dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="140dp"
         android:onClick="onLog"
         android:orientation="vertical"
         android:text="Login"
@@ -90,5 +89,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textUsername" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="330dp"
+        android:layout_height="30dp"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.518"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textConfirmPassword"
+        app:layout_constraintVertical_bias="0.078" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
