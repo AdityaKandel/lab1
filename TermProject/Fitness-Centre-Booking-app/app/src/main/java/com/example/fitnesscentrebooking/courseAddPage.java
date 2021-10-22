@@ -16,9 +16,6 @@ import java.text.SimpleDateFormat;
 public class courseAddPage extends AppCompatActivity {
     TextView textDescription;
     TextView textName;
-    TextView textCapacity;
-    TextView textTime;
-    TextView textDate;
     TextView textTitle;
     Button addBtn;
     static String key2;

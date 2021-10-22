@@ -111,6 +111,8 @@ public class main_page extends AppCompatActivity {
     }
 
     public void OnUpdateClassUI(){
+
+       /* https://firebaseopensource.com/projects/firebase/firebaseui-android/database/readme/* For recycler view*/
         courses = new FirebaseRecyclerOptions.Builder<CourseType>().setQuery(mDatabase, CourseType.class).build();
         adapterCourse = new FirebaseRecyclerAdapter<CourseType, CourserViewUi>(courses) {
             String key;
