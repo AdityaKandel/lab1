@@ -133,9 +133,9 @@ public class main_page extends AppCompatActivity {
         recyclerViewCourseList.setAdapter(adapterCourse);
         }
 
-        public void viewUsers(View view){
+        public void viewUsers(View view){   // open user list class
             Intent intent = new Intent(getApplicationContext(), UserList.class);
-          startActivity(intent);
+            startActivity(intent);
         }
 
 }
