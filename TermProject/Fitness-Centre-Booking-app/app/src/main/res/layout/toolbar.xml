@@ -13,6 +13,7 @@
         android:background="#232323"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -22,6 +23,20 @@
         app:navigationIcon="@drawable/ic_baseline_menu_24"
         app:subtitleTextColor="#FFFFFF"
         app:title="Fitness Booking "
-        app:titleTextColor="#FFFCFC" />
+        app:titleTextColor="#FFFCFC"
+        >
+
+        <!-- https://stackoverflow.com/questions/47181993/list-of-available-icons -->
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="end"
+            android:drawableEnd="@drawable/baseline_logout_24"
+            android:background="@android:color/transparent"
+            android:onClick="logout"
+            />
+
+
+    </androidx.appcompat.widget.Toolbar>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
