@@ -18,7 +18,7 @@
         <!-- Your contents -->
 
         <include
-            android:id="@+id/include_UserControl"
+            android:id="@+id/include"
             layout="@layout/toolbar" />
 
         <androidx.constraintlayout.widget.ConstraintLayout

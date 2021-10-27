@@ -22,13 +22,10 @@
 
         <!-- Your contents -->
 
-        <include
-            android:id="@+id/include_UserControl"
-            layout="@layout/toolbar" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#2A2727">
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/addCourse"
@@ -81,6 +78,10 @@
                     android:scrollbarThumbHorizontal="@drawable/gradient" />
             </RelativeLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <include
+            android:id="@+id/include"
+            layout="@layout/toolbar" />
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/navigation_UserControl"
