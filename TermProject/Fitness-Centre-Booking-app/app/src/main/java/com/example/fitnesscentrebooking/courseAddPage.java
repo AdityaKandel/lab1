@@ -65,7 +65,6 @@ public class courseAddPage extends AppCompatActivity {
             textTitle.setText("Add Course Type");
             addBtn.setText("Add");
         }else{
-
             textTitle.setText("Edit Course");
             addBtn.setText("Save");
         }
