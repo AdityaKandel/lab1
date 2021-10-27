@@ -5,50 +5,69 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class main_page extends AppCompatActivity {
+public class main_page extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     protected User user;
     protected TextView text_Username;
     private DatabaseReference mDatabase;
     protected TextView text_Role;
     Button btn_listUser;
+    FloatingActionButton addcourse;
     FirebaseRecyclerOptions<CourseType> courses;
     RecyclerView recyclerViewCourseList;
-    FirebaseRecyclerAdapter<CourseType, CourserViewUi> adapterCourse;
+    FirebaseRecyclerAdapter<CourseType, CourseViewUi> adapterCourse;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_main_page);
         mDatabase = FirebaseDatabase.getInstance().getReference().child("courses");
         user = MainActivity.getUser();
-        text_Username = (TextView) findViewById(R.id.textUserName_main);
-        text_Role = (TextView) findViewById(R.id.textRole_main);
+        addcourse = (FloatingActionButton) findViewById(R.id.addCourse);
         recyclerViewCourseList = findViewById(R.id.recycleView);
-        btn_listUser = findViewById(R.id.viewUsers_main_page);
         recyclerViewCourseList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        setUserData(user.getUsername(), user.getRole());
+        /////
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        DrawerLayout  drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout_UserControl);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.black));
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_UserControl);
+        navigationView.setNavigationItemSelectedListener(this);
+        ///////
         updateUI();
-        System.out.println("getting value");
+
 
 
     }
@@ -56,21 +75,15 @@ public class main_page extends AppCompatActivity {
     public void updateUI() {
         switch (user.getRole()) {
             case "Member":
-                Button editCousrse = (Button) findViewById(R.id.addCourse);
-                editCousrse.setVisibility(View.GONE);
-                btn_listUser.setVisibility(View.GONE);
+                addcourse.setVisibility(View.GONE);
                 break;
             case "admin":
-                OnUpdateClassUI();
-                editCousrse = (Button) findViewById(R.id.addCourse);
-                editCousrse.setVisibility(View.VISIBLE);
-                btn_listUser.setVisibility(View.VISIBLE);
+                viewCourseType();
+                addcourse.setVisibility(View.VISIBLE);
                 break;
             case "Instructor":
-                 editCousrse = (Button) findViewById(R.id.addCourse);
-                editCousrse.setVisibility(View.GONE);
-                btn_listUser.setVisibility(View.GONE);
-                OnUpdateClassUI();
+                addcourse.setVisibility(View.GONE);
+                viewCourseType();
                 break;
         }
     }
@@ -80,62 +93,45 @@ public class main_page extends AppCompatActivity {
         text_Role.setText("Role: "+role);
     }
 
-    ActivityResultLauncher<Intent> addCourseLauncher = registerForActivityResult(
+    ActivityResultLauncher<Intent> intentLaucher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>(){
                 @Override
                 public void onActivityResult(ActivityResult result){
-                    if(result.getResultCode() == Activity.RESULT_OK){
-                        Intent data = result.getData();
-                        text_Username.setText(data.getStringExtra("username"));
-                    }
+
                 }
             });
 
-
-    ActivityResultLauncher<Intent> editCourselauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>(){
-                @Override
-                public void onActivityResult(ActivityResult result){
-                    if(result.getResultCode() == Activity.RESULT_OK){
-                        Intent data = result.getData();
-                        text_Username.setText(data.getStringExtra("username"));
-                    }
-                }
-            });
 
     public void onAddCourse(View view){
+        System.out.println("add courses");
        Intent intent = new Intent(getApplicationContext(), courseAddPage.class);
-       addCourseLauncher.launch(intent);
+        intentLaucher.launch(intent);
     }
 
-    public void OnUpdateClassUI(){
 
-       /* https://firebaseopensource.com/projects/firebase/firebaseui-android/database/readme/* For recycler view*/
-        courses = new FirebaseRecyclerOptions.Builder<CourseType>().setQuery(mDatabase, CourseType.class).build();
-        adapterCourse = new FirebaseRecyclerAdapter<CourseType, CourserViewUi>(courses) {
-            String key;
-                @Override
-                protected void onBindViewHolder(@NonNull CourserViewUi holder, int position, @NonNull CourseType model) {
-                    holder.courseName.setText(model.getName());
-                    holder.description.setText(model.getDescription());
-                    holder.setKey(model.getId());
-                }
-                @NonNull
-                @Override
-                public CourserViewUi onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                    View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.course_view,parent, false);
-                    return new CourserViewUi(v,key);
-                }
-            };
-        adapterCourse.startListening();
-        recyclerViewCourseList.setAdapter(adapterCourse);
+    public void viewUsers(View view){
+
+            Intent intent = new Intent(getApplicationContext(), UserControlPage.class);
+            intentLaucher.launch(intent);
+    }
+        public void viewCourseType(){
+            FirebaseRecyclerView<CourseType, CourseViewUi> test = new FirebaseRecyclerView<>("courses", recyclerViewCourseList, R.layout.course_view, CourseType.class, CourseViewUi.class);
         }
 
-        public void viewUsers(View view){
-            Intent intent = new Intent(getApplicationContext(), UserList.class);
-          startActivity(intent);
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        System.out.println("lol navigation");
+        if (id == R.id.UserList_item){
+            System.out.println("lol navigation");
+            Intent intent = new Intent(getApplicationContext(), UserControlPage.class);
+            startActivity(intent);
         }
 
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_UserControl);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
 }
