@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         ){illegalChar = true;}
 
          if(!(password.equals("") || username.equals("")) && (!illegalChar)){
-            FirebaseDatabase.getInstance().getReference().child("Users").child(username).addValueEventListener(listener);
+             FirebaseDatabase.getInstance().getReference().child("Users").child(username).addValueEventListener(listener);
              System.out.println("should login");
         }else{
              System.out.println("username not found");
@@ -122,6 +122,8 @@ public class MainActivity extends AppCompatActivity {
     public static User getUser(){
         return user;
     }
+
+    public void logout(){setContentView(R.layout.activity_main);}
 
     }
 
