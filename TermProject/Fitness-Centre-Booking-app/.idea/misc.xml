@@ -26,6 +26,7 @@
         <entry key="app/src/main/res/drawable/gradient.xml" value="0.24166666666666667" />
         <entry key="app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.24270833333333333" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.24270833333333333" />
+        <entry key="app/src/main/res/layout/activity_course_add_page.xml" value="0.19746376811594202" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.125" />
         <entry key="app/src/main/res/layout/activity_main_page.xml" value="0.19038740802836826" />
         <entry key="app/src/main/res/layout/activity_user_list_view.xml" value="0.2980369141123454" />

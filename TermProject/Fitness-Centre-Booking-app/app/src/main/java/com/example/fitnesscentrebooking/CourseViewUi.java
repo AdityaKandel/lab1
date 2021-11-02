@@ -35,7 +35,7 @@ import kotlin.comparisons.UComparisonsKt;
 
 public class CourseViewUi extends RecyclerView.ViewHolder {
     protected TextView description, courseName, remove,editCourse;
-    protected Button enroll;
+    protected TextView enroll;
     protected ImageView imageView;
     protected User user;
     protected String key;

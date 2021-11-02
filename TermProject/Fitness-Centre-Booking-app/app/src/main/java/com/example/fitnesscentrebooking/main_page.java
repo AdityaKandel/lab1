@@ -30,7 +30,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class main_page extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class main_page extends AppCompatActivity{
     protected User user;
     protected TextView text_Username;
     private DatabaseReference mDatabase;
@@ -54,21 +54,9 @@ public class main_page extends AppCompatActivity implements NavigationView.OnNav
         addcourse = (FloatingActionButton) findViewById(R.id.addCourse);
         recyclerViewCourseList = findViewById(R.id.recycleView);
         recyclerViewCourseList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        /////
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        DrawerLayout  drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout_UserControl);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.black));
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_UserControl);
-        navigationView.setNavigationItemSelectedListener(this);
-        ///////
         updateUI();
-
-
+        Navigation navi = new Navigation();
+        navi.setNavigationView(this);
 
     }
 
@@ -120,18 +108,5 @@ public class main_page extends AppCompatActivity implements NavigationView.OnNav
         }
 
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        System.out.println("lol navigation");
-        if (id == R.id.UserList_item){
-            System.out.println("lol navigation");
-            Intent intent = new Intent(getApplicationContext(), UserControlPage.class);
-            startActivity(intent);
-        }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_UserControl);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
 }
