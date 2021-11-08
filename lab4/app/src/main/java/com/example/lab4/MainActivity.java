@@ -54,14 +54,16 @@ public class MainActivity extends AppCompatActivity {
     private void addProduct() {
         String name = textName.getText().toString().trim();
         double price = Double.parseDouble(String.valueOf(textPrice.getText().toString()));
+
+
         if(!TextUtils.isEmpty(name)){
-            String id = databaseReference.getKey();
+            String id = databaseReference.push().getKey();
 
             Product product = new Product(id, name, price);
             databaseReference.child(id).setValue(product);
 
             textName.setText("");
-            textName.setText("");
+            textPrice.setText("");
 
             Toast.makeText(this, "product added", Toast.LENGTH_LONG).show();
         }else{
@@ -89,4 +91,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }
