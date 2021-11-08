@@ -5,17 +5,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
@@ -26,7 +30,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     TextView textName, textPrice;
     ListView listViewProducts;
-    Button ButtonAddProduct;
+    Button ButtonAddProduct, buttonFindProduct;
     List<Product> productList;
     DatabaseReference databaseReference;
     @Override
@@ -38,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         textPrice = (TextView) findViewById(R.id.textPrice);
         listViewProducts = (ListView) findViewById(R.id.ListViewProducts);
         ButtonAddProduct = (Button) findViewById(R.id.addButton);
+        buttonFindProduct = (Button) findViewById(R.id.findButton);
 
         productList = new ArrayList<>();
         databaseReference = FirebaseDatabase.getInstance().getReference("products");
@@ -48,6 +53,14 @@ public class MainActivity extends AppCompatActivity {
                 addProduct();
             }
         });
+        buttonFindProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                find(textName.getText().toString().trim());
+                System.out.println("finding data");
+            }
+        });
+
 
     }
 
@@ -79,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 productList.clear();
                 for (DataSnapshot postSnapshot : snapshot.getChildren()){
+                   // System.out.println(postSnapshot.getValue());
                     Product product = postSnapshot.getValue(Product.class);
                     productList.add(product);
                 }
@@ -92,5 +106,27 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void find(String product){
+        Query searchedProduct = databaseReference.orderByChild("_productname").startAt(product).endAt(product+"\uf8ff");
+        DatabaseReference reference = searchedProduct.getRef();
+
+        searchedProduct.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                    productList.clear();
+                    Product product = postSnapshot.getValue(Product.class);
+                    productList.add(product);
+                    ProductList productAdapter = new ProductList(MainActivity.this, productList);
+                    listViewProducts.setAdapter(productAdapter);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
 
 }
