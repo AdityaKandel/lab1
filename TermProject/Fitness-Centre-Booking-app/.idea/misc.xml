@@ -18,9 +18,33 @@
         <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/layout/registration_page.xml" value="0.33" />
         <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/layout/single_row.xml" value="0.2828125" />
         <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/layout/testlayouts.xml" value="0.5" />
-        <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/layout/toolbar.xml" value="0.75" />
         <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/layout/user_view_single.xml" value="0.5" />
         <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/layout/userlist_activity.xml" value="0.2671875" />
+        <entry key="app/src/main/res/drawable-anydpi/ic_add.xml" value="0.196875" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.24270833333333333" />
+        <entry key="app/src/main/res/drawable/buttonui.xml" value="0.24166666666666667" />
+        <entry key="app/src/main/res/drawable/gradient.xml" value="0.24166666666666667" />
+        <entry key="app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.24270833333333333" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.24270833333333333" />
+        <entry key="app/src/main/res/layout/activity_course_add_page.xml" value="0.19746376811594202" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.125" />
+        <entry key="app/src/main/res/layout/activity_main_page.xml" value="0.19038740802836826" />
+        <entry key="app/src/main/res/layout/activity_user_list_view.xml" value="0.2980369141123454" />
+        <entry key="app/src/main/res/layout/content_navigation.xml" value="0.19300911854103345" />
+        <entry key="app/src/main/res/layout/course_view.xml" value="0.1828358208955224" />
+        <entry key="app/src/main/res/layout/fragment_blank.xml" value="0.19746376811594202" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.19300911854103345" />
+        <entry key="app/src/main/res/layout/fragment_slideshow.xml" value="0.20471014492753623" />
+        <entry key="app/src/main/res/layout/header.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/nav_header_navigation.xml" value="0.20471014492753623" />
+        <entry key="app/src/main/res/layout/nav_system.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/registration_page.xml" value="0.18072916666666666" />
+        <entry key="app/src/main/res/layout/testlayouts.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/toolbar.xml" value="0.2791666666666667" />
+        <entry key="app/src/main/res/layout/user_view_single.xml" value="0.335" />
+        <entry key="app/src/main/res/menu/activity_main_drawer.xml" value="0.2265625" />
+        <entry key="app/src/main/res/menu/main_menu.xml" value="0.26778325085059707" />
+        <entry key="app/src/main/res/menu/navigation.xml" value="0.2265625" />
       </map>
     </option>
   </component>
