@@ -30,7 +30,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     TextView textName, textPrice;
     ListView listViewProducts;
-    Button ButtonAddProduct, buttonFindProduct;
+    Button ButtonAddProduct, buttonFindProduct, buttonDelProduct;
     List<Product> productList;
     DatabaseReference databaseReference;
     @Override
@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         listViewProducts = (ListView) findViewById(R.id.ListViewProducts);
         ButtonAddProduct = (Button) findViewById(R.id.addButton);
         buttonFindProduct = (Button) findViewById(R.id.findButton);
+        buttonDelProduct = (Button) findViewById(R.id.delButton);
 
         productList = new ArrayList<>();
         databaseReference = FirebaseDatabase.getInstance().getReference("products");
@@ -58,6 +59,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 find(textName.getText().toString().trim());
                 System.out.println("finding data");
+            }
+        });
+        buttonDelProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteProduct(textName.getText().toString().trim());
             }
         });
 
@@ -129,4 +136,32 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void deleteProduct(String productName) {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+
+        //Query queryForDelete = ref.child("databaseReference").orderByChild("_productname").equalTo(productName); //I dont know why this doesnt work
+        Query queryForDelete = databaseReference.orderByChild("_productname").startAt(productName).endAt(productName+"\uf8ff"); //Query the database product with specified -productname
+
+        System.out.println("deleting " + productName);
+
+        if(!TextUtils.isEmpty(productName)) {
+            queryForDelete.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot dataSnap : dataSnapshot.getChildren()) {
+                        dataSnap.getRef().removeValue(); //Remove the item
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
+
+            Toast.makeText(this,productName + " deleted",Toast.LENGTH_LONG).show();
+        }
+        else{
+            Toast.makeText(this,"\"Product Name\" field is blank",Toast.LENGTH_LONG).show();
+        }
+    }
 }
