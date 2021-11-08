@@ -7,7 +7,7 @@
     android:layout_gravity="start"
     android:background="#302E2E"
     android:scrollbars="none"
-    tools:context=".main_page"
+    tools:context=".HomePage"
     tools:menu="@menu/main_menu"
     tools:visibility="visible">
 

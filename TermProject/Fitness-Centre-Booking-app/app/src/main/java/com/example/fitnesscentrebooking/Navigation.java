@@ -1,16 +1,13 @@
 package com.example.fitnesscentrebooking;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -44,7 +41,7 @@ public class Navigation  implements NavigationView.OnNavigationItemSelectedListe
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.classes_menuItem){
-            Intent intent = new Intent(activity.getApplicationContext(), main_page.class);
+            Intent intent = new Intent(activity.getApplicationContext(), HomePage.class);
             activity.startActivity(intent);
         }else  if (id == R.id.UserList_item){
             Intent intent = new Intent(activity.getApplicationContext(), UserControlPage.class);
@@ -57,10 +54,10 @@ public class Navigation  implements NavigationView.OnNavigationItemSelectedListe
     }
 
     public void setUserInfo(){
-      TextView username= headerView.findViewById(R.id.UserName_header); //<<<<----NULL
-      TextView role = headerView.findViewById(R.id.Role_Header); //<<<<----NULL
+      TextView username= headerView.findViewById(R.id.UserName_header);
+      TextView role = headerView.findViewById(R.id.Role_Header);
 
-      username.setText(MainActivity.getUser().getUsername());
-      role.setText(MainActivity.getUser().getRole());
+      username.setText("Username: "+MainActivity.getUser().getUsername());
+      role.setText("Role: "+MainActivity.getUser().getRole());
     }
 }

@@ -41,6 +41,7 @@ public class FirebaseRecyclerView<T,E extends RecyclerView.ViewHolder> extends A
     public void viewUsers(){
         System.out.println(ref==null);
         options = new FirebaseRecyclerOptions.Builder<T>().setQuery(ref, gettingclass).build();
+
         System.out.println(options.toString());
 
         adapter = new FirebaseRecyclerAdapter<T, E>(options) {
@@ -68,8 +69,7 @@ public class FirebaseRecyclerView<T,E extends RecyclerView.ViewHolder> extends A
                 View v = LayoutInflater.from(parent.getContext()).inflate(layout,parent, false);
                 System.out.println(v==null);
                 try {
-                    System.out.println("works for users");
-                    return itemViewClass.getDeclaredConstructor(View.class).newInstance(v); //<<---
+                    return itemViewClass.getDeclaredConstructor(View.class).newInstance(v);
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 } catch (InstantiationException e) {
@@ -79,7 +79,6 @@ public class FirebaseRecyclerView<T,E extends RecyclerView.ViewHolder> extends A
                 } catch (InvocationTargetException e) {
                     e.printStackTrace();
                 }
-                System.out.println("no for users");
 
                 return null;
             }

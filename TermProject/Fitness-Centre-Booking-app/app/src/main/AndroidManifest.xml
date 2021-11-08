@@ -16,7 +16,7 @@
             android:name=".courseAddPage"
             android:exported="true" />
         <activity
-            android:name=".main_page"
+            android:name=".HomePage"
             android:exported="true" />
         <activity
             android:name=".CreateUser"

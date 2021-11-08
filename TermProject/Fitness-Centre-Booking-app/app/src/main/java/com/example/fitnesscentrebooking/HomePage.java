@@ -30,7 +30,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class main_page extends AppCompatActivity{
+public class HomePage extends AppCompatActivity{
     protected User user;
     protected TextView text_Username;
     private DatabaseReference mDatabase;
@@ -107,6 +107,9 @@ public class main_page extends AppCompatActivity{
             FirebaseRecyclerView<CourseType, CourseViewUi> test = new FirebaseRecyclerView<>("courses", recyclerViewCourseList, R.layout.course_view, CourseType.class, CourseViewUi.class);
         }
 
-
+     public void ShecduleClass(){
+            //display course creating class
+         ( (Instructor)user).addCourse();
+     }
 
 }
