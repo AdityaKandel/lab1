@@ -74,14 +74,11 @@ public class MainActivity extends AppCompatActivity {
     private void addProduct() {
         String name = textName.getText().toString().trim();
         double price = Double.parseDouble(String.valueOf(textPrice.getText().toString()));
-
-
         if(!TextUtils.isEmpty(name)){
             String id = databaseReference.push().getKey();
 
             Product product = new Product(id, name, price);
             databaseReference.child(id).setValue(product);
-
             textName.setText("");
             textPrice.setText("");
 
@@ -99,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 productList.clear();
                 for (DataSnapshot postSnapshot : snapshot.getChildren()){
-                   // System.out.println(postSnapshot.getValue());
                     Product product = postSnapshot.getValue(Product.class);
                     productList.add(product);
                 }
@@ -114,20 +110,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void find(String product){
-        Query searchedProduct = databaseReference.orderByChild("_productname").startAt(product).endAt(product+"\uf8ff");
-        DatabaseReference reference = searchedProduct.getRef();
 
+            Query searchedProduct = databaseReference;
+        if(!product.equals("")) {
+             searchedProduct = databaseReference.orderByChild("_productname").startAt(product).endAt(product + "\uf8ff");
+            DatabaseReference reference = searchedProduct.getRef();
+        }
         searchedProduct.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                productList.clear();
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                    productList.clear();
+
                     Product product = postSnapshot.getValue(Product.class);
                     productList.add(product);
-                    ProductList productAdapter = new ProductList(MainActivity.this, productList);
-                    listViewProducts.setAdapter(productAdapter);
                 }
+                ProductList productAdapter = new ProductList(MainActivity.this, productList);
+                listViewProducts.setAdapter(productAdapter);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -152,7 +152,6 @@ public class MainActivity extends AppCompatActivity {
                         dataSnap.getRef().removeValue(); //Remove the item
                     }
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
                 }
