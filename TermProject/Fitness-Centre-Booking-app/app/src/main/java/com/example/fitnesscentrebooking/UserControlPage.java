@@ -41,7 +41,6 @@ public class UserControlPage extends AppCompatActivity {
         listView = findViewById(R.id.listView_userlist);
         userlist = new ArrayList<>();
         userDatabaseRef = FirebaseDatabase.getInstance().getReference("Users");
-        //set Navigation
         Navigation navi = new Navigation();
         navi.setNavigationView(this);
 

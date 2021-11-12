@@ -42,16 +42,8 @@
             android:id="@+id/include"
             layout="@layout/toolbar" />
 
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/navigation"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:fitsSystemWindows="true"
-            app:headerLayout="@layout/header"
-            app:menu="@menu/main_menu">
+        <include layout="@layout/navigation_layout" />
 
-        </com.google.android.material.navigation.NavigationView>
 
     </androidx.drawerlayout.widget.DrawerLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

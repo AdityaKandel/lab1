@@ -32,7 +32,8 @@ public class Navigation  implements NavigationView.OnNavigationItemSelectedListe
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        navigationView = (NavigationView) activity.findViewById(R.id.navigation);//<<-- need to rename the layout
+        navigationView = (NavigationView) activity.findViewById(R.id.navigation);
+        System.out.println(navigationView==null);
         navigationView.setNavigationItemSelectedListener(this);
         headerView = navigationView.getHeaderView(0);
 

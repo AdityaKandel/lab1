@@ -95,7 +95,6 @@ public class CourseList extends ArrayAdapter<Course> {
     }
     public void updateUI(View context){
         TextView schedule = ((TextView) context.findViewById(R.id.enroll));
-        System.out.println("should be instructor"+" "+LoginPage.getUser().getroleNum() + " "+ LoginPage.getUser().getUsername());
 
         switch (LoginPage.getUser().getroleNum()){
             case "2":
@@ -103,7 +102,6 @@ public class CourseList extends ArrayAdapter<Course> {
                 ((TextView) context.findViewById(R.id.editCourse_courseview)).setVisibility(View.GONE);
                 break;
             case "1":
-                System.out.println("should be instructor");
                 ((TextView) context.findViewById(R.id.remove_courseview)).setVisibility(View.GONE);
                 ((TextView) context.findViewById(R.id.editCourse_courseview)).setVisibility(View.GONE);
                 schedule.setOnClickListener(new View.OnClickListener() {
@@ -114,7 +112,6 @@ public class CourseList extends ArrayAdapter<Course> {
                 });
                 break;
             case "0":
-                System.out.println("fdfffffffffffffffffffffffffffffffffffffff");
                 schedule.setVisibility(View.GONE);
 
                 break;
