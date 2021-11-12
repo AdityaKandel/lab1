@@ -90,21 +90,38 @@ public class CourseList extends ArrayAdapter<Course> {
     public void EditCourse(){
         Intent intent = new Intent(context, courseAddPage.class);
         courseAddPage.key2=courseId;
-        System.out.println("should be editing "+courseId);
         context.startActivity(intent);
         Toast.makeText(getContext(), "Course deleted",Toast.LENGTH_SHORT).show();
     }
     public void updateUI(View context){
-        switch (LoginPage.getUser().getRole()){
-            case "Member":
-            case "Instructor":
+        TextView schedule = ((TextView) context.findViewById(R.id.enroll));
+        System.out.println("should be instructor"+" "+LoginPage.getUser().getroleNum() + " "+ LoginPage.getUser().getUsername());
+
+        switch (LoginPage.getUser().getroleNum()){
+            case "2":
                 ((TextView) context.findViewById(R.id.remove_courseview)).setVisibility(View.GONE);
                 ((TextView) context.findViewById(R.id.editCourse_courseview)).setVisibility(View.GONE);
                 break;
-            case"admin":
-                ((TextView) context.findViewById(R.id.enroll)).setVisibility(View.GONE);
+            case "1":
+                System.out.println("should be instructor");
+                ((TextView) context.findViewById(R.id.remove_courseview)).setVisibility(View.GONE);
+                ((TextView) context.findViewById(R.id.editCourse_courseview)).setVisibility(View.GONE);
+                schedule.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        scheduleClass();
+                    }
+                });
                 break;
+            case "0":
+                System.out.println("fdfffffffffffffffffffffffffffffffffffffff");
+                schedule.setVisibility(View.GONE);
 
+                break;
         }
+    }
+    public void scheduleClass(){
+        Intent intent = new Intent(context, ScheduleClass.class);
+        context.startActivity(intent);
     }
 }

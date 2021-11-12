@@ -13,7 +13,7 @@
 
 
     <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/drawer_layout_UserControl"
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
@@ -85,7 +85,7 @@
             layout="@layout/toolbar" />
 
         <com.google.android.material.navigation.NavigationView
-            android:id="@+id/navigation_UserControl"
+            android:id="@+id/navigation"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"

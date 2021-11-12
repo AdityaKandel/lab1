@@ -3,10 +3,8 @@ package com.example.fitnesscentrebooking;
 public class Instructor extends User{
 
 
-    public Instructor(String username, String email, String role, String id){
-        super(username, email, role, id);
+    public Instructor(String username, String email, String roleNum, String id, String roleName){
+        super(username, email, roleNum, id, roleName);
     }
 
-    public void addCourse() {
-    }
 }

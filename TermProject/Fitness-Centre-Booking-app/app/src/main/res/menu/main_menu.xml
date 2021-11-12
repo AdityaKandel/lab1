@@ -4,6 +4,9 @@
 
     <group >
         <item
+            android:id="@+id/Homepage_menuItem"
+            android:title="Home" />
+        <item
             android:id="@+id/classes_menuItem"
             android:title="Classes" />
         <item

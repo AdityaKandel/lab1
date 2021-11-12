@@ -3,14 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/drawable/buttonui.xml" value="0.22395833333333334" />
+        <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/drawable/searchui.xml" value="0.22395833333333334" />
+        <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/layout/activity_course_add_page.xml" value="0.2078125" />
         <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/layout/activity_main_page.xml" value="0.2046875" />
         <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/layout/activity_user_list_view.xml" value="0.1703125" />
+        <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/layout/class_page_activity.xml" value="0.2078125" />
         <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/layout/classe_page_activity.xml" value="0.2046875" />
         <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/layout/course_view.xml" value="0.203125" />
-        <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/layout/header.xml" value="0.2046875" />
-        <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/layout/home_page_activity.xml" value="0.1703125" />
-        <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/layout/toolbar.xml" value="0.2046875" />
+        <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/layout/header.xml" value="0.67" />
+        <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/layout/home_page_activity.xml" value="0.33" />
+        <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/layout/shedule_class_activity.xml" value="0.2078125" />
+        <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/layout/toolbar.xml" value="0.800792864222002" />
         <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/layout/user_view_single.xml" value="0.2046875" />
+        <entry key="..\:/Users/Aker/Desktop/Seg Projects/TermProject/Fitness-Centre-Booking-app/app/src/main/res/menu/main_menu.xml" value="0.2078125" />
       </map>
     </option>
   </component>

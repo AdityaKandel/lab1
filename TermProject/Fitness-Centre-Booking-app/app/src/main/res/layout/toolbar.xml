@@ -15,48 +15,47 @@
         android:background="#232323"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         app:navigationIcon="@drawable/ic_baseline_menu_24"
         app:subtitleTextColor="#FFFFFF"
-        app:title="Fitness Booking "
         app:titleTextColor="#FFFCFC" />
 
     <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/imageButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_gravity="end"
-        android:layout_marginEnd="52dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="2dp"
         android:layout_weight="1"
-        android:background="@android:color/transparent"
+        android:backgroundTint="#00FFFFFF"
         android:minWidth="48dp"
         android:minHeight="48dp"
         android:onClick="logout"
         android:paddingRight="16dp"
-        android:src="@drawable/ic_baseline_login_24"
+        android:src="@drawable/baseline_logout_24"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_marginBottom="8dp"
-        android:layout_weight="1"
-        android:background="@android:color/transparent"
-        android:minHeight="48dp"
-        android:paddingRight="16dp"
-        android:src="@drawable/ic_baseline_search_24"
+    <SearchView
+        android:layout_width="305dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/searchui"
+        android:searchHintIcon="@drawable/ic_baseline_search_24"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintEnd_toStartOf="@+id/imageButton"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.384" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

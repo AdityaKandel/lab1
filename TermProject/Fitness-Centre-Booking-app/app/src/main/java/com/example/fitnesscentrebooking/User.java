@@ -5,23 +5,31 @@ import java.util.List;
 
 public class User {
 
-    protected String username;
-    protected String email;
-    protected String id;
+    private String username;
+    private String email;
+    private String id;
+
+
+
     //public List<CourseType> course;
-    protected String role;
+    private String roleNum;
+
+    private String roleName;
+
 
     public User(){
         username= "";
         email = "";
-       // course = new ArrayList<>();
+        roleNum="";
+        roleName="";
         id = "";
     }
-    public User(String username, String email, String role,String id){
+    public User(String username, String email, String roleNum,String id,String roleName){
         this.email = email;
         this.username = username;
-        this.role = role;
+        this.roleNum = roleNum;
         this.id = id;
+        this.roleName = roleName;
     }
 
     public String getEmail() {
@@ -48,17 +56,24 @@ public class User {
 //        course.add(courseType);
 //    }
 
-    public void setRole(String role){
-        this.role = role;
+    public String getroleNum() {
+        return roleNum;
     }
 
-    public  String getRole(){
-        return role;
+    public void setroleNum(String roleNum) {
+        this.roleNum = roleNum;
     }
     public String getId() {
         return id;
     }
 
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
     public void setId(String id) {
         this.id = id;
     }

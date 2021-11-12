@@ -49,14 +49,14 @@ public class CoursePage extends AppCompatActivity{
     }
 
     public void updateUI() {
-        switch (user.getRole()) {
-            case "Member":
+        switch (user.getroleNum()) {
+            case "2":
                 addcourse.setVisibility(View.GONE);
                 break;
-            case "admin":
+            case "0":
                 addcourse.setVisibility(View.VISIBLE);
                 break;
-            case "Instructor":
+            case "1":
                 addcourse.setVisibility(View.GONE);
                 break;
         }

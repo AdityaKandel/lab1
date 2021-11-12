@@ -64,15 +64,15 @@ public class RegistrationPage extends AppCompatActivity implements AdapterView.O
         User newAccount = new User();
 
         if(roleSelected.equals("Member")){
-            newAccount = new Member(username,email, roleSelected,key);
+            newAccount = new Member(username,email, "2",key, roleSelected.toString());
         }else if(roleSelected.equals("Instructor")){
-            newAccount = new Instructor(username,email, roleSelected,key);
+            newAccount = new Instructor(username,email, "1",key, roleSelected.toString());
         }
 
         if(CheckFieldvalidity(username, email, password,confrimPassword)) {
-         //   FirebaseDatabase.getInstance().getReference().child("Users").child(username).child("password").setValue(password);
-          //  FirebaseDatabase.getInstance().getReference().child("Users").child(username).child("userData").setValue(newAccount);
-            FirebaseDatabase.getInstance().getReference().child("UsersList").child(key).setValue(newAccount);
+            FirebaseDatabase.getInstance().getReference().child("Users").child(username).child("password").setValue(password);
+            FirebaseDatabase.getInstance().getReference().child("Users").child(username).child("userData").setValue(newAccount);
+           // FirebaseDatabase.getInstance().getReference().child("UsersList").child(key).setValue(newAccount);
             Intent returnIntent = new Intent();
             returnIntent.putExtra("username", text_Username.getText().toString());
             setResult(RESULT_OK, returnIntent);
@@ -90,14 +90,18 @@ public class RegistrationPage extends AppCompatActivity implements AdapterView.O
         }
 
         //check if the email is valid
-        String[] split1 = email.split("@");
-        if(split1.length<2){ text_Email.setError("Not a Valid Email"); isValid= false;}
-        String[] split2 = split1[1].split("\\.");
-        if(split2.length!=2 || !split2[1].matches("[a-zA-Z]+") || !split2[0].matches("[a-zA-Z]+")){
-            text_Email.setError("Not a Valid Email");
-          isValid= false;
+        if(!text_Email.getText().toString().equals("")) {
+            String[] split1 = email.split("@");
+            if (split1.length < 2) {
+                text_Email.setError("Not a Valid Email");
+                isValid = false;
+            }
+            String[] split2 = split1[1].split("\\.");
+            if (split2.length != 2 || !split2[1].matches("[a-zA-Z]+") || !split2[0].matches("[a-zA-Z]+")) {
+                text_Email.setError("Not a Valid Email");
+                isValid = false;
+            }
         }
-
         //check if the password is valid
         if(password.length()<8){
             text_Password.requestFocus();
