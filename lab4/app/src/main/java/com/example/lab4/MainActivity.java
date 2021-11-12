@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         buttonDelProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                deleteProduct(textName.getText().toString().trim());
+                deleteProduct(textName.getText().toString());
             }
         });
 
@@ -111,13 +111,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void find(String product){
 
-            Query searchedProduct = databaseReference;
+        Query searchedProduct = databaseReference;
         if(!product.equals("")) {
              searchedProduct = databaseReference.orderByChild("_productname").startAt(product).endAt(product + "\uf8ff");
             DatabaseReference reference = searchedProduct.getRef();
         }
         searchedProduct.addValueEventListener(new ValueEventListener() {
-
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 productList.clear();
@@ -139,8 +138,8 @@ public class MainActivity extends AppCompatActivity {
     private void deleteProduct(String productName) {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
-        //Query queryForDelete = ref.child("databaseReference").orderByChild("_productname").equalTo(productName); //I dont know why this doesnt work
-        Query queryForDelete = databaseReference.orderByChild("_productname").startAt(productName).endAt(productName+"\uf8ff"); //Query the database product with specified -productname
+        //Query queryForDelete = ref.child("databaseReference").orderByChild("_productname").equalTo("test2"); //I dont know why this doesnt work
+       Query queryForDelete = databaseReference.orderByChild("_productname").startAt(productName).endAt(productName+"\uf8ff"); //Query the database product with specified -productname
 
         System.out.println("deleting " + productName);
 
@@ -150,13 +149,13 @@ public class MainActivity extends AppCompatActivity {
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for (DataSnapshot dataSnap : dataSnapshot.getChildren()) {
                         dataSnap.getRef().removeValue(); //Remove the item
+                        System.out.println(dataSnap.getValue());
                     }
                 }
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
                 }
             });
-
             Toast.makeText(this,productName + " deleted",Toast.LENGTH_LONG).show();
         }
         else{

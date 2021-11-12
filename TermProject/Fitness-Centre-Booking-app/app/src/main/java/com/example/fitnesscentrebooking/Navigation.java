@@ -21,7 +21,7 @@ public class Navigation  implements NavigationView.OnNavigationItemSelectedListe
         this.activity = activity;
         Toolbar toolbar = (Toolbar) activity.findViewById(R.id.toolbar);
 
-        DrawerLayout  drawerLayout = (DrawerLayout) activity.findViewById(R.id.drawer_layout_UserControl);
+        DrawerLayout  drawerLayout = (DrawerLayout) activity.findViewById(R.id.drawer_layout_UserControl); //<<-- need to rename the layout
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 activity, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         toggle.getDrawerArrowDrawable().setColor(activity.getResources().getColor(R.color.white));
@@ -29,7 +29,7 @@ public class Navigation  implements NavigationView.OnNavigationItemSelectedListe
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) activity.findViewById(R.id.navigation_UserControl);
+        NavigationView navigationView = (NavigationView) activity.findViewById(R.id.navigation_UserControl);//<<-- need to rename the layout
         navigationView.setNavigationItemSelectedListener(this);
         headerView = navigationView.getHeaderView(0);
 
@@ -41,7 +41,7 @@ public class Navigation  implements NavigationView.OnNavigationItemSelectedListe
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.classes_menuItem){
-            Intent intent = new Intent(activity.getApplicationContext(), HomePage.class);
+            Intent intent = new Intent(activity.getApplicationContext(), CoursePage.class);
             activity.startActivity(intent);
         }else  if (id == R.id.UserList_item){
             Intent intent = new Intent(activity.getApplicationContext(), UserControlPage.class);
@@ -57,7 +57,7 @@ public class Navigation  implements NavigationView.OnNavigationItemSelectedListe
       TextView username= headerView.findViewById(R.id.UserName_header);
       TextView role = headerView.findViewById(R.id.Role_Header);
 
-      username.setText("Username: "+MainActivity.getUser().getUsername());
-      role.setText("Role: "+MainActivity.getUser().getRole());
+      username.setText("Username: "+ LoginPage.getUser().getUsername());
+      role.setText("Role: "+ LoginPage.getUser().getRole());
     }
 }

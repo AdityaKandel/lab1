@@ -64,17 +64,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView2">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerView_userlist"
-                    android:layout_width="409dp"
-                    android:layout_height="729dp"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginTop="1dp"
-                    android:layout_marginEnd="1dp"
-                    android:layout_marginBottom="1dp"
-                    android:background="#302E2E">
-
-                </androidx.recyclerview.widget.RecyclerView>
+                <ListView
+                    android:id="@+id/listView_userlist"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:background="#FFFFFF"
+                    android:backgroundTint="#292727"
+                    android:elevation="10dp" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -7,23 +7,14 @@ public class User {
 
     protected String username;
     protected String email;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
     protected String id;
-    protected List<CourseType> cours;
+    //public List<CourseType> course;
     protected String role;
 
     public User(){
         username= "";
         email = "";
-        cours = new ArrayList<>();
+       // course = new ArrayList<>();
         id = "";
     }
     public User(String username, String email, String role,String id){
@@ -49,13 +40,13 @@ public class User {
         this.username = username;
     }
 
-    public CourseType getCourses(int i) {
-        return cours.get(i);
-    }
+//    public CourseType getCourses(int i) {
+//        return course.get(i);
+//    }
 
-    public void setCourses(CourseType courseType) {
-        cours.add(courseType);
-    }
+//    public void setCourses(CourseType courseType) {
+//        course.add(courseType);
+//    }
 
     public void setRole(String role){
         this.role = role;
@@ -64,6 +55,12 @@ public class User {
     public  String getRole(){
         return role;
     }
+    public String getId() {
+        return id;
+    }
 
+    public void setId(String id) {
+        this.id = id;
+    }
 
 }

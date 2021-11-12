@@ -16,13 +16,16 @@
             android:name=".courseAddPage"
             android:exported="true" />
         <activity
+            android:name=".CoursePage"
+            android:exported="true" />
+        <activity
+            android:name=".RegistrationPage"
+            android:exported="true" />
+        <activity
             android:name=".HomePage"
             android:exported="true" />
         <activity
-            android:name=".CreateUser"
-            android:exported="true" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".LoginPage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
