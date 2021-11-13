@@ -118,7 +118,7 @@ public class CourseList extends ArrayAdapter<Course> {
         }
     }
     public void scheduleClass(){
-        Intent intent = new Intent(context, ScheduleClass.class);
+        Intent intent = new Intent(context, ScheduleClassActivity.class);
         context.startActivity(intent);
     }
 }

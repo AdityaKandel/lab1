@@ -72,7 +72,7 @@ public class RegistrationPage extends AppCompatActivity implements AdapterView.O
         if(CheckFieldvalidity(username, email, password,confrimPassword)) {
             FirebaseDatabase.getInstance().getReference().child("Users").child(username).child("password").setValue(password);
             FirebaseDatabase.getInstance().getReference().child("Users").child(username).child("userData").setValue(newAccount);
-           // FirebaseDatabase.getInstance().getReference().child("UsersList").child(key).setValue(newAccount);
+            FirebaseDatabase.getInstance().getReference().child("UsersList").child(key).setValue(newAccount);
             Intent returnIntent = new Intent();
             returnIntent.putExtra("username", text_Username.getText().toString());
             setResult(RESULT_OK, returnIntent);

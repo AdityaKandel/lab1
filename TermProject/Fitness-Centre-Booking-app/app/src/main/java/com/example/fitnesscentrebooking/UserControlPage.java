@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -20,6 +21,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -43,7 +45,19 @@ public class UserControlPage extends AppCompatActivity {
         userDatabaseRef = FirebaseDatabase.getInstance().getReference("Users");
         Navigation navi = new Navigation();
         navi.setNavigationView(this);
+        SearchView searchBar = findViewById(R.id.searchBar);
+       searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+           @Override
+           public boolean onQueryTextSubmit(String s) {
+               return false;
+           }
 
+           @Override
+           public boolean onQueryTextChange(String s) {
+             find(s);
+              return false;
+           }
+       });
     }
 
     ActivityResultLauncher<Intent> intentLaucher = registerForActivityResult(
@@ -69,7 +83,7 @@ public class UserControlPage extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 userlist.clear();
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                    System.out.println(postSnapshot.child("userData").getValue());
+
                     User user = postSnapshot.child("userData").getValue(User.class);
                     userlist.add(user);
                 }
@@ -85,6 +99,24 @@ public class UserControlPage extends AppCompatActivity {
 
     }
 
+    private void find(String username){
+        userDatabaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                userlist.clear();
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                    User user = postSnapshot.child("userData").getValue(User.class);
+                    if(user.getUsername().contains(username)){
+                        userlist.add(user);}
+                }
+                UserList productAdapter = new UserList(UserControlPage.this, userlist);
+                listView.setAdapter(productAdapter);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+    }
 
 }
