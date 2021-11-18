@@ -13,51 +13,57 @@ import android.widget.Toast;
 
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 import java.util.Random;
 
-public class CourseList extends ArrayAdapter<Course> {
+public class scheduleList extends ArrayAdapter<Course> {
     private Activity context;
     List<Course> courseList;
     private String courseId;
-    private String courseName;
-    public CourseList(Activity context, List<Course> courses){
-        super(context, R.layout.course_view,courses);
+    public scheduleList(Activity context, List<Course> courses){
+        super(context, R.layout.schedule_class_view,courses);
         this.context = context;
         this.courseList = courses;
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
-       View listViewItem = inflater.inflate(R.layout.course_view, null, true);
+        View listViewItem = inflater.inflate(R.layout.schedule_class_view, null, true);
 
-        TextView description = (TextView) listViewItem.findViewById(R.id.capacity_Schedule_view);
-        TextView name = (TextView) listViewItem.findViewById(R.id.courseName);
+        TextView time = (TextView) listViewItem.findViewById(R.id.time_Schedule_view);
+        TextView capacity = (TextView) listViewItem.findViewById(R.id.capacity_Schedule_view);
+        TextView date = (TextView) listViewItem.findViewById(R.id.date_schedule_view2);
+        TextView difficulty = (TextView) listViewItem.findViewById(R.id.difficulty_Schedule_view);
+        TextView CourseName = (TextView) listViewItem.findViewById(R.id.className_shedule_class_view);
         Course course = courseList.get(position);
 
-       //set values
-        courseName = course.getName();
-        description.setText(course.getDescription());
-        name.setText(course.getName());
+        //set values
+        time.setText(course.getTime());
+        CourseName.setText(course.getName());
+        date.setText(course.getDate());
+        capacity.setText(Integer.toString(course.getCapacity()));
+        difficulty.setText(course.getDifficulty());
         courseId = course.getId();
         //setBackground
-        setGradientColor((ImageView) listViewItem.findViewById(R.id.background_courseView));
+      //  setGradientColor((ImageView) listViewItem.findViewById(R.id.car));
 
         //setButtonOperations;
-        TextView editBtn = (TextView) listViewItem.findViewById(R.id.editCourse_courseview);
-        TextView removeBtn = (TextView) listViewItem.findViewById(R.id.remove_courseview);
-        editBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EditCourse();
-            }
-        });
-        removeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                removeCourse();
-            }
-        });
+      //  TextView editBtn = (TextView) listViewItem.findViewById(R.id.editCourse_courseview);
+       // TextView removeBtn = (TextView) listViewItem.findViewById(R.id.remove_courseview);
+//        editBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                EditCourse();
+//            }
+//        });
+//        removeBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                removeCourse();
+//            }
+//        });
         updateUI(listViewItem);
 
         return listViewItem;
@@ -96,32 +102,28 @@ public class CourseList extends ArrayAdapter<Course> {
         Toast.makeText(getContext(), "Course deleted",Toast.LENGTH_SHORT).show();
     }
     public void updateUI(View context){
-        TextView schedule = ((TextView) context.findViewById(R.id.enroll));
-
-        switch (LoginPage.getUser().getroleNum()){
-            case "2":
-                ((TextView) context.findViewById(R.id.remove_courseview)).setVisibility(View.GONE);
-                ((TextView) context.findViewById(R.id.editCourse_courseview)).setVisibility(View.GONE);
-                break;
-            case "1":
-                ((TextView) context.findViewById(R.id.remove_courseview)).setVisibility(View.GONE);
-                ((TextView) context.findViewById(R.id.editCourse_courseview)).setVisibility(View.GONE);
-                schedule.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        scheduleClass();
-                    }
-                });
-                break;
-            case "0":
-                schedule.setVisibility(View.GONE);
-
-                break;
-        }
+//        TextView schedule = ((TextView) context.findViewById(R.id.enroll));
+//
+//        switch (LoginPage.getUser().getroleNum()){
+//            case "2":
+//                ((TextView) context.findViewById(R.id.remove_courseview)).setVisibility(View.GONE);
+//                ((TextView) context.findViewById(R.id.editCourse_courseview)).setVisibility(View.GONE);
+//                break;
+//            case "1":
+//                ((TextView) context.findViewById(R.id.remove_courseview)).setVisibility(View.GONE);
+//                ((TextView) context.findViewById(R.id.editCourse_courseview)).setVisibility(View.GONE);
+//                schedule.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        scheduleClass();
+//                    }
+//                });
+//                break;
+//            case "0":
+//                schedule.setVisibility(View.GONE);
+//
+//                break;
+//        }
     }
-    public void scheduleClass(){
-        Intent intent = new Intent(context, ScheduleClassActivity.class);
-        intent.putExtra("courseName",courseName);
-        context.startActivity(intent);
-    }
+
 }

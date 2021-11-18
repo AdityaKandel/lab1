@@ -46,7 +46,7 @@ public class UserList extends ArrayAdapter<User> {
         user = userList.get(position);
 
         //set values
-        userField.setText("Name: " + user.getUsername() + " | Role: " + user.getUsername());
+        userField.setText("Name: " + user.getUsername() + " | Role: " + user.getRoleName());
 
         //setBackground
 

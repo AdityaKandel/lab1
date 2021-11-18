@@ -1,30 +1,20 @@
 package com.example.fitnesscentrebooking;
 
-import android.app.people.PeopleManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
-import org.w3c.dom.Text;
-
-import java.util.Arrays;
-import java.util.Locale;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RegistrationPage extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     protected EditText text_Email;
@@ -45,7 +35,7 @@ public class RegistrationPage extends AppCompatActivity implements AdapterView.O
         text_ConfrimPassword = (EditText) findViewById(R.id.textConfirmPassword);
 
         /*https://developer.android.com/guide/topics/ui/controls/spinner#java*/
-        roleSelection_dropdown = (Spinner) findViewById(R.id.spinner);
+        roleSelection_dropdown = (Spinner) findViewById(R.id.Ddifficultyspinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.roles_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         roleSelection_dropdown.setAdapter(adapter);
@@ -61,24 +51,35 @@ public class RegistrationPage extends AppCompatActivity implements AdapterView.O
         String password  = text_Password.getText().toString();
         String confrimPassword = text_ConfrimPassword.getText().toString();
         String key = FirebaseDatabase.getInstance().getReference().push().getKey();
-        User newAccount = new User();
-
+        Instructor instructor = new Instructor();
+        Member member = new Member();
         if(roleSelected.equals("Member")){
-            newAccount = new Member(username,email, "2",key, roleSelected.toString());
-        }else if(roleSelected.equals("Instructor")){
-            newAccount = new Instructor(username,email, "1",key, roleSelected.toString());
-        }
+             member = new Member(username,email, "2",key, roleSelected.toString());
 
-        if(CheckFieldvalidity(username, email, password,confrimPassword)) {
-            FirebaseDatabase.getInstance().getReference().child("Users").child(username).child("password").setValue(password);
-            FirebaseDatabase.getInstance().getReference().child("Users").child(username).child("userData").setValue(newAccount);
-            FirebaseDatabase.getInstance().getReference().child("UsersList").child(key).setValue(newAccount);
-            Intent returnIntent = new Intent();
-            returnIntent.putExtra("username", text_Username.getText().toString());
-            setResult(RESULT_OK, returnIntent);
-            Toast.makeText(getApplicationContext(),"Account Created Successfully",Toast.LENGTH_SHORT).show();
-            finish();
+            if(CheckFieldvalidity(username, email, password,confrimPassword)) {
+                FirebaseDatabase.getInstance().getReference().child("Users").child(username).child("password").setValue(password);
+                FirebaseDatabase.getInstance().getReference().child("Users").child(username).child("userData").setValue(member);
+                FirebaseDatabase.getInstance().getReference().child("UsersList").child(key).setValue(member);
+
+            }
+
+        }else if(roleSelected.equals("Instructor")){
+            System.out.println("Instructor added");
+            instructor = new Instructor(username,email, "1",key, roleSelected.toString());
+            if(CheckFieldvalidity(username, email, password,confrimPassword)) {
+                FirebaseDatabase.getInstance().getReference().child("Users").child(username).child("password").setValue(password);
+                FirebaseDatabase.getInstance().getReference().child("Users").child(username).child("userData").setValue(instructor);
+                FirebaseDatabase.getInstance().getReference().child("UsersList").child(key).setValue(instructor);
+
+            }
         }
+        Intent returnIntent = new Intent();
+        returnIntent.putExtra("username", text_Username.getText().toString());
+        setResult(RESULT_OK, returnIntent);
+        Toast.makeText(getApplicationContext(),"Account Created Successfully",Toast.LENGTH_SHORT).show();
+        finish();
+
+
     }
 
     public boolean CheckFieldvalidity(String username, String email, String password, String confirmPassword){

@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ListView;
+import android.widget.SearchView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -45,6 +46,20 @@ public class CoursePage extends AppCompatActivity{
         courseDatabaseRef = FirebaseDatabase.getInstance().getReference("courses");
         courseList = new ArrayList<>();
         listView = (ListView) findViewById(R.id.recycleView);
+
+        SearchView searchBar = findViewById(R.id.searchBar);
+        searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                find(s);
+                return false;
+            }
+        });
     }
 
     public void updateUI() {
@@ -100,9 +115,30 @@ public class CoursePage extends AppCompatActivity{
         });
 
     }
-     public void ShecduleClass(){
-            //display course creating class
+    public void find(String searchValue) {
 
-     }
+        if (!searchValue.equals("")) {
+            FirebaseDatabase.getInstance().getReference("scheduledClass").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    courseList.clear();
+                    for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                        Course course = postSnapshot.child("class").getValue(Course.class);
+                        if (course.getUserName().contains(searchValue) || course.getName().contains(searchValue)) {
+                            courseList.add(course);
+                        }
+                    }
+                    scheduleList productAdapter = new scheduleList(CoursePage.this, courseList);
+                    listView.setAdapter(productAdapter);
+                }
 
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        } else {
+            onStart();
+        }
+    }
 }

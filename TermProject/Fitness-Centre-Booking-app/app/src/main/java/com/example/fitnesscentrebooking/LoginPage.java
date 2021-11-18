@@ -73,8 +73,7 @@ public class LoginPage extends AppCompatActivity {
             String Database_password=dataSnapshot.child("password").getValue(String.class);
                 if(Database_password!=null) {
                     if (Database_password.equals(password)) {
-                      user = dataSnapshot.child("userData").getValue(User.class);
-
+                        user = dataSnapshot.child("userData").getValue(User.class);
                         Intent intent = new Intent(getApplicationContext(), HomePage.class);
                         mainPageLauncher.launch(intent);
                         Toast.makeText(getApplicationContext(),"Logged in Successfully",Toast.LENGTH_SHORT).show();

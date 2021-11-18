@@ -8,12 +8,7 @@ public class User {
     private String username;
     private String email;
     private String id;
-
-
-
-    //public List<CourseType> course;
     private String roleNum;
-
     private String roleName;
 
 
@@ -24,6 +19,7 @@ public class User {
         roleName="";
         id = "";
     }
+
     public User(String username, String email, String roleNum,String id,String roleName){
         this.email = email;
         this.username = username;
@@ -31,6 +27,8 @@ public class User {
         this.id = id;
         this.roleName = roleName;
     }
+
+
 
     public String getEmail() {
         return email;
@@ -48,13 +46,6 @@ public class User {
         this.username = username;
     }
 
-//    public CourseType getCourses(int i) {
-//        return course.get(i);
-//    }
-
-//    public void setCourses(CourseType courseType) {
-//        course.add(courseType);
-//    }
 
     public String getroleNum() {
         return roleNum;
@@ -77,5 +68,6 @@ public class User {
     public void setId(String id) {
         this.id = id;
     }
+
 
 }

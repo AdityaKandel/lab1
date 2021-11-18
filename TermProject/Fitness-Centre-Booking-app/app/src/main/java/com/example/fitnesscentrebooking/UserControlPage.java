@@ -93,10 +93,8 @@ public class UserControlPage extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
-
     }
 
     private void find(String username){

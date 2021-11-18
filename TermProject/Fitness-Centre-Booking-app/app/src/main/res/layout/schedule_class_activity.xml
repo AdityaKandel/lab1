@@ -7,7 +7,7 @@
     android:background="#2B2A2A">
 
     <EditText
-        android:id="@+id/editTextNumber"
+        android:id="@+id/capacityField_ScheduleClass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
@@ -21,10 +21,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTime" />
+        app:layout_constraintTop_toBottomOf="@+id/timeField_ScheduleClass" />
 
     <EditText
-        android:id="@+id/editTextTime"
+        android:id="@+id/timeField_ScheduleClass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="152dp"
@@ -41,7 +41,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextDate2"
+        android:id="@+id/dateField_ScheduleClass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
@@ -55,10 +55,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
+        app:layout_constraintTop_toBottomOf="@+id/capacityField_ScheduleClass" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/Ddifficultyspinner"
         android:layout_width="330dp"
         android:layout_height="48dp"
         android:background="#FFF9F9"
@@ -68,7 +68,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDate2"
+        app:layout_constraintTop_toBottomOf="@+id/dateField_ScheduleClass"
         app:layout_constraintVertical_bias="0.143"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -91,12 +91,13 @@
         android:id="@+id/button2"
         android:layout_width="146dp"
         android:layout_height="65dp"
+        android:onClick="ScheduleClass"
         android:text="Schedule"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.849"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner"
+        app:layout_constraintTop_toBottomOf="@+id/Ddifficultyspinner"
         app:layout_constraintVertical_bias="0.272" />
 
     <Button
@@ -109,6 +110,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.154"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner"
+        app:layout_constraintTop_toBottomOf="@+id/Ddifficultyspinner"
         app:layout_constraintVertical_bias="0.272" />
 </androidx.constraintlayout.widget.ConstraintLayout>
