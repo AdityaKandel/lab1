@@ -61,7 +61,6 @@ public class ScheduleClassActivity extends AppCompatActivity implements AdapterV
         difficulty_dropdown.setOnItemSelectedListener(this);
     }
 
-
     public void cancelprocess(View view) {
         finish();
     }
@@ -97,7 +96,6 @@ public class ScheduleClassActivity extends AppCompatActivity implements AdapterV
                 }
             }
     }
-
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         difficulty = difficulty_dropdown.getItemAtPosition(i).toString();
