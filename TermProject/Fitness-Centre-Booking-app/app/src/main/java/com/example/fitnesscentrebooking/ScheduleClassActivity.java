@@ -6,15 +6,22 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 public class ScheduleClassActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -26,6 +33,7 @@ public class ScheduleClassActivity extends AppCompatActivity implements AdapterV
     String difficulty;
     String courseName;
     String id;
+    List<Course> courseList;
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
@@ -35,8 +43,8 @@ public class ScheduleClassActivity extends AppCompatActivity implements AdapterV
             courseName = extras.getString("courseName");
             System.out.println(courseName);
             id = extras.getString("key");
-
         }
+        courseList =new ArrayList<>();
 
         user =  LoginPage.getUser();
       //  System.out.println("is it instance of 1" + (LoginPage.getUser() instanceof User));
@@ -71,19 +79,23 @@ public class ScheduleClassActivity extends AppCompatActivity implements AdapterV
         String time = timeText.getText().toString().trim();
         int Capacity = Integer.parseInt(capacityText.getText().toString().trim());
 
+        String collidedUsername  = find(date);
 
-
-        System.out.println("course added");
         if(id!=null){
-            System.out.println(id+"adding course");
-            Course newCourse = new Course(courseName,date, time, difficulty,Capacity, LoginPage.getUser().getUsername(), id);
-            FirebaseDatabase.getInstance().getReference().child("scheduledClass").child(id).child("class").setValue(newCourse);
-        }else{
-            String key =  FirebaseDatabase.getInstance().getReference().push().getKey();;
-            Course newCourse = new Course(courseName,date, time, difficulty,Capacity, LoginPage.getUser().getUsername(), key);
-            FirebaseDatabase.getInstance().getReference().child("scheduledClass").child(key).child("class").setValue(newCourse);
-        }
-        finish();
+                System.out.println(id+"adding course");
+                Course newCourse = new Course(courseName,date, time, difficulty,Capacity, LoginPage.getUser().getUsername(), id);
+                FirebaseDatabase.getInstance().getReference().child("scheduledClass").child(id).child("class").setValue(newCourse);
+                finish();
+            }else{
+                if(collidedUsername.equals("")){
+                String key =  FirebaseDatabase.getInstance().getReference().push().getKey();;
+                Course newCourse = new Course(courseName,date, time, difficulty,Capacity, LoginPage.getUser().getUsername(), key);
+                FirebaseDatabase.getInstance().getReference().child("scheduledClass").child(key).child("class").setValue(newCourse);
+                finish();
+                }else{
+                    Toast.makeText(getApplicationContext(), "Schedule conflict with "+collidedUsername,Toast.LENGTH_SHORT).show();
+                }
+            }
     }
 
     @Override
@@ -94,5 +106,38 @@ public class ScheduleClassActivity extends AppCompatActivity implements AdapterV
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
         difficulty = "Beginner";
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseDatabase.getInstance().getReference("scheduledClass").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                courseList.clear();
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                    Course course = postSnapshot.child("class").getValue(Course.class);
+                    System.out.println(postSnapshot.child("class").getValue(Course.class).toString());
+                    if (course.getName().equals(courseName)) {
+                        System.out.println("+course.getName()" + " mycourse name:"+courseName);
+                        courseList.add(course);
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {}
+        });
+    }
+    public String find(String date){
+        for (int i = 0; i < courseList.size(); i++) {
+            if(courseList.get(i).getDate().equals(date)){
+                return courseList.get(i).getUserName();
+            }
+        }
+        return "";
+    }
+
+    public void validateTextField(){
+        //todo
     }
 }
