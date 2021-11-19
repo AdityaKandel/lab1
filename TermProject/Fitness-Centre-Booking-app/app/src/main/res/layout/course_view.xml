@@ -13,7 +13,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
-        app:cardBackgroundColor="#FFFCFC"
+        app:cardBackgroundColor="#00FFFCFC"
         app:cardCornerRadius="20dp"
         app:cardElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -66,8 +66,8 @@
                 android:textColor="#FFFFFF"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="@+id/background_courseView"
-                app:layout_constraintEnd_toStartOf="@+id/remove_courseview"
-                app:layout_constraintStart_toEndOf="@+id/editCourse_courseview"
+                app:layout_constraintEnd_toStartOf="@+id/edit_Schedule_view"
+                app:layout_constraintStart_toEndOf="@+id/cancel_Schedule_view"
                 app:layout_constraintTop_toBottomOf="@+id/capacity_Schedule_view" />
 
             <TextView
@@ -84,7 +84,7 @@
 
 
             <TextView
-                android:id="@+id/remove_courseview"
+                android:id="@+id/edit_Schedule_view"
                 android:layout_width="69dp"
                 android:layout_height="50dp"
                 android:layout_marginRight="10dp"
@@ -104,7 +104,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/capacity_Schedule_view" />
 
             <TextView
-                android:id="@+id/editCourse_courseview"
+                android:id="@+id/cancel_Schedule_view"
                 android:layout_width="69dp"
                 android:layout_height="50dp"
                 android:layout_marginLeft="10dp"

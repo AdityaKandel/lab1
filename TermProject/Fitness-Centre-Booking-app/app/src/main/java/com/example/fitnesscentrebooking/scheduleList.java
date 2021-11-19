@@ -22,6 +22,7 @@ public class scheduleList extends ArrayAdapter<Course> {
     private Activity context;
     List<Course> courseList;
     private String courseId;
+    private Course Scheduledcourse;
     public scheduleList(Activity context, List<Course> courses){
         super(context, R.layout.schedule_class_view,courses);
         this.context = context;
@@ -37,33 +38,33 @@ public class scheduleList extends ArrayAdapter<Course> {
         TextView date = (TextView) listViewItem.findViewById(R.id.date_schedule_view2);
         TextView difficulty = (TextView) listViewItem.findViewById(R.id.difficulty_Schedule_view);
         TextView CourseName = (TextView) listViewItem.findViewById(R.id.className_shedule_class_view);
-        Course course = courseList.get(position);
+         Scheduledcourse = courseList.get(position);
 
         //set values
-        time.setText(course.getTime());
-        CourseName.setText(course.getName());
-        date.setText(course.getDate());
-        capacity.setText(Integer.toString(course.getCapacity()));
-        difficulty.setText(course.getDifficulty());
-        courseId = course.getId();
+        time.setText(Scheduledcourse.getTime());
+        CourseName.setText(Scheduledcourse.getName());
+        date.setText(Scheduledcourse.getDate());
+        capacity.setText(Integer.toString(Scheduledcourse.getCapacity()));
+        difficulty.setText(Scheduledcourse.getDifficulty());
+        courseId = Scheduledcourse.getId();
         //setBackground
       //  setGradientColor((ImageView) listViewItem.findViewById(R.id.car));
 
         //setButtonOperations;
-      //  TextView editBtn = (TextView) listViewItem.findViewById(R.id.editCourse_courseview);
-       // TextView removeBtn = (TextView) listViewItem.findViewById(R.id.remove_courseview);
-//        editBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                EditCourse();
-//            }
-//        });
-//        removeBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                removeCourse();
-//            }
-//        });
+        TextView editBtn = (TextView) listViewItem.findViewById(R.id.edit_Schedule_view);
+        TextView removeBtn = (TextView) listViewItem.findViewById(R.id.cancel_Schedule_view);
+        editBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditCourse();
+            }
+        });
+        removeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                removeCourse();
+            }
+        });
         updateUI(listViewItem);
 
         return listViewItem;
@@ -90,16 +91,20 @@ public class scheduleList extends ArrayAdapter<Course> {
 
     public void removeCourse(){
         System.out.println(courseId+"id of the course");
-        FirebaseDatabase.getInstance().getReference().child("courses").child(courseId).removeValue();
+        FirebaseDatabase.getInstance().getReference().child("scheduledClass").child(courseId).removeValue();
         Toast.makeText(getContext(), "Course deleted",Toast.LENGTH_SHORT).show();
 
     }
 
     public void EditCourse(){
-        Intent intent = new Intent(context, courseAddPage.class);
-        courseAddPage.key2=courseId;
+        Intent intent = new Intent(context, ScheduleClassActivity.class);
+        System.out.println(Scheduledcourse.getId() +"editing");
+        intent.putExtra("key", Scheduledcourse.getId());
+        intent.putExtra("courseName", Scheduledcourse.getName());
+        System.out.println(Scheduledcourse.getName()+ "course name");
+
         context.startActivity(intent);
-        Toast.makeText(getContext(), "Course deleted",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Course edited",Toast.LENGTH_SHORT).show();
     }
     public void updateUI(View context){
 //        TextView schedule = ((TextView) context.findViewById(R.id.enroll));

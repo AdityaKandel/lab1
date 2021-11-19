@@ -44,8 +44,8 @@ public class CourseList extends ArrayAdapter<Course> {
         setGradientColor((ImageView) listViewItem.findViewById(R.id.background_courseView));
 
         //setButtonOperations;
-        TextView editBtn = (TextView) listViewItem.findViewById(R.id.editCourse_courseview);
-        TextView removeBtn = (TextView) listViewItem.findViewById(R.id.remove_courseview);
+        TextView editBtn = (TextView) listViewItem.findViewById(R.id.cancel_Schedule_view);
+        TextView removeBtn = (TextView) listViewItem.findViewById(R.id.edit_Schedule_view);
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,12 +100,12 @@ public class CourseList extends ArrayAdapter<Course> {
 
         switch (LoginPage.getUser().getroleNum()){
             case "2":
-                ((TextView) context.findViewById(R.id.remove_courseview)).setVisibility(View.GONE);
-                ((TextView) context.findViewById(R.id.editCourse_courseview)).setVisibility(View.GONE);
+                ((TextView) context.findViewById(R.id.edit_Schedule_view)).setVisibility(View.GONE);
+                ((TextView) context.findViewById(R.id.cancel_Schedule_view)).setVisibility(View.GONE);
                 break;
             case "1":
-                ((TextView) context.findViewById(R.id.remove_courseview)).setVisibility(View.GONE);
-                ((TextView) context.findViewById(R.id.editCourse_courseview)).setVisibility(View.GONE);
+                ((TextView) context.findViewById(R.id.edit_Schedule_view)).setVisibility(View.GONE);
+                ((TextView) context.findViewById(R.id.cancel_Schedule_view)).setVisibility(View.GONE);
                 schedule.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

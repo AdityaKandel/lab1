@@ -58,13 +58,14 @@ public class Course {
         this.description =description;
         this.id =id;
     }
-    public Course(String name ,String date, String time, String difficulty, int capacity, String userName){
+    public Course(String name ,String date, String time, String difficulty, int capacity, String userName, String id){
         this.date = date;
         this.difficulty = difficulty;
         this.time = time;
         this.capacity = capacity;
         this.userName =userName;
         this.name = name;
+        this.id = id;
     }
     public Course(){
 

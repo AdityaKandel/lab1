@@ -25,6 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class CoursePage extends AppCompatActivity{
     protected User user;
@@ -116,15 +117,16 @@ public class CoursePage extends AppCompatActivity{
 
     }
     public void find(String searchValue) {
-
-        if (!searchValue.equals("")) {
+        if(!searchValue.equals("")) {
             FirebaseDatabase.getInstance().getReference("scheduledClass").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     courseList.clear();
                     for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+
                         Course course = postSnapshot.child("class").getValue(Course.class);
-                        if (course.getUserName().contains(searchValue) || course.getName().contains(searchValue)) {
+                        System.out.println(course.getId() + "testing" + course.getUserName().toLowerCase());
+                        if (course.getUserName().toLowerCase().contains(searchValue.toLowerCase())) {
                             courseList.add(course);
                         }
                     }
@@ -137,7 +139,7 @@ public class CoursePage extends AppCompatActivity{
 
                 }
             });
-        } else {
+        }else{
             onStart();
         }
     }

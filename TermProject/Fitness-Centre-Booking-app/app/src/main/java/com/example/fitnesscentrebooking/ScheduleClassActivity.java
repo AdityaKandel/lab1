@@ -25,12 +25,17 @@ public class ScheduleClassActivity extends AppCompatActivity implements AdapterV
     TextView capacityText;
     String difficulty;
     String courseName;
+    String id;
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.schedule_class_activity);
         Bundle extras = getIntent().getExtras();
         if(extras!=null){
             courseName = extras.getString("courseName");
+            System.out.println(courseName);
+            id = extras.getString("key");
+
         }
 
         user =  LoginPage.getUser();
@@ -63,14 +68,21 @@ public class ScheduleClassActivity extends AppCompatActivity implements AdapterV
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        String time = dateText.getText().toString().trim();
+        String time = timeText.getText().toString().trim();
         int Capacity = Integer.parseInt(capacityText.getText().toString().trim());
 
-        Course newCourse = new Course(courseName,date, time, difficulty,Capacity, LoginPage.getUser().getUsername());
+
 
         System.out.println("course added");
-        String key =  FirebaseDatabase.getInstance().getReference().push().getKey();;
-        FirebaseDatabase.getInstance().getReference().child("scheduledClass").child(key).child("class").setValue(newCourse);
+        if(id!=null){
+            System.out.println(id+"adding course");
+            Course newCourse = new Course(courseName,date, time, difficulty,Capacity, LoginPage.getUser().getUsername(), id);
+            FirebaseDatabase.getInstance().getReference().child("scheduledClass").child(id).child("class").setValue(newCourse);
+        }else{
+            String key =  FirebaseDatabase.getInstance().getReference().push().getKey();;
+            Course newCourse = new Course(courseName,date, time, difficulty,Capacity, LoginPage.getUser().getUsername(), key);
+            FirebaseDatabase.getInstance().getReference().child("scheduledClass").child(key).child("class").setValue(newCourse);
+        }
         finish();
     }
 
