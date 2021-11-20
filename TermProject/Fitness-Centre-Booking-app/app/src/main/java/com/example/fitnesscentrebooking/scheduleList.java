@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.cardview.widget.CardView;
+
 import com.google.firebase.database.FirebaseDatabase;
 
 import org.w3c.dom.Text;
@@ -42,14 +44,14 @@ public class scheduleList extends ArrayAdapter<Course> {
          Scheduledcourse = courseList.get(position);
 
         //set values
-        time.setText(Scheduledcourse.getTime());
+        time.setText("Time: "+Scheduledcourse.getTime());
         CourseName.setText(Scheduledcourse.getName());
         date.setText(Scheduledcourse.getDate());
-        capacity.setText(Integer.toString(Scheduledcourse.getCapacity()));
-        difficulty.setText(Scheduledcourse.getDifficulty());
+        capacity.setText("Capacity: "+Integer.toString(Scheduledcourse.getCapacity()));
+        difficulty.setText("Difficulty: "+Scheduledcourse.getDifficulty());
         courseId = Scheduledcourse.getId();
         //setBackground
-      //  setGradientColor((ImageView) listViewItem.findViewById(R.id.car));
+        setGradientColor(listViewItem.findViewById(R.id.cardView_ScheduleView));
 
         //setButtonOperations;
         TextView editBtn = (TextView) listViewItem.findViewById(R.id.edit_Schedule_view);
@@ -72,10 +74,11 @@ public class scheduleList extends ArrayAdapter<Course> {
     }
 
 
-    public void setGradientColor(ImageView imageView){
+    public void setGradientColor(CardView imageView){
+        int newColor = colorpicker();
         GradientDrawable gd = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
-                new int[] {colorpicker(), colorpicker()} );
+                new int[] {newColor, newColor} );
         gd.setCornerRadius(100f);
 
         imageView.setBackground(gd);

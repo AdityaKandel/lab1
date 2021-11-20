@@ -4,12 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="start"
-    android:background="#302E2E"
-    android:scrollbars="none"
-    tools:context=".CoursePage"
-    tools:menu="@menu/main_menu"
-    tools:visibility="visible">
+    android:background="#FFFFFF"
+    tools:context=".CoursePage">
 
 
     <androidx.drawerlayout.widget.DrawerLayout
@@ -27,7 +23,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#2A2727">
+            android:background="#FFFFFF">
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/addCourse"
@@ -49,17 +45,33 @@
                 android:id="@+id/textView7"
                 android:layout_width="147dp"
                 android:layout_height="52dp"
+                android:layout_marginBottom="488dp"
                 android:fontFamily="@font/baloo_bhai"
                 android:text="Classes"
                 android:textAlignment="center"
-                android:textColor="#FFFFFF"
+                android:textColor="#000000"
                 android:textSize="34sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.06"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.091" />
+                app:layout_constraintTop_toBottomOf="@+id/toolbar2"
+                app:layout_constraintVertical_bias="0.114"
+                tools:ignore="NotSibling" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/toolbar2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <include
+                    android:id="@+id/include"
+                    layout="@layout/toolbar" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <RelativeLayout
                 android:id="@+id/relativeLayout2"
@@ -75,18 +87,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignParentTop="true"
+                    android:layout_marginTop="0dp"
                     android:background="#FFFFFF"
-                    android:backgroundTint="#292727"
+                    android:backgroundTint="#FFFFFF"
                     android:elevation="10dp" />
 
             </RelativeLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <include
-            android:id="@+id/include"
-            layout="@layout/toolbar" />
-
-        <include layout="@layout/navigation_layout" />
+            layout="@layout/navigation_layout"
+          />
 
 
     </androidx.drawerlayout.widget.DrawerLayout>

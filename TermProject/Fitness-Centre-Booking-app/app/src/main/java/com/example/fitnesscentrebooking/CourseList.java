@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.cardview.widget.CardView;
+
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
@@ -41,7 +43,7 @@ public class CourseList extends ArrayAdapter<Course> {
         name.setText(course.getName());
         courseId = course.getId();
         //setBackground
-        setGradientColor((ImageView) listViewItem.findViewById(R.id.background_courseView));
+        setGradientColor((CardView) listViewItem.findViewById(R.id.cardView_CourseView));
 
         //setButtonOperations;
         TextView editBtn = (TextView) listViewItem.findViewById(R.id.cancel_Schedule_view);
@@ -72,11 +74,11 @@ public class CourseList extends ArrayAdapter<Course> {
     }
 
 
-    public void setGradientColor(ImageView imageView){
+    public void setGradientColor(CardView imageView){
         GradientDrawable gd = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
                 new int[] {colorpicker(), colorpicker()} );
-        gd.setCornerRadius(100f);
+        gd.setCornerRadius(50f);
 
         imageView.setBackground(gd);
 

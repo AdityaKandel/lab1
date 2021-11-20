@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#302E2E"
+    android:background="#FFFFFF"
     tools:context=".UserControlPage">
 
     <androidx.drawerlayout.widget.DrawerLayout
@@ -44,13 +44,27 @@
                 android:layout_marginTop="68dp"
                 android:fontFamily="@font/baloo_bhai"
                 android:text="User Control"
-                android:textColor="#FFFFFF"
+                android:textColor="#000000"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.058"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar2"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/toolbar2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <include
+                    android:id="@+id/include"
+                    layout="@layout/toolbar" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
             <LinearLayout
                 android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
@@ -67,14 +81,11 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentTop="true"
                     android:background="#FFFFFF"
-                    android:backgroundTint="#292727"
+                    android:backgroundTint="#FFFFFF"
                     android:elevation="10dp" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <include
-            android:id="@+id/include"
-            layout="@layout/toolbar" />
 
         <include layout="@layout/navigation_layout" />
 

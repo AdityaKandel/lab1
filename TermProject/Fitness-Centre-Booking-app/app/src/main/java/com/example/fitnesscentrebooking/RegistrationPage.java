@@ -3,6 +3,7 @@ package com.example.fitnesscentrebooking;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -28,6 +29,7 @@ public class RegistrationPage extends AppCompatActivity implements AdapterView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent returnIntent = new Intent();
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.registration_page);
         text_Email = (EditText) findViewById(R.id.textEmail);
         text_Username = (EditText) findViewById(R.id.textUsername);

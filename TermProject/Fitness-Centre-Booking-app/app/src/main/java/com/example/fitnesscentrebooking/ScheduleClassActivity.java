@@ -3,6 +3,7 @@ package com.example.fitnesscentrebooking;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -41,8 +42,8 @@ public class ScheduleClassActivity extends AppCompatActivity implements AdapterV
     String id;
     List<Course> courseList;
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.schedule_class_activity);
         Bundle extras = getIntent().getExtras();
         if(extras!=null){

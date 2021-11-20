@@ -7,6 +7,7 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView_ScheduleView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -23,7 +24,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 
 
@@ -45,26 +47,24 @@
 
             <TextView
                 android:id="@+id/capacity_Schedule_view"
-                android:layout_width="149dp"
+                android:layout_width="160dp"
                 android:layout_height="34dp"
                 android:fontFamily="@font/baloo_bhai"
                 android:text="TextView"
-                android:textColor="#000000"
+                android:textColor="#FFFFFF"
                 android:textSize="14sp"
-                app:layout_constraintBottom_toTopOf="@+id/cancel_Schedule_view"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.139"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/date_schedule_view2"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toBottomOf="@+id/date_schedule_view2" />
 
             <TextView
                 android:id="@+id/date_schedule_view2"
-                android:layout_width="149dp"
+                android:layout_width="160dp"
                 android:layout_height="34dp"
                 android:fontFamily="@font/baloo_bhai"
                 android:text="TextView"
-                android:textColor="#000000"
+                android:textColor="#FFFFFF"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.139"
@@ -73,25 +73,24 @@
 
             <TextView
                 android:id="@+id/time_Schedule_view"
-                android:layout_width="149dp"
+                android:layout_width="130dp"
                 android:layout_height="34dp"
                 android:fontFamily="@font/baloo_bhai"
                 android:text="TextView"
-                android:textColor="#000000"
+                android:textColor="#FFFFFF"
                 android:textSize="14sp"
-                app:layout_constraintBottom_toTopOf="@+id/edit_Schedule_view"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.86"
+                app:layout_constraintHorizontal_bias="0.858"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/difficulty_Schedule_view" />
 
             <TextView
                 android:id="@+id/difficulty_Schedule_view"
-                android:layout_width="149dp"
+                android:layout_width="130dp"
                 android:layout_height="34dp"
                 android:fontFamily="@font/baloo_bhai"
                 android:text="TextView"
-                android:textColor="#000000"
+                android:textColor="#FFFFFF"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.86"
@@ -101,9 +100,9 @@
             <TextView
                 android:id="@+id/edit_Schedule_view"
                 android:layout_width="128dp"
-                android:layout_height="47dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="12dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="112dp"
+                android:layout_marginEnd="36dp"
                 android:background="@drawable/gradient"
                 android:fontFamily="@font/baloo_bhai"
                 android:gravity="center"
@@ -112,17 +111,15 @@
                 android:textColor="#FFFFFF"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.905"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/cancel_Schedule_view"
                 android:layout_width="128dp"
                 android:layout_height="47dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="12dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="112dp"
                 android:background="@drawable/gradient"
                 android:fontFamily="@font/baloo_bhai"
                 android:gravity="center"
@@ -130,10 +127,8 @@
                 android:textColor="#FFFFFF"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/edit_Schedule_view"
-                app:layout_constraintHorizontal_bias="0.25"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/className_shedule_class_view"
@@ -143,7 +138,7 @@
                 android:fontFamily="@font/baloo_bhai"
                 android:text="TextView"
                 android:textAlignment="center"
-                android:textColor="#000000"
+                android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
