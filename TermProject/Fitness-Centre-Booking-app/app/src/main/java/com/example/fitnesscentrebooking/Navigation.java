@@ -51,7 +51,11 @@ public class Navigation  implements NavigationView.OnNavigationItemSelectedListe
         }else  if (id == R.id.UserList_item){
             Intent intent = new Intent(activity.getApplicationContext(), UserControlPage.class);
            activity.startActivity(intent);
-        }  if (id == R.id.Homepage_menuItem){
+        }else  if (id == R.id.ScheduledClasses_item){
+            Intent intent = new Intent(activity.getApplicationContext(), scheduledClassesPage.class);
+            activity.startActivity(intent);
+        }
+        if (id == R.id.Homepage_menuItem){
             Intent intent = new Intent(activity.getApplicationContext(), HomePage.class);
             activity.startActivity(intent);
         }

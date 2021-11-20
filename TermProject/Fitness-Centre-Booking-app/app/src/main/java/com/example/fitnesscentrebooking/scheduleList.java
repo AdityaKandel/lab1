@@ -23,13 +23,14 @@ public class scheduleList extends ArrayAdapter<Course> {
     List<Course> courseList;
     private String courseId;
     private Course Scheduledcourse;
+
     public scheduleList(Activity context, List<Course> courses){
         super(context, R.layout.schedule_class_view,courses);
         this.context = context;
         this.courseList = courses;
     }
 
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
         View listViewItem = inflater.inflate(R.layout.schedule_class_view, null, true);
 
@@ -56,16 +57,16 @@ public class scheduleList extends ArrayAdapter<Course> {
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditCourse();
+                EditCourse(position);
             }
         });
         removeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                removeCourse();
+                removeCourse(position);
             }
         });
-        updateUI(listViewItem);
+        updateUI(listViewItem, position);
 
         return listViewItem;
     }
@@ -89,14 +90,14 @@ public class scheduleList extends ArrayAdapter<Course> {
         return Color.parseColor(colors[r.nextInt(colors.length)]);
     }
 
-    public void removeCourse(){
+    public void removeCourse(int position){
         System.out.println(courseId+"id of the course");
-        FirebaseDatabase.getInstance().getReference().child("scheduledClass").child(courseId).removeValue();
+        FirebaseDatabase.getInstance().getReference().child("scheduledClass").child(courseList.get(position).getId()).removeValue();
         Toast.makeText(getContext(), "Course deleted",Toast.LENGTH_SHORT).show();
 
     }
 
-    public void EditCourse(){
+    public void EditCourse(int position){
         Intent intent = new Intent(context, ScheduleClassActivity.class);
         System.out.println(Scheduledcourse.getId() +"editing");
         intent.putExtra("key", Scheduledcourse.getId());
@@ -106,29 +107,12 @@ public class scheduleList extends ArrayAdapter<Course> {
         context.startActivity(intent);
         Toast.makeText(getContext(), "Course edited",Toast.LENGTH_SHORT).show();
     }
-    public void updateUI(View context){
-//        TextView schedule = ((TextView) context.findViewById(R.id.enroll));
-//
-//        switch (LoginPage.getUser().getroleNum()){
-//            case "2":
-//                ((TextView) context.findViewById(R.id.remove_courseview)).setVisibility(View.GONE);
-//                ((TextView) context.findViewById(R.id.editCourse_courseview)).setVisibility(View.GONE);
-//                break;
-//            case "1":
-//                ((TextView) context.findViewById(R.id.remove_courseview)).setVisibility(View.GONE);
-//                ((TextView) context.findViewById(R.id.editCourse_courseview)).setVisibility(View.GONE);
-//                schedule.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        scheduleClass();
-//                    }
-//                });
-//                break;
-//            case "0":
-//                schedule.setVisibility(View.GONE);
-//
-//                break;
-//        }
+    public void updateUI(View context, int position){
+        if(!LoginPage.getUser().getUsername().equals(courseList.get(position).getUserName())){
+            System.out.println("working"+position);
+            context.findViewById(R.id.edit_Schedule_view).setVisibility(View.GONE);
+            context.findViewById(R.id.cancel_Schedule_view).setVisibility(View.GONE);
+        }
     }
 
 }

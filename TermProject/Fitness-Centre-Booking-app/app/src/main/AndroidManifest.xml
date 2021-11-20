@@ -27,7 +27,9 @@
         <activity
             android:name=".ScheduleClassActivity"
             android:exported="true" />
-        ScheduleClass
+        <activity
+            android:name=".scheduledClassesPage"
+            android:exported="true" />
         <activity
             android:name=".LoginPage"
             android:exported="true">

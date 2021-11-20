@@ -27,9 +27,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class CoursePage extends AppCompatActivity{
+public class scheduledClassesPage extends AppCompatActivity{
     protected User user;
-    FloatingActionButton addcourse;
     DatabaseReference courseDatabaseRef;
     List courseList;
     ListView listView;
@@ -38,13 +37,12 @@ public class CoursePage extends AppCompatActivity{
         super.onCreate(savedInstanceState);
 
 
-        setContentView(R.layout.class_page_activity);
+        setContentView(R.layout.schedule_page_activity);
         user = LoginPage.getUser();
-        addcourse = (FloatingActionButton) findViewById(R.id.addCourse);
         updateUI();
         Navigation navi = new Navigation();
         navi.setNavigationView(this);
-        courseDatabaseRef = FirebaseDatabase.getInstance().getReference("courses");
+        courseDatabaseRef = FirebaseDatabase.getInstance().getReference("scheduledClass");
         courseList = new ArrayList<>();
         listView = (ListView) findViewById(R.id.recycleView);
 
@@ -66,13 +64,10 @@ public class CoursePage extends AppCompatActivity{
     public void updateUI() {
         switch (user.getroleNum()) {
             case "2":
-                addcourse.setVisibility(View.GONE);
                 break;
             case "0":
-                addcourse.setVisibility(View.VISIBLE);
                 break;
             case "1":
-                addcourse.setVisibility(View.GONE);
                 break;
         }
     }
@@ -87,28 +82,24 @@ public class CoursePage extends AppCompatActivity{
             });
 
 
-    public void onAddCourse(View view){
-        System.out.println("add courses");
-       Intent intent = new Intent(getApplicationContext(), courseAddPage.class);
-        intentLaucher.launch(intent);
-    }
-
-
     @Override
     protected void onStart() {
         super.onStart();
 
-        courseDatabaseRef.addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference("scheduledClass").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 courseList.clear();
-                for (DataSnapshot postSnapshot : snapshot.getChildren()){
-                    Course course = postSnapshot.getValue(Course.class);
-                    courseList.add(course);
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+
+                    Course course = postSnapshot.child("class").getValue(Course.class);
+                    System.out.println(course.getId() + "testing" + course.getUserName().toLowerCase());
+                        courseList.add(course);
                 }
-                CourseList productAdapter = new CourseList(CoursePage.this, courseList);
+                scheduleList productAdapter = new scheduleList(scheduledClassesPage.this, courseList);
                 listView.setAdapter(productAdapter);
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -118,19 +109,22 @@ public class CoursePage extends AppCompatActivity{
     }
     public void find(String searchValue) {
         if(!searchValue.equals("")) {
-            courseDatabaseRef.addValueEventListener(new ValueEventListener() {
+            FirebaseDatabase.getInstance().getReference("scheduledClass").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     courseList.clear();
                     for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                        Course course = postSnapshot.getValue(Course.class);
-                        if (course.getName().toLowerCase().contains(searchValue.toLowerCase())) {
+
+                        Course course = postSnapshot.child("class").getValue(Course.class);
+                        System.out.println(course.getId() + "testing" + course.getUserName().toLowerCase());
+                        if (course.getUserName().toLowerCase().contains(searchValue.toLowerCase())) {
                             courseList.add(course);
                         }
                     }
-                    CourseList productAdapter = new CourseList(CoursePage.this, courseList);
+                    scheduleList productAdapter = new scheduleList(scheduledClassesPage.this, courseList);
                     listView.setAdapter(productAdapter);
                 }
+
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
 

@@ -49,7 +49,7 @@
         android:backgroundTint="#FFFFFF"
         android:ems="10"
         android:fontFamily="@font/baloo_bhai"
-        android:hint="DD/MM/YYYY"
+        android:hint="MM/DD/YYYY"
         android:inputType="date"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +73,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/title_ScheduleClass_Activity"
         android:layout_width="278dp"
         android:layout_height="67dp"
         android:layout_marginTop="24dp"
@@ -88,7 +88,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/schedule_btn"
         android:layout_width="146dp"
         android:layout_height="65dp"
         android:onClick="ScheduleClass"

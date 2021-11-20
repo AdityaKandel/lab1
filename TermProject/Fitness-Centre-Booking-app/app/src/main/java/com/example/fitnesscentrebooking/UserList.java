@@ -37,7 +37,7 @@ public class UserList extends ArrayAdapter<User> {
         this.userList = users;
     }
 
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
         View listViewItem = inflater.inflate(R.layout.user_view_single, null, true);
 
@@ -56,15 +56,15 @@ public class UserList extends ArrayAdapter<User> {
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                deleteUser();
+                deleteUser(position);
             }
         });
 
         return listViewItem;
     }
 
-    public void deleteUser() {
-        FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUsername()).removeValue();
+    public void deleteUser(int postition) {
+        FirebaseDatabase.getInstance().getReference().child("Users").child(userList.get(postition).getUsername()).removeValue();
 
     }
 

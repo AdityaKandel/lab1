@@ -21,20 +21,20 @@ public class CourseList extends ArrayAdapter<Course> {
     List<Course> courseList;
     private String courseId;
     private String courseName;
+
     public CourseList(Activity context, List<Course> courses){
         super(context, R.layout.course_view,courses);
         this.context = context;
         this.courseList = courses;
     }
 
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
        View listViewItem = inflater.inflate(R.layout.course_view, null, true);
 
         TextView description = (TextView) listViewItem.findViewById(R.id.capacity_Schedule_view);
         TextView name = (TextView) listViewItem.findViewById(R.id.courseName);
         Course course = courseList.get(position);
-
        //set values
         courseName = course.getName();
         description.setText(course.getDescription());
@@ -46,6 +46,8 @@ public class CourseList extends ArrayAdapter<Course> {
         //setButtonOperations;
         TextView editBtn = (TextView) listViewItem.findViewById(R.id.cancel_Schedule_view);
         TextView removeBtn = (TextView) listViewItem.findViewById(R.id.edit_Schedule_view);
+        TextView  schedule = ((TextView) listViewItem.findViewById(R.id.enroll));
+
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,7 +57,13 @@ public class CourseList extends ArrayAdapter<Course> {
         removeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                removeCourse();
+                removeCourse(position);
+            }
+        });
+        schedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                scheduleClass(position);
             }
         });
         updateUI(listViewItem);
@@ -82,9 +90,9 @@ public class CourseList extends ArrayAdapter<Course> {
         return Color.parseColor(colors[r.nextInt(colors.length)]);
     }
 
-    public void removeCourse(){
+    public void removeCourse(int position){
         System.out.println(courseId+"id of the course");
-        FirebaseDatabase.getInstance().getReference().child("courses").child(courseId).removeValue();
+        FirebaseDatabase.getInstance().getReference().child("courses").child(courseList.get(position).getId()).removeValue();
         Toast.makeText(getContext(), "Course deleted",Toast.LENGTH_SHORT).show();
 
     }
@@ -96,32 +104,27 @@ public class CourseList extends ArrayAdapter<Course> {
         Toast.makeText(getContext(), "Course deleted",Toast.LENGTH_SHORT).show();
     }
     public void updateUI(View context){
-        TextView schedule = ((TextView) context.findViewById(R.id.enroll));
+
 
         switch (LoginPage.getUser().getroleNum()){
             case "2":
                 ((TextView) context.findViewById(R.id.edit_Schedule_view)).setVisibility(View.GONE);
                 ((TextView) context.findViewById(R.id.cancel_Schedule_view)).setVisibility(View.GONE);
+                ((TextView) context.findViewById(R.id.enroll)).setVisibility(View.GONE);
                 break;
             case "1":
                 ((TextView) context.findViewById(R.id.edit_Schedule_view)).setVisibility(View.GONE);
                 ((TextView) context.findViewById(R.id.cancel_Schedule_view)).setVisibility(View.GONE);
-                schedule.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        scheduleClass();
-                    }
-                });
                 break;
             case "0":
-                schedule.setVisibility(View.GONE);
+                ((TextView) context.findViewById(R.id.enroll)).setVisibility(View.GONE);
 
                 break;
         }
     }
-    public void scheduleClass(){
+    public void scheduleClass(int position){
         Intent intent = new Intent(context, ScheduleClassActivity.class);
-        intent.putExtra("courseName",courseName);
+        intent.putExtra("courseName",courseList.get(position).getName());
         context.startActivity(intent);
     }
 }
