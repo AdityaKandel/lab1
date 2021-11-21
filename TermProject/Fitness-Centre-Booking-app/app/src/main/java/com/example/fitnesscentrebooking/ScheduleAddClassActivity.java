@@ -20,13 +20,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -35,7 +32,8 @@ public class ScheduleAddClassActivity extends AppCompatActivity implements Adapt
     User user;
     Spinner difficulty_dropdown;
     TextView dateText;
-    TextView timeText;
+    TextView StarttimeText;
+    TextView EndtimeText;
     TextView capacityText;
     String difficulty;
     String courseName;
@@ -55,7 +53,9 @@ public class ScheduleAddClassActivity extends AppCompatActivity implements Adapt
 
         user =  LoginPage.getUser();
         dateText = findViewById(R.id.dateField_ScheduleClass);
-        timeText= findViewById(R.id.timeField_ScheduleClass);
+        StarttimeText= findViewById(R.id.StarttimeField_ScheduleClass2);
+        EndtimeText= findViewById(R.id.EndtimeField_ScheduleClass);
+
         capacityText = findViewById(R.id.capacityField_ScheduleClass);
 
         if(id!=null){
@@ -87,20 +87,20 @@ public class ScheduleAddClassActivity extends AppCompatActivity implements Adapt
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        String time = timeText.getText().toString().trim();
+        String startTime = StarttimeText.getText().toString().trim();
         String Capacity = capacityText.getText().toString().trim();
-
+        String endTime = EndtimeText.getText().toString().trim();
         String collidedUsername  = find(date);
-    if(validateTextField(dateText, timeText, capacityText)){
+    if(validateTextField(dateText, StarttimeText, capacityText,EndtimeText )){
         if(id!=null){
                 System.out.println(id+"adding course");
-                Course newCourse = new Course(courseName,date, time, difficulty,Integer.parseInt(Capacity), LoginPage.getUser().getUsername(), id);
+                Course newCourse = new Course(courseName,date, startTime+"-"+endTime, difficulty,Integer.parseInt(Capacity), LoginPage.getUser().getUsername(), id);
                 FirebaseDatabase.getInstance().getReference().child("scheduledClass").child(id).child("class").setValue(newCourse);
                 finish();
             }else{
                 if(collidedUsername.equals("")){
                 String key =  FirebaseDatabase.getInstance().getReference().push().getKey();;
-                Course newCourse = new Course(courseName,date, time, difficulty,Integer.parseInt(Capacity), LoginPage.getUser().getUsername(), key);
+                Course newCourse = new Course(courseName,date, startTime+"-"+endTime, difficulty,Integer.parseInt(Capacity), LoginPage.getUser().getUsername(), key);
                 FirebaseDatabase.getInstance().getReference().child("scheduledClass").child(key).child("class").setValue(newCourse);
                 finish();
                 }else{
@@ -148,31 +148,50 @@ public class ScheduleAddClassActivity extends AppCompatActivity implements Adapt
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public boolean validateTextField(TextView dateTextView, TextView timeTextView, TextView capacityTextView){
+    public boolean validateTextField(TextView dateTextView, TextView timeTextView, TextView capacityTextView, TextView endtimeText){
         //todo
         String date  = dateTextView.getText().toString().trim();
-        String time = timeTextView.getText().toString().trim();
+        String startTime = timeTextView.getText().toString().trim();
         String capacity = capacityTextView.getText().toString().trim();
+        String endTime = endtimeText.getText().toString().trim();
         //Check if the feilds are empty
-        if(time.equals("") || date.equals("")|| capacity.equals("")){
+        if(startTime.equals("") || date.equals("")|| capacity.equals("") || endTime.equals("")){
             return false;
         }
         if(Integer.parseInt(capacity)<=0){
             capacityText.setError("Invalid Capacity limit");
             return false;
         }
-        //validate Time
-        String[] splitedTime = time.trim().split(":");
-        System.out.println((splitedTime.length>2)+" time has extra :" + (time.trim().toString().chars().filter(ch -> ch == ':').count()==1));
+        //validate StartTime
+        String[] splitedTime = startTime.trim().split(":");
+        System.out.println((splitedTime.length>2)+" time has extra :" + (startTime.trim().toString().chars().filter(ch -> ch == ':').count()==1));
         if(splitedTime.length>2){
             timeTextView.setError("Invalid Time");
             return false;
         }
         System.out.println((Integer.parseInt(splitedTime[0])>12 || Integer.parseInt(splitedTime[1])>59)+" time is not right");
-        if(Integer.parseInt(splitedTime[0])>12 || Integer.parseInt(splitedTime[1])>59 || time.trim().toString().chars().filter(ch -> ch == ':').count()>1){
+        if(Integer.parseInt(splitedTime[0])>12 || Integer.parseInt(splitedTime[1])>59 || startTime.trim().toString().chars().filter(ch -> ch == ':').count()>1){
             timeTextView.setError("Invalid Time");
             return false;
         }
+
+        //validate StartTime
+        String[] splitedENDTime = endTime.trim().split(":");
+        System.out.println((splitedENDTime.length>2)+" time has extra :" + (endTime.trim().toString().chars().filter(ch -> ch == ':').count()==1));
+        if(splitedENDTime.length>2){
+            endtimeText.setError("Invalid Time");
+            return false;
+        }
+        if(Integer.parseInt(splitedENDTime[0])>12 || Integer.parseInt(splitedENDTime[1])>59 || endTime.trim().toString().chars().filter(ch -> ch == ':').count()>1){
+            endtimeText.setError("Invalid Time");
+            return false;
+        }
+        if(Integer.parseInt(splitedTime[0])>Integer.parseInt(splitedENDTime[0]) || (Integer.parseInt(splitedTime[0])==Integer.parseInt(splitedENDTime[0]) && Integer.parseInt(splitedTime[1])>Integer.parseInt(splitedENDTime[1]))){
+            timeTextView.setError("Start time cannot be greater than End time");
+            return false;
+        }
+
+
         String DATE_FORMAT = "MM/dd/yyyy";
         try {
             DateFormat df = new SimpleDateFormat(DATE_FORMAT);

@@ -21,22 +21,39 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timeField_ScheduleClass" />
+        app:layout_constraintTop_toBottomOf="@+id/EndtimeField_ScheduleClass" />
 
     <EditText
-        android:id="@+id/timeField_ScheduleClass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/EndtimeField_ScheduleClass"
+        android:layout_width="93dp"
+        android:layout_height="48dp"
         android:layout_marginTop="152dp"
         android:background="#FFFFFF"
         android:backgroundTint="#FFFFFF"
         android:ems="10"
         android:fontFamily="@font/baloo_bhai"
-        android:hint="Set Time"
+        android:hint="End Time"
         android:inputType="time"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.805"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/StarttimeField_ScheduleClass2"
+        android:layout_width="93dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="152dp"
+        android:background="#FFFFFF"
+        android:backgroundTint="#FFFFFF"
+        android:ems="10"
+        android:fontFamily="@font/baloo_bhai"
+        android:hint="Start Time"
+        android:inputType="time"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.198"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

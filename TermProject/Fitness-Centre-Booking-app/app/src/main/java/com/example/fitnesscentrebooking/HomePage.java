@@ -89,7 +89,7 @@ public class HomePage extends AppCompatActivity {
                         for (int i = 0; i < 3; i++) {
                             date_[i] = Integer.parseInt(date[i]);
                         }
-                        System.out.println(date_[1]+" month"+todayDate[1] +" "+(date_[2]+" "+todayDate[2]));
+                        System.out.println(date_[1]+" month"+todayDate[1] +" "+(date_[2]+" "+todayDate[2]+" "+lastWeekDate[2]));
                         if (course.getUserName().toLowerCase().contains(LoginPage.getUser().getUsername().toLowerCase()) && date_[1]==todayDate[1] && ((date_[2]>= todayDate[2]) && date_[2]<= lastWeekDate[2])) {
                             courseList.add(course);
                         }

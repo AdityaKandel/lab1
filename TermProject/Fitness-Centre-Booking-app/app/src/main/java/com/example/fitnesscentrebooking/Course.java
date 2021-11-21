@@ -4,6 +4,11 @@ public class Course {
     private String name;
     private String description;
     private String date;
+    private String userName;
+    private String time;
+    private String difficulty;
+    private int capacity;
+    private String id;
 
     public String getUserName() {
         return userName;
@@ -13,7 +18,7 @@ public class Course {
         this.userName = userName;
     }
 
-    private String userName;
+
 
     public String getTime() {
         return time;
@@ -23,7 +28,7 @@ public class Course {
         this.time = time;
     }
 
-    private String time;
+
 
     public String getDate() {
         return date;
@@ -49,9 +54,7 @@ public class Course {
         this.capacity = capacity;
     }
 
-    private String difficulty;
-    private int capacity;
-    private String id;
+
 
     public Course(String name, String description, String id){
         this.name = name;
