@@ -22,8 +22,8 @@ public class CourseTest extends TestCase {
 
     public void testSetDate() {
         Course newCourse = new Course("Basketball", "11/21/2021", "2:30", "3", 25, "user name", "50");
-        newCourse.setDate("12/25/2021");
-        assertEquals(newCourse.getDate(), "12/25/2021");
+        newCourse.setDate("12/26/2021");
+        assertEquals(newCourse.getDate(), "12/26/2021");
     }
 
     public void testTestGetName() {
