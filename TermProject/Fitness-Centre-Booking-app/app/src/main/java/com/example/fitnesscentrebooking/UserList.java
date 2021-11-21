@@ -28,8 +28,8 @@ import java.util.Random;
 
 public class UserList extends ArrayAdapter<User> {
     private Activity context;
-    List<User> userList;
-    User user;
+    private List<User> userList;
+    private User user;
 
     public UserList(Activity context, List<User> users) {
         super(context, R.layout.activity_user_list_view, users);

@@ -23,7 +23,7 @@ public class RegistrationPage extends AppCompatActivity implements AdapterView.O
     protected  EditText text_Password;
     protected EditText text_ConfrimPassword;
     protected Spinner roleSelection_dropdown;
-    String roleSelected;
+    private String roleSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +58,7 @@ public class RegistrationPage extends AppCompatActivity implements AdapterView.O
         if(roleSelected.equals("Member")){
              member = new Member(username,email, "2",key, roleSelected.toString());
 
-            if(CheckFieldvalidity(username, email, password,confrimPassword)) {
+            if(CheckFieldValidity(username, email, password,confrimPassword)) {
                 FirebaseDatabase.getInstance().getReference().child("Users").child(username).child("password").setValue(password);
                 FirebaseDatabase.getInstance().getReference().child("Users").child(username).child("userData").setValue(member);
                 FirebaseDatabase.getInstance().getReference().child("UsersList").child(key).setValue(member);
@@ -68,7 +68,7 @@ public class RegistrationPage extends AppCompatActivity implements AdapterView.O
         }else if(roleSelected.equals("Instructor")){
             System.out.println("Instructor added");
             instructor = new Instructor(username,email, "1",key, roleSelected.toString());
-            if(CheckFieldvalidity(username, email, password,confrimPassword)) {
+            if(CheckFieldValidity(username, email, password,confrimPassword)) {
                 FirebaseDatabase.getInstance().getReference().child("Users").child(username).child("password").setValue(password);
                 FirebaseDatabase.getInstance().getReference().child("Users").child(username).child("userData").setValue(instructor);
                 FirebaseDatabase.getInstance().getReference().child("UsersList").child(key).setValue(instructor);
@@ -84,7 +84,7 @@ public class RegistrationPage extends AppCompatActivity implements AdapterView.O
 
     }
 
-    public boolean CheckFieldvalidity(String username, String email, String password, String confirmPassword){
+    public boolean CheckFieldValidity(String username, String email, String password, String confirmPassword){
         boolean isValid = true;
         //Check if username is valid
         if(!username.matches("[a-zA-Z]+")){

@@ -11,12 +11,12 @@ import android.widget.Toast;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class courseAddPage extends AppCompatActivity {
-    TextView textDescription;
-    TextView textName;
-    TextView textTitle;
-    Button addBtn;
+    private TextView textDescription;
+    private TextView textName;
+    private TextView textTitle;
+    private Button addBtn;
     static String key2;
-    CourseList list;
+    private CourseList list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

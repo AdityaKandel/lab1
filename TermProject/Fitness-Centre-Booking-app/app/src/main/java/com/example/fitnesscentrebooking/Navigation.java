@@ -17,9 +17,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 
 public class Navigation  implements NavigationView.OnNavigationItemSelectedListener {
-    Activity activity;
-    View headerView;
-    NavigationView navigationView;
+    private Activity activity;
+    private  View headerView;
+    private  NavigationView navigationView;
     public void setNavigationView(Activity activity){
         this.activity = activity;
         Toolbar toolbar = (Toolbar) activity.findViewById(R.id.toolbar);
@@ -65,14 +65,14 @@ public class Navigation  implements NavigationView.OnNavigationItemSelectedListe
         return true;
     }
 
-    public void setUserInfo(){
+    private void setUserInfo(){
       TextView username= headerView.findViewById(R.id.UserName_header);
       TextView role = headerView.findViewById(R.id.Role_Header);
       username.setText("Username: "+ LoginPage.getUser().getUsername());
       role.setText("Role: "+ LoginPage.getUser().getRoleName());
     }
 
-    public void updateUI(){
+    private void updateUI(){
 
         switch (LoginPage.getUser().getroleNum()){
             case "0":

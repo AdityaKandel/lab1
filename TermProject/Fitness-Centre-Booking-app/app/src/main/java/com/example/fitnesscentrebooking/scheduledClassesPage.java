@@ -28,10 +28,10 @@ import java.util.List;
 import java.util.Locale;
 
 public class scheduledClassesPage extends AppCompatActivity{
-    protected User user;
-    DatabaseReference courseDatabaseRef;
-    List courseList;
-    ListView listView;
+    private User user;
+    private DatabaseReference courseDatabaseRef;
+    private List courseList;
+    private ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +61,7 @@ public class scheduledClassesPage extends AppCompatActivity{
         });
     }
 
-    public void updateUI() {
+    private void updateUI() {
         switch (user.getroleNum()) {
             case "2":
                 break;
@@ -71,16 +71,6 @@ public class scheduledClassesPage extends AppCompatActivity{
                 break;
         }
     }
-
-    ActivityResultLauncher<Intent> intentLaucher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>(){
-                @Override
-                public void onActivityResult(ActivityResult result){
-
-                }
-            });
-
 
     @Override
     protected void onStart() {
@@ -107,7 +97,7 @@ public class scheduledClassesPage extends AppCompatActivity{
         });
 
     }
-    public void find(String searchValue) {
+    private void find(String searchValue) {
         if(!searchValue.equals("")) {
             FirebaseDatabase.getInstance().getReference("scheduledClass").addValueEventListener(new ValueEventListener() {
                 @Override

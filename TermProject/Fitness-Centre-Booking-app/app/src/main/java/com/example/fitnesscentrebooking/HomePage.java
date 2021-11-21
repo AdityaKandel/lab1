@@ -30,10 +30,10 @@ import java.util.Date;
 import java.util.List;
 
 public class HomePage extends AppCompatActivity {
-    List<Course> courseList;
-    ListView listView;
-    int[] todayDate;
-    int[] lastWeekDate;
+    private List<Course> courseList;
+    private ListView listView;
+    private int[] todayDate;
+    private int[] lastWeekDate;
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +68,7 @@ public class HomePage extends AppCompatActivity {
 
 
 
-    public void UpdateUI(){
+    private void UpdateUI(){
         if(LoginPage.getUser().getroleNum().equals("1")){
             FirebaseDatabase.getInstance().getReference("scheduledClass").addValueEventListener(new ValueEventListener() {
                 @Override
@@ -86,11 +86,11 @@ public class HomePage extends AppCompatActivity {
                         }
                         String[] date = Format.format(dateformated).split("-");
                         int[] date_ = new int[3];
-                        for (int i = 0; i < 2; i++) {
+                        for (int i = 0; i < 3; i++) {
                             date_[i] = Integer.parseInt(date[i]);
                         }
-                        System.out.println(date_[1]+" year"+todayDate[1] +" "+(date_[2]+" "+todayDate[2]));
-                        if (course.getUserName().toLowerCase().contains(LoginPage.getUser().getUsername().toLowerCase()) && date_[1]==todayDate[1] && ((date_[2]>= todayDate[2]) || date_[2]<= lastWeekDate[2])) {
+                        System.out.println(date_[1]+" month"+todayDate[1] +" "+(date_[2]+" "+todayDate[2]));
+                        if (course.getUserName().toLowerCase().contains(LoginPage.getUser().getUsername().toLowerCase()) && date_[1]==todayDate[1] && ((date_[2]>= todayDate[2]) && date_[2]<= lastWeekDate[2])) {
                             courseList.add(course);
                         }
                     }

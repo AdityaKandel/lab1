@@ -31,7 +31,7 @@ import java.util.Date;
 import java.util.List;
 
 
-public class ScheduleClassActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class ScheduleAddClassActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     User user;
     Spinner difficulty_dropdown;
     TextView dateText;

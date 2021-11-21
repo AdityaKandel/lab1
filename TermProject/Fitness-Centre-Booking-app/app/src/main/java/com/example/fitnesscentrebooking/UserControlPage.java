@@ -31,11 +31,10 @@ import java.util.List;
 
 public class UserControlPage extends AppCompatActivity {
 
-    RecyclerView recyclerView;
-    ListView listView;
-    List<User> userlist;
-    FloatingActionButton createUserBtn;
-    DatabaseReference userDatabaseRef;
+    private ListView listView;
+    private List<User> userlist;
+    private FloatingActionButton createUserBtn;
+    private DatabaseReference userDatabaseRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +61,13 @@ public class UserControlPage extends AppCompatActivity {
               return false;
            }
        });
+        createUserBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CreateUser(view);
+            }
+        });
+
     }
 
     ActivityResultLauncher<Intent> intentLaucher = registerForActivityResult(
@@ -73,7 +79,7 @@ public class UserControlPage extends AppCompatActivity {
                 }
             });
 
-    public void CreateUser(View view) {
+    private void CreateUser(View view) {
         Intent intent = new Intent(getApplicationContext(), RegistrationPage.class);
         intentLaucher.launch(intent);
     }

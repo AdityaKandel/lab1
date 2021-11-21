@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,14 +14,12 @@ import androidx.cardview.widget.CardView;
 
 import com.google.firebase.database.FirebaseDatabase;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 import java.util.Random;
 
 public class scheduleList extends ArrayAdapter<Course> {
     private Activity context;
-    List<Course> courseList;
+    private List<Course> courseList;
     private String courseId;
     private Course Scheduledcourse;
 
@@ -74,7 +71,7 @@ public class scheduleList extends ArrayAdapter<Course> {
     }
 
 
-    public void setGradientColor(CardView imageView){
+    private void setGradientColor(CardView imageView){
         int newColor = colorpicker();
         GradientDrawable gd = new GradientDrawable(
                 GradientDrawable.Orientation.TOP_BOTTOM,
@@ -84,7 +81,7 @@ public class scheduleList extends ArrayAdapter<Course> {
         imageView.setBackground(gd);
 
     }
-    public int colorpicker(){
+    private int colorpicker(){
         Random r = new Random();
         String[] colors = new String[]{ "#f2b705", "#f6b20b", "#faad12", "#fda718", "#ffa21e", "#ff9d24", "#ff9729", "#ff922f", "#ff8d34", "#ff8739", "#ff823e", "#ff7c44",
                 "#ff7749", "#ff724e", "#ff6d53", "#ff6858", "#ff635d", "#ff5e62", "#ff5a67", "#ff566c", "#ff5272", "#ff4f77", "#ff4c7c", "#fd4981", "#f94785", "#f5458a",
@@ -93,15 +90,15 @@ public class scheduleList extends ArrayAdapter<Course> {
         return Color.parseColor(colors[r.nextInt(colors.length)]);
     }
 
-    public void removeCourse(int position){
+    private void removeCourse(int position){
         System.out.println(courseId+"id of the course");
         FirebaseDatabase.getInstance().getReference().child("scheduledClass").child(courseList.get(position).getId()).removeValue();
         Toast.makeText(getContext(), "Course deleted",Toast.LENGTH_SHORT).show();
 
     }
 
-    public void EditCourse(int position){
-        Intent intent = new Intent(context, ScheduleClassActivity.class);
+    private void EditCourse(int position){
+        Intent intent = new Intent(context, ScheduleAddClassActivity.class);
         System.out.println(Scheduledcourse.getId() +"editing");
         intent.putExtra("key", Scheduledcourse.getId());
         intent.putExtra("courseName", Scheduledcourse.getName());
@@ -110,7 +107,7 @@ public class scheduleList extends ArrayAdapter<Course> {
         context.startActivity(intent);
         Toast.makeText(getContext(), "Course edited",Toast.LENGTH_SHORT).show();
     }
-    public void updateUI(View context, int position){
+    private void updateUI(View context, int position){
         if(!LoginPage.getUser().getUsername().equals(courseList.get(position).getUserName())){
             System.out.println("working"+position);
             context.findViewById(R.id.edit_Schedule_view).setVisibility(View.GONE);
