@@ -56,7 +56,8 @@
                     android:onClick="btnNumbers"
                     android:text="@string/_1"
                     android:textAlignment="center"
-                    android:textSize="34sp" />
+                    android:textSize="34sp"
+                    app:cornerRadius="10dp" />
 
                 <Button
                     android:id="@+id/btn02"
@@ -71,7 +72,8 @@
                     android:onClick="btnNumbers"
                     android:text="@string/_2"
                     android:textAlignment="center"
-                    android:textSize="34sp" />
+                    android:textSize="34sp"
+                    app:cornerRadius="10dp" />
 
                 <Button
                     android:id="@+id/btn03"
@@ -86,7 +88,8 @@
                     android:onClick="btnNumbers"
                     android:text="@string/_3"
                     android:textAlignment="center"
-                    android:textSize="34sp" />
+                    android:textSize="34sp"
+                    app:cornerRadius="10dp" />
 
                 <Button
                     android:id="@+id/btnAdd"
@@ -102,7 +105,8 @@
                     android:text="@string/plus"
                     android:textAlignment="center"
                     android:textColor="@drawable/text_color_control"
-                    android:textSize="34sp" />
+                    android:textSize="34sp"
+                    app:cornerRadius="10dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -128,7 +132,8 @@
                     android:text="@string/_4"
                     android:textAlignment="center"
                     android:textSize="34sp"
-                    android:typeface="normal" />
+                    android:typeface="normal"
+                    app:cornerRadius="10dp" />
 
                 <Button
                     android:id="@+id/btn05"
@@ -145,7 +150,8 @@
                     android:text="@string/_5"
                     android:textAlignment="center"
                     android:textSize="34sp"
-                    android:typeface="normal" />
+                    android:typeface="normal"
+                    app:cornerRadius="10dp" />
 
                 <Button
                     android:id="@+id/btn06"
@@ -162,7 +168,8 @@
                     android:text="@string/_6"
                     android:textAlignment="center"
                     android:textSize="34sp"
-                    android:typeface="normal" />
+                    android:typeface="normal"
+                    app:cornerRadius="10dp" />
 
                 <Button
                     android:id="@+id/btnSubtract"
@@ -180,7 +187,8 @@
                     android:textAlignment="center"
                     android:textColor="@drawable/text_color_control"
                     android:textSize="34sp"
-                    android:typeface="normal" />
+                    android:typeface="normal"
+                    app:cornerRadius="10dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -206,7 +214,8 @@
                     android:text="@string/_7"
                     android:textAlignment="center"
                     android:textSize="34sp"
-                    android:typeface="normal" />
+                    android:typeface="normal"
+                    app:cornerRadius="10dp" />
 
                 <Button
                     android:id="@+id/btn08"
@@ -223,7 +232,8 @@
                     android:text="@string/_8"
                     android:textAlignment="center"
                     android:textSize="34sp"
-                    android:typeface="normal" />
+                    android:typeface="normal"
+                    app:cornerRadius="10dp" />
 
                 <Button
                     android:id="@+id/btn09"
@@ -240,7 +250,8 @@
                     android:text="@string/_9"
                     android:textAlignment="center"
                     android:textSize="34sp"
-                    android:typeface="normal" />
+                    android:typeface="normal"
+                    app:cornerRadius="10dp" />
 
                 <Button
                     android:id="@+id/btnMultiply"
@@ -258,7 +269,8 @@
                     android:textAlignment="center"
                     android:textColor="@drawable/text_color_control"
                     android:textSize="34sp"
-                    android:typeface="normal" />
+                    android:typeface="normal"
+                    app:cornerRadius="10dp" />
 
             </LinearLayout>
 
@@ -286,6 +298,7 @@
                     android:textAlignment="center"
                     android:textSize="34sp"
                     android:typeface="normal"
+                    app:cornerRadius="10dp"
                     app:strokeColor="#FFFFFF" />
 
                 <Button
@@ -303,7 +316,8 @@
                     android:text="0"
                     android:textAlignment="center"
                     android:textSize="34sp"
-                    android:typeface="normal" />
+                    android:typeface="normal"
+                    app:cornerRadius="10dp" />
 
                 <Button
                     android:id="@+id/btnDecimal"
@@ -320,7 +334,8 @@
                     android:text="."
                     android:textAlignment="center"
                     android:textSize="34sp"
-                    android:typeface="normal" />
+                    android:typeface="normal"
+                    app:cornerRadius="10dp" />
 
                 <Button
                     android:id="@+id/btnDivide"
@@ -338,7 +353,8 @@
                     android:textAlignment="center"
                     android:textColor="@drawable/text_color_control"
                     android:textSize="34sp"
-                    android:typeface="normal" />
+                    android:typeface="normal"
+                    app:cornerRadius="10dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -364,7 +380,8 @@
                     android:text="="
                     android:textAlignment="center"
                     android:textSize="34sp"
-                    android:typeface="normal" />
+                    android:typeface="normal"
+                    app:cornerRadius="10dp" />
             </LinearLayout>
 
         </LinearLayout>

@@ -11,18 +11,10 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-
-    TextView textField;
-    String add = "add";
-    String divide = "divide";
-    String multiply = "multiply";
-    String subtract = "subtract";
-    String operation = "";
-    String sum1 ="";
-    String sum2 = "";
-    Button selectedBtn;
-    boolean setSum1Deafult= false;
-    boolean isInState = false; // check if the operations and equal btn was pressed
+    calculator cal = new calculator();
+    private TextView textField;
+    private Button selectedBtn;
+    // check if the operations and equal btn was pressed
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,15 +23,22 @@ public class MainActivity extends AppCompatActivity {
         textField = (TextView) findViewById(R.id.textView3);
 
     }
+    /**
+     *
+     */
     public void equals(){
-        System.out.println(sum1+operation + sum2);
-        if(!(sum1.equals("") ||sum2.equals(""))){sum1 = calculate(sum1, operation, sum2);}
-        System.out.println("result"+sum1);
-        textField.setText(sum1);
+       // System.out.println(sum1+operation + sum2);
+        if(!(cal.sum1.equals("") ||cal.sum2.equals(""))){cal.sum1 = cal.calculate(cal.sum1, cal.operation, cal.sum2);}
+        System.out.println("result"+cal.sum1);
+        textField.setText(cal.sum1);
 
         System.out.println("equalbtn_pressed");
     }
 
+    /**
+     *
+     * @param view
+     */
     public void btnOperations(View view){
          int btnpressed = view.getId();
         if(selectedBtn!=null){
@@ -47,113 +46,69 @@ public class MainActivity extends AppCompatActivity {
         }
         selectedBtn  = (Button) findViewById(view.getId());
         selectedBtn.setSelected(true); //error
-        if(sum1.equals("")){
-            sum1 = textField.getText().toString();
-            System.out.println("getting sum1" + sum1);
-        }else if(!isInState){
-            sum2 = textField.getText().toString();
-            System.out.println("getting sum1" + sum2);
+        if(cal.sum1.equals("")){
+            cal.sum1 = textField.getText().toString();
+            System.out.println("getting sum1" +cal.sum1);
+        }else if(!cal.isInState){
+            cal.sum2 = textField.getText().toString();
+            System.out.println("getting sum1" + cal.sum2);
             equals();
-        }else if(btnpressed == R.id.btnEqual) {equals(); setSum1Deafult=true;}
+        }else if(btnpressed == R.id.btnEqual) {equals(); cal.setSum1Deafult=true;}
         System.out.println("button pressed:" +((Button) findViewById(view.getId())).getText());
 
-            isInState = true;
+        cal.isInState = true;
             switch (btnpressed) {
                 case R.id.btnAdd:
-                    operation = add;
-                    System.out.println("operation set to :" + operation);
+                    cal.operation = cal.add;
+                   // System.out.println("operation set to :" + operation);
                     break;
                 case R.id.btnSubtract:
-                    operation = subtract;
-                    System.out.println("operation set to :" + operation);
+                    cal.operation = cal.subtract;
+                   // System.out.println("operation set to :" + operation);
                     break;
                 case R.id.btnDivide:
-                    operation = divide;
-                    System.out.println("operation set to :" + operation);
+                    cal.operation = cal.divide;
+                   // System.out.println("operation set to :" + operation);
                     break;
                 case R.id.btnMultiply:
-                    operation = multiply;
-                    System.out.println("operation set to :" + operation);
+                    cal.operation = cal.multiply;
+                   // System.out.println("operation set to :" + operation);
                     break;
 
                 case R.id.btnClear:
-                    sum1 = "";
-                    sum2 = "";
-                    operation = "";
-                    isInState = false;
+                    cal.sum1 = "";
+                    cal.sum2 = "";
+                    cal.operation = "";
+                    cal.isInState = false;
                     System.out.println("clear");
                     textField.setText("0");
                     selectedBtn.setSelected(false);
                     break;
             }
     }
-        // reduce the if statement.
-    // do the calculations
-    public String calculate(String sum1, String operation,String sum2) {
-        double result;
-        switch (operation){
-            case "add":
-                result = (Double.parseDouble(sum1)+Double.parseDouble(sum2)); // convert result to decimal
-                if(result % 1 == 0) { // if result has no decimal place convert it int
-                    return Long.toString((long) result);
-                }
-                sum2="";
-                return Double.toString(result);
-            case "subtract":
-                System.out.println(sum1+operation + sum2 + "from calculate method");
-                result = (Double.parseDouble(sum1)-Double.parseDouble(sum2));
 
-                System.out.println("result form the calcualte method"+ result);
-                if(result % 1 == 0){
-                    return Long.toString((long) result);
-                }
-                sum2="";
-                return Double.toString(result);
 
-            case "divide":
-                if(Double.isNaN((Double.parseDouble(sum1)/Double.parseDouble(sum2)))){ //avoid 0/0
-                    operation="";
-                    isInState =true;
-                    setSum1Deafult=true;
-                    return "Error";
-
-                }
-                result = (Double.parseDouble(sum1)/Double.parseDouble(sum2));
-                if(result % 1 == 0){
-                    return Long.toString((long) result);                }
-                sum2="";
-                return Double.toString(result);
-
-            case "multiply":
-                result = (Double.parseDouble(sum1)*Double.parseDouble(sum2));
-                if(result % 1 == 0){
-                    return Long.toString((long) result);
-                }
-                sum2="";
-                return Double.toString(result);
-
-            default:
-        }
-        return sum1;
-    }
-
+    /**
+     *
+     * @param view
+     */
     public void btnNumbers(View view) {
         Button btn= (Button) view;
         System.out.println("curent number on screen " + textField.getText().toString());
-        if(isInState){
+        if(cal.isInState){
             System.out.println("this should play");
             textField.setText("0");
-            isInState = false;
+            cal.isInState = false;
             selectedBtn.setSelected(false);
-            if(selectedBtn.getId() == R.id.btnEqual|| setSum1Deafult){
-                sum1="";
-                setSum1Deafult = false;
+            if(selectedBtn.getId() == R.id.btnEqual|| cal.setSum1Deafult){
+                cal.sum1="";
+                cal.setSum1Deafult = false;
             }
         }
         if(view.getId()== R.id.btnDecimal){
-            if(isInState){
+            if(cal.isInState){
                 textField.setText("0.");
-                isInState = false;
+                cal.isInState = false;
             }else if(!textField.getText().toString().contains(".")){
                 System.out.println("decimal"+textField.getText().toString());
                 textField.setText(textField.getText().toString()+".");
