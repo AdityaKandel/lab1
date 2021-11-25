@@ -10,21 +10,41 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 
+
+/**
+ * A class representing the calculator's visual interface on Android Studio.
+ * Represents all the visual components including the buttons, screen, and layout.
+ * Class MainActivity is a subclass that inherits the superclass AppCompatActivity
+ * @author Aditya Kandel
+ * @author Omar Abotahoon
+ * @author Omar Aly
+ * @author Raj Badial
+ * @author Ak Au
+ * @version 1.1
+ */ 
 public class MainActivity extends AppCompatActivity {
-    calculator cal = new calculator();
-    private TextView textField;
-    private Button selectedBtn;
+    calculator cal = new calculator();      //Represents a calculator object
+    private TextView textField;             //Displays text on the calculator screen
+    private Button selectedBtn;             //Represents the button that was last clicked
     // check if the operations and equal btn was pressed
 
+
+    /**
+     * Where the activity is initialized and setContentView() is called.
+     * @param savedInstanceState is used to save the state of the activity when the activity is terminated
+     */ 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textField = (TextView) findViewById(R.id.textView3);
-
     }
+
+
+
     /**
-     *
+     * Represents the equal button on a calculator.
+     * Whenever an operand is processed on two numbers, pressing the equals button (calling equals()) displys the result
      */
     public void equals(){
        // System.out.println(sum1+operation + sum2);
@@ -35,12 +55,14 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("equalbtn_pressed");
     }
 
+
     /**
-     *
-     * @param view
+     * Represents the 4 rectangular boxes for the operation buttons that respond to user input.
+     * Connects the xml design component to the Java logic
+     * @param view A rectangular box that responds to the user clicking a button
      */
     public void btnOperations(View view){
-         int btnpressed = view.getId();
+        int btnpressed = view.getId();
         if(selectedBtn!=null){
         selectedBtn.setSelected(false);
         }
@@ -89,8 +111,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     /**
-     *
-     * @param view
+     * Represents all the rectangular boxes for the number buttons that respond to user input.
+     * Connects the xml design component to the Java logic
+     * @param view A rectangular box that responds to the user clicking a button
      */
     public void btnNumbers(View view) {
         Button btn= (Button) view;
