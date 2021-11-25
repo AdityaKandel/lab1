@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FitnessCentreBooking">
         <activity
+            android:name=".myClassActivity"
+            android:exported="false" />
+        <activity
             android:name=".UserControlPage"
             android:exported="true" />
         <activity

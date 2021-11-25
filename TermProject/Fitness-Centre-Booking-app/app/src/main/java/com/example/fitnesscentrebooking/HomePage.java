@@ -1,8 +1,10 @@
 package com.example.fitnesscentrebooking;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ListView;
@@ -10,6 +12,7 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 
 import com.google.firebase.database.DataSnapshot;
@@ -63,6 +66,14 @@ public class HomePage extends AppCompatActivity {
 
         courseList = new ArrayList<>();
         listView = findViewById(R.id.listview_homepage);
+        CardView cardView = findViewById(R.id.cardView_HomePage);
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myClasses();
+            }
+        });
+
         UpdateUI();
     }
 
@@ -104,6 +115,11 @@ public class HomePage extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    public void myClasses(){
+        Intent intent = new Intent(this.getApplicationContext(), myClassActivity.class);
+        this.startActivity(intent);
     }
 
 }

@@ -1,22 +1,14 @@
 package com.example.fitnesscentrebooking;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ListView;
 import android.widget.SearchView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,7 +17,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class scheduledClassesPage extends AppCompatActivity{
     private User user;
@@ -44,7 +35,7 @@ public class scheduledClassesPage extends AppCompatActivity{
         navi.setNavigationView(this);
         courseDatabaseRef = FirebaseDatabase.getInstance().getReference("scheduledClass");
         courseList = new ArrayList<>();
-        listView = (ListView) findViewById(R.id.recycleView);
+        listView = (ListView) findViewById(R.id.recycleView_Myclass);
 
         SearchView searchBar = findViewById(R.id.searchBar);
         searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

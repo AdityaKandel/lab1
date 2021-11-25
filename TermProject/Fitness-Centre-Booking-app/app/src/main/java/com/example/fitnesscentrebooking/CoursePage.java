@@ -9,10 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -26,7 +24,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class CoursePage extends AppCompatActivity{
     private User user;
@@ -47,7 +44,7 @@ public class CoursePage extends AppCompatActivity{
         navi.setNavigationView(this);
         courseDatabaseRef = FirebaseDatabase.getInstance().getReference("courses");
         courseList = new ArrayList<>();
-        listView = (ListView) findViewById(R.id.recycleView);
+        listView = (ListView) findViewById(R.id.recycleView_Myclass);
 
         SearchView searchBar = findViewById(R.id.searchBar);
         searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

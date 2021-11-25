@@ -2,12 +2,9 @@ package com.example.calculator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.TextView;
 
 
@@ -67,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         selectedBtn.setSelected(false);
         }
         selectedBtn  = (Button) findViewById(view.getId());
-        selectedBtn.setSelected(true); //error
+        selectedBtn.setSelected(true);
         if(cal.sum1.equals("")){
             cal.sum1 = textField.getText().toString();
             System.out.println("getting sum1" +cal.sum1);
