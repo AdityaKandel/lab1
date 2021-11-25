@@ -37,7 +37,6 @@ public class enrollList extends ArrayAdapter<Course> {
 
 
     public View getView(final int position, View convertView, ViewGroup parent) {
-        System.out.println(" infalitng layout ");
         LayoutInflater inflater = context.getLayoutInflater();
         View listViewItem = inflater.inflate(R.layout.schedule_class_view, null, true);
 
@@ -98,10 +97,12 @@ public class enrollList extends ArrayAdapter<Course> {
         imageView.setBackground(gd);
 
     }
+
     private void updateUI(View context) {
         context.findViewById(R.id.edit_Schedule_view).setVisibility(View.GONE);
         context.findViewById(R.id.cancel_Schedule_view).setVisibility(View.GONE);
     }
+
     private int colorpicker() {
         Random r = new Random();
         String[] colors = new String[]{"#f2b705", "#f6b20b", "#faad12", "#fda718", "#ffa21e", "#ff9d24", "#ff9729", "#ff922f", "#ff8d34", "#ff8739", "#ff823e", "#ff7c44",
@@ -112,7 +113,7 @@ public class enrollList extends ArrayAdapter<Course> {
     }
 
     private void enroll(int positon) {
-                    FirebaseDatabase.getInstance().getReference("enrolledClass").child("class").child(courseList.get(positon).getId()).removeValue();
+        FirebaseDatabase.getInstance().getReference("enrolledClass").child("class").child(courseList.get(positon).getId()).removeValue();
 
     }
 }
