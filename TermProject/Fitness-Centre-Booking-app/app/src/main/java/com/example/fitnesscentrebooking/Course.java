@@ -10,6 +10,16 @@ public class Course {
     private int capacity;
     private String id;
 
+    public int getEnrolled() {
+        return enrolled;
+    }
+
+    public void setEnrolled(int enrolled) {
+        this.enrolled = enrolled;
+    }
+
+    private int enrolled;
+
     public String getUserName() {
         return userName;
     }
@@ -61,7 +71,7 @@ public class Course {
         this.description =description;
         this.id =id;
     }
-    public Course(String name ,String date, String time, String difficulty, int capacity, String userName, String id){
+    public Course(String name, String date, String time, String difficulty, int capacity, String userName, String id, int enrolled){
         this.date = date;
         this.difficulty = difficulty;
         this.time = time;
@@ -69,6 +79,7 @@ public class Course {
         this.userName =userName;
         this.name = name;
         this.id = id;
+        this.enrolled = enrolled;
     }
     public Course(){
 

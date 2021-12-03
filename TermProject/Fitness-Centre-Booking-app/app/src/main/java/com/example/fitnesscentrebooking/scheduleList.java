@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
-import android.icu.text.SymbolTable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -32,8 +30,8 @@ public class scheduleList extends ArrayAdapter<Course> {
     private Activity context;
     private List<Course> courseList;
     private List<Course> enrolledCourse;
-    private String courseId;
     private Course Scheduledcourse;
+
 
     public scheduleList(Activity context, List<Course> courses) {
         super(context, R.layout.schedule_class_view, courses);
@@ -52,22 +50,23 @@ public class scheduleList extends ArrayAdapter<Course> {
         TextView difficulty = (TextView) listViewItem.findViewById(R.id.difficulty_Schedule_view);
         TextView CourseName = (TextView) listViewItem.findViewById(R.id.className_shedule_class_view);
         Scheduledcourse = courseList.get(position);
-
         //set values
         time.setText("Time: " + Scheduledcourse.getTime());
         CourseName.setText(Scheduledcourse.getName());
         date.setText(Scheduledcourse.getDate());
-        capacity.setText("Capacity: " + Integer.toString(Scheduledcourse.getCapacity()));
+        capacity.setText("Capacity: " + Integer.toString(Scheduledcourse.getEnrolled()) + "/" + Integer.toString(Scheduledcourse.getCapacity()));
         difficulty.setText("Difficulty: " + Scheduledcourse.getDifficulty());
-        courseId = Scheduledcourse.getId();
+        final String courseId = Scheduledcourse.getId();
         //setBackground
         setGradientColor(listViewItem.findViewById(R.id.cardView_ScheduleView));
 
         //setButtonOperations;
         TextView editBtn = (TextView) listViewItem.findViewById(R.id.edit_Schedule_view);
+
         final TextView EnrollBtn = (TextView) listViewItem.findViewById(R.id.enroll_Schedule_view2);
         EnrollBtn.setTag(position);
         TextView removeBtn = (TextView) listViewItem.findViewById(R.id.cancel_Schedule_view);
+        EnrollBtn.setVisibility(View.GONE);
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,10 +82,10 @@ public class scheduleList extends ArrayAdapter<Course> {
         EnrollBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(context instanceof  scheduledClassesPage){
+                if (context instanceof scheduledClassesPage) {
                     enroll(position, EnrollBtn, listViewItem);
-                }else if(context instanceof myClassActivity){
-                    enroll();
+                } else if (context instanceof myClassActivity) {
+                    enroll(courseId);
                 }
             }
 
@@ -98,9 +97,8 @@ public class scheduleList extends ArrayAdapter<Course> {
 
     }
 
-    private void enroll() {
+    private void enroll(String courseId) {
         FirebaseDatabase.getInstance().getReference("enrolledClass").child("class").child(courseId).removeValue();
-        System.out.println("MyClass Activity");
     }
 
 
@@ -125,7 +123,6 @@ public class scheduleList extends ArrayAdapter<Course> {
     }
 
     private void removeCourse(int position) {
-        System.out.println(courseId + "id of the course");
         FirebaseDatabase.getInstance().getReference().child("scheduledClass").child(courseList.get(position).getId()).removeValue();
         Toast.makeText(getContext(), "Course deleted", Toast.LENGTH_SHORT).show();
 
@@ -149,12 +146,14 @@ public class scheduleList extends ArrayAdapter<Course> {
                     context.findViewById(R.id.edit_Schedule_view).setVisibility(View.GONE);
                     context.findViewById(R.id.cancel_Schedule_view).setVisibility(View.GONE);
                 }
-                enrolBTn.setVisibility(View.GONE);
                 break;
             case "2":
                 context.findViewById(R.id.edit_Schedule_view).setVisibility(View.GONE);
                 context.findViewById(R.id.cancel_Schedule_view).setVisibility(View.GONE);
                 enrolBTn.setVisibility(View.VISIBLE);
+                if (  courseList.get(position) != null &&   courseList.get(position).getCapacity() ==   courseList.get(position).getEnrolled()) {
+                    ((TextView) context.findViewWithTag(position)).setText("FULL CAPACITY");
+                }
                 test(position, enrolBTn, context);
                 break;
         }
@@ -163,11 +162,12 @@ public class scheduleList extends ArrayAdapter<Course> {
     public void test(int position, final TextView enrollBtn, View listView) {
         for (Course postSnapshot : enrolledCourse) {
             Course newCourse = postSnapshot;
-            if ( newCourse!=null&& LoginPage.getUser().getUsername().equals(newCourse.getUserName()) && courseList.get(position).getName().equals(newCourse.getName()) && courseList.get(position).getTime().equals(newCourse.getTime())) {
+            if (newCourse != null && LoginPage.getUser().getUsername().equals(newCourse.getUserName()) && courseList.get(position).getName().equals(newCourse.getName()) && courseList.get(position).getTime().equals(newCourse.getTime())) {
                 ((TextView) listView.findViewWithTag(position)).setBackground(ContextCompat.getDrawable(context, R.drawable.enrollbtn));
                 ((TextView) listView.findViewWithTag(position)).setText("Unenroll");
                 System.out.println("updating Ui for enroll btn");
             }
+
         }
     }
 
@@ -183,6 +183,7 @@ public class scheduleList extends ArrayAdapter<Course> {
                 }
                 updateUI(context, position, enrollBTn);
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -196,6 +197,11 @@ public class scheduleList extends ArrayAdapter<Course> {
         if (((TextView) listView.findViewWithTag(position)).getText().toString().equals("Unenroll")) {
             EnrollBtn.setBackground(ContextCompat.getDrawable(context, R.drawable.gradient));
             EnrollBtn.setText("Enroll");
+
+            Course course = courseList.get(position);
+            course.setEnrolled(course.getEnrolled() - 1);
+            FirebaseDatabase.getInstance().getReference("scheduledClass").child(course.getId()).child("class").child("enrolled").setValue(course.getEnrolled());
+            ((TextView) listView.findViewById(R.id.capacity_Schedule_view)).setText("Capacity: " + course.getEnrolled() + "/" + course.getCapacity());
             for (Course postSnapshot : enrolledCourse) {
                 Course newCourse = postSnapshot;
                 if (LoginPage.getUser().getUsername().equals(newCourse.getUserName()) && courseList.get(position).getName().equals(newCourse.getName()) && courseList.get(position).getTime().equals(newCourse.getTime())) {
@@ -215,15 +221,20 @@ public class scheduleList extends ArrayAdapter<Course> {
             }
             if (!check && EnrollBtn.getText().toString().equals("Enroll")) {
                 Course course = courseList.get(position);
-                String key = FirebaseDatabase.getInstance().getReference().push().getKey();
-                Course newCourseEnroll = new Course(course.getName(), course.getDate(), course.getTime(), course.getDifficulty(), course.getCapacity(), LoginPage.getUser().getUsername(), key);
-                FirebaseDatabase.getInstance().getReference().child("enrolledClass").child("class").child(key).setValue(newCourseEnroll);
-                ((TextView) listView.findViewWithTag(position)).setBackground(ContextCompat.getDrawable(context, R.drawable.enrollbtn));
-                ((TextView) listView.findViewWithTag(position)).setText("Unenroll");
-                System.out.println("enrolling into course");
+                if (course.getEnrolled() < course.getCapacity()) {
+                    course.setEnrolled(course.getEnrolled() + 1);
+                    FirebaseDatabase.getInstance().getReference("scheduledClass").child(course.getId()).child("class").child("enrolled").setValue(course.getEnrolled());
+                    ((TextView) listView.findViewById(R.id.capacity_Schedule_view)).setText("Capacity: " + course.getEnrolled() + "/" + course.getCapacity());
+                    String key = FirebaseDatabase.getInstance().getReference().push().getKey();
+                    Course newCourseEnroll = new Course(course.getName(), course.getDate(), course.getTime(), course.getDifficulty(), course.getCapacity(), LoginPage.getUser().getUsername(), key, 0);
+                    FirebaseDatabase.getInstance().getReference().child("enrolledClass").child("class").child(key).setValue(newCourseEnroll);
+                    ((TextView) listView.findViewWithTag(position)).setBackground(ContextCompat.getDrawable(context, R.drawable.enrollbtn));
+                    ((TextView) listView.findViewWithTag(position)).setText("Unenroll");
+                    System.out.println("enrolling into course");
+                }
             }
+
         }
 
     }
-
 }

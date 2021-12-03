@@ -1,8 +1,10 @@
 package com.example.fitnesscentrebooking;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
@@ -13,8 +15,13 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.type.DateTime;
 
+import java.time.DayOfWeek;
+import java.time.temporal.WeekFields;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class myClassActivity extends AppCompatActivity {
     private ListView listView;
@@ -35,6 +42,7 @@ public class myClassActivity extends AppCompatActivity {
                 return false;
             }
 
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public boolean onQueryTextChange(String s) {
                 find(s);
@@ -43,15 +51,20 @@ public class myClassActivity extends AppCompatActivity {
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void find(String searchValue) {
+        try{
 
+            System.out.println(  );
+        }catch(Exception e){
+
+        }
         if(!searchValue.equals("")) {
             FirebaseDatabase.getInstance().getReference("enrolledClass").child("class").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     enrolledList.clear();
                     for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-
                         Course course = postSnapshot.getValue(Course.class);
                         if (course.getUserName().equals(LoginPage.getUser().getUsername()) && (course.getDate().toLowerCase().contains(searchValue) || course.getName().toLowerCase().contains(searchValue))) {
                             enrolledList.add(course);

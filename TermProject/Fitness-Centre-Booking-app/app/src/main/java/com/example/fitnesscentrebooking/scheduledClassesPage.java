@@ -30,7 +30,7 @@ public class scheduledClassesPage extends AppCompatActivity{
 
         setContentView(R.layout.schedule_page_activity);
         user = LoginPage.getUser();
-        updateUI();
+
         Navigation navi = new Navigation();
         navi.setNavigationView(this);
         courseDatabaseRef = FirebaseDatabase.getInstance().getReference("scheduledClass");
@@ -52,16 +52,7 @@ public class scheduledClassesPage extends AppCompatActivity{
         });
     }
 
-    private void updateUI() {
-        switch (user.getroleNum()) {
-            case "2":
-                break;
-            case "0":
-                break;
-            case "1":
-                break;
-        }
-    }
+
 
     @Override
     protected void onStart() {
@@ -97,8 +88,9 @@ public class scheduledClassesPage extends AppCompatActivity{
                     for (DataSnapshot postSnapshot : snapshot.getChildren()) {
 
                         Course course = postSnapshot.child("class").getValue(Course.class);
-                        System.out.println(course.getId() + "testing" + course.getUserName().toLowerCase());
-                        if (course.getUserName().toLowerCase().contains(searchValue.toLowerCase())) {
+                        if ((course.getUserName().toLowerCase().contains(searchValue.toLowerCase())&& LoginPage.getUser().getroleNum().equals("1")) ||
+                                course.getName().toLowerCase().contains(searchValue.toLowerCase())||
+                                (course.getDate().toLowerCase().contains(searchValue.toLowerCase()) && LoginPage.getUser().getroleNum().equals("2"))) {
                             courseList.add(course);
                         }
                     }

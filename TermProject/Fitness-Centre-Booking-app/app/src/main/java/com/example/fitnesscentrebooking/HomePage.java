@@ -91,7 +91,7 @@ public class HomePage extends AppCompatActivity {
                         DateFormat Format = new SimpleDateFormat("yyyy-MM-dd");
                         Date dateformated = null;
                         try {
-                            dateformated = (new SimpleDateFormat("MMMM dd, yyyy")).parse((course.getDate()));
+                            dateformated = (new SimpleDateFormat("MMM EEEE, yyyy")).parse((course.getDate()));
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }

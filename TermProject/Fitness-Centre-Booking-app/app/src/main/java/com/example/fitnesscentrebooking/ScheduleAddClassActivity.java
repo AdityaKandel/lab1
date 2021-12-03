@@ -79,7 +79,7 @@ public class ScheduleAddClassActivity extends AppCompatActivity implements Adapt
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void ScheduleClass(View view){
         DateFormat givenFormat = new SimpleDateFormat("MM/dd/yyyy");
-        DateFormat outputformat = new SimpleDateFormat("MMMM dd, yyyy");
+        DateFormat outputformat = new SimpleDateFormat("MMM EEEE, yyyy");
         String date = "";
         try {
             Date dateformated = givenFormat.parse((dateText.getText().toString()));
@@ -94,13 +94,13 @@ public class ScheduleAddClassActivity extends AppCompatActivity implements Adapt
     if(validateTextField(dateText, StarttimeText, capacityText,EndtimeText )){
         if(id!=null){
                 System.out.println(id+"adding course");
-                Course newCourse = new Course(courseName,date, startTime+"-"+endTime, difficulty,Integer.parseInt(Capacity), LoginPage.getUser().getUsername(), id);
+                Course newCourse = new Course(courseName,date, startTime+"-"+endTime, difficulty,Integer.parseInt(Capacity), LoginPage.getUser().getUsername(), id, 0);
                 FirebaseDatabase.getInstance().getReference().child("scheduledClass").child(id).child("class").setValue(newCourse);
                 finish();
             }else{
                 if(collidedUsername.equals("")){
                 String key =  FirebaseDatabase.getInstance().getReference().push().getKey();;
-                Course newCourse = new Course(courseName,date, startTime+"-"+endTime, difficulty,Integer.parseInt(Capacity), LoginPage.getUser().getUsername(), key);
+                Course newCourse = new Course(courseName,date, startTime+"-"+endTime, difficulty,Integer.parseInt(Capacity), LoginPage.getUser().getUsername(), key, 0);
                 FirebaseDatabase.getInstance().getReference().child("scheduledClass").child(key).child("class").setValue(newCourse);
                 finish();
                 }else{
