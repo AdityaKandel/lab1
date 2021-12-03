@@ -125,7 +125,7 @@ public class scheduleList extends ArrayAdapter<Course> {
     private void removeCourse(int position) {
         FirebaseDatabase.getInstance().getReference().child("scheduledClass").child(courseList.get(position).getId()).removeValue();
         Toast.makeText(getContext(), "Course deleted", Toast.LENGTH_SHORT).show();
-
+    System.out.println("Course deleted");
     }
 
     private void EditCourse(int position) {
