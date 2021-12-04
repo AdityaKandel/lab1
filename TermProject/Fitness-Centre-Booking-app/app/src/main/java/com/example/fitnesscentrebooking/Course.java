@@ -5,7 +5,26 @@ public class Course {
     private String description;
     private String date;
     private String userName;
-    private String time;
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    private String startTime;
+
+    public String getEndtime() {
+        return Endtime;
+    }
+
+    public void setEndtime(String endtime) {
+        Endtime = endtime;
+    }
+
+    private String Endtime;
     private String difficulty;
     private int capacity;
     private String id;
@@ -29,14 +48,6 @@ public class Course {
     }
 
 
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
 
 
 
@@ -71,10 +82,11 @@ public class Course {
         this.description =description;
         this.id =id;
     }
-    public Course(String name, String date, String time, String difficulty, int capacity, String userName, String id, int enrolled){
+    public Course(String name, String date, String startTime,String endTime, String difficulty, int capacity, String userName, String id, int enrolled){
         this.date = date;
         this.difficulty = difficulty;
-        this.time = time;
+        this.startTime = startTime;
+        this.Endtime = endTime;
         this.capacity = capacity;
         this.userName =userName;
         this.name = name;

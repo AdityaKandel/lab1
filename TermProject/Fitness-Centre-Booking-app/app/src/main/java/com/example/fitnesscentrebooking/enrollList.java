@@ -48,7 +48,7 @@ public class enrollList extends ArrayAdapter<Course> {
         Scheduledcourse = courseList.get(position);
 
         //set values
-        time.setText("Time: " + Scheduledcourse.getTime());
+        time.setText("Time: " + Scheduledcourse.getStartTime()+"-"+Scheduledcourse.getEndtime());
         CourseName.setText(Scheduledcourse.getName());
         date.setText(Scheduledcourse.getDate());
         capacity.setText("Capacity: " + Integer.toString(Scheduledcourse.getCapacity()));

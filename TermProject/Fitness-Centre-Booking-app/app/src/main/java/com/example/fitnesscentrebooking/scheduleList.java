@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,7 +52,7 @@ public class scheduleList extends ArrayAdapter<Course> {
         TextView CourseName = (TextView) listViewItem.findViewById(R.id.className_shedule_class_view);
         Scheduledcourse = courseList.get(position);
         //set values
-        time.setText("Time: " + Scheduledcourse.getTime());
+        time.setText("Time: " + Scheduledcourse.getStartTime()+"-"+Scheduledcourse.getEndtime());
         CourseName.setText(Scheduledcourse.getName());
         date.setText(Scheduledcourse.getDate());
         capacity.setText("Capacity: " + Integer.toString(Scheduledcourse.getEnrolled()) + "/" + Integer.toString(Scheduledcourse.getCapacity()));
@@ -151,7 +152,8 @@ public class scheduleList extends ArrayAdapter<Course> {
                 context.findViewById(R.id.edit_Schedule_view).setVisibility(View.GONE);
                 context.findViewById(R.id.cancel_Schedule_view).setVisibility(View.GONE);
                 enrolBTn.setVisibility(View.VISIBLE);
-                if (  courseList.get(position) != null &&   courseList.get(position).getCapacity() ==   courseList.get(position).getEnrolled()) {
+
+                if ( courseList.size()>0&& courseList.get(position) != null &&   courseList.get(position).getCapacity() ==   courseList.get(position).getEnrolled()) {
                     ((TextView) context.findViewWithTag(position)).setText("FULL CAPACITY");
                 }
                 test(position, enrolBTn, context);
@@ -162,7 +164,9 @@ public class scheduleList extends ArrayAdapter<Course> {
     public void test(int position, final TextView enrollBtn, View listView) {
         for (Course postSnapshot : enrolledCourse) {
             Course newCourse = postSnapshot;
-            if (newCourse != null && LoginPage.getUser().getUsername().equals(newCourse.getUserName()) && courseList.get(position).getName().equals(newCourse.getName()) && courseList.get(position).getTime().equals(newCourse.getTime())) {
+            if (newCourse != null && LoginPage.getUser().getUsername().equals(newCourse.getUserName())
+                    && courseList.get(position).getName().equals(newCourse.getName())
+                    && courseList.get(position).getStartTime().equals(newCourse.getStartTime())&& courseList.get(position).getEndtime().equals(newCourse.getEndtime())) {
                 ((TextView) listView.findViewWithTag(position)).setBackground(ContextCompat.getDrawable(context, R.drawable.enrollbtn));
                 ((TextView) listView.findViewWithTag(position)).setText("Unenroll");
                 System.out.println("updating Ui for enroll btn");
@@ -204,7 +208,8 @@ public class scheduleList extends ArrayAdapter<Course> {
             ((TextView) listView.findViewById(R.id.capacity_Schedule_view)).setText("Capacity: " + course.getEnrolled() + "/" + course.getCapacity());
             for (Course postSnapshot : enrolledCourse) {
                 Course newCourse = postSnapshot;
-                if (LoginPage.getUser().getUsername().equals(newCourse.getUserName()) && courseList.get(position).getName().equals(newCourse.getName()) && courseList.get(position).getTime().equals(newCourse.getTime())) {
+                if (LoginPage.getUser().getUsername().equals(newCourse.getUserName()) &&courseList.get(position).getName().equals(newCourse.getName())
+                        && courseList.get(position).getStartTime().equals(newCourse.getStartTime())&& courseList.get(position).getEndtime().equals(newCourse.getEndtime())) {
                     FirebaseDatabase.getInstance().getReference("enrolledClass").child("class").child(postSnapshot.getId()).removeValue();
                     System.out.println("deleting enrolled course");
                     break;
@@ -213,20 +218,29 @@ public class scheduleList extends ArrayAdapter<Course> {
 
         } else {
             boolean check = false;
+            Course course = courseList.get(position);
+
             for (Course postSnapshot : enrolledCourse) {
                 Course newCourse = postSnapshot;
-                if (newCourse != null && courseList.get(position).getUserName().equals(newCourse.getUserName()) && courseList.get(position).getName().equals(newCourse.getName()) && courseList.get(position).getTime().equals(newCourse.getTime())) {
-                    check = true;
+                if (newCourse != null && courseList.get(position).getUserName().equals(newCourse.getUserName()) && courseList.get(position).getName().equals(newCourse.getName())
+                        && courseList.get(position).getStartTime().equals(newCourse.getStartTime())&& courseList.get(position).getEndtime().equals(newCourse.getEndtime())) {
+                        check = true;
                 }
+                ValidateTime(course.getStartTime(), course.getEndtime(),newCourse.getStartTime() ,newCourse.getEndtime());
+                System.out.println((newCourse==null) +" course is null :(");
+               if(newCourse != null && LoginPage.getUser().getUsername().equals(newCourse.getUserName()) && !ValidateTime(course.getStartTime(), course.getEndtime(),newCourse.getStartTime() ,newCourse.getEndtime())){
+                   System.out.println("check set to true");
+                   check=true;
+               }
             }
+            System.out.println("check is set: " + check);
             if (!check && EnrollBtn.getText().toString().equals("Enroll")) {
-                Course course = courseList.get(position);
                 if (course.getEnrolled() < course.getCapacity()) {
                     course.setEnrolled(course.getEnrolled() + 1);
                     FirebaseDatabase.getInstance().getReference("scheduledClass").child(course.getId()).child("class").child("enrolled").setValue(course.getEnrolled());
                     ((TextView) listView.findViewById(R.id.capacity_Schedule_view)).setText("Capacity: " + course.getEnrolled() + "/" + course.getCapacity());
                     String key = FirebaseDatabase.getInstance().getReference().push().getKey();
-                    Course newCourseEnroll = new Course(course.getName(), course.getDate(), course.getTime(), course.getDifficulty(), course.getCapacity(), LoginPage.getUser().getUsername(), key, 0);
+                    Course newCourseEnroll = new Course(course.getName(), course.getDate(), course.getStartTime(),course.getEndtime(), course.getDifficulty(), course.getCapacity(), LoginPage.getUser().getUsername(), key, 0);
                     FirebaseDatabase.getInstance().getReference().child("enrolledClass").child("class").child(key).setValue(newCourseEnroll);
                     ((TextView) listView.findViewWithTag(position)).setBackground(ContextCompat.getDrawable(context, R.drawable.enrollbtn));
                     ((TextView) listView.findViewWithTag(position)).setText("Unenroll");
@@ -236,5 +250,36 @@ public class scheduleList extends ArrayAdapter<Course> {
 
         }
 
+
+    }
+    private boolean ValidateTime(String curStartTime, String curEndTime, String courseStartTime, String courseEndTime){
+        //check if current inside course
+        //current course time
+        int StartcurHour  = Integer.parseInt(curStartTime.split(":")[0]);
+        int StartcurMinute = Integer.parseInt(curStartTime.split(":")[1]);
+        int EndtcurHour  = Integer.parseInt(curEndTime.split(":")[0]);
+        int EndcurMinute = Integer.parseInt(curEndTime.split(":")[1]);
+
+       //course time
+        int StartCourseHour  = Integer.parseInt(courseStartTime.split(":")[0]);
+        int StartCourseMinute = Integer.parseInt(courseStartTime.split(":")[1]);
+        int EndtCourseHour  = Integer.parseInt(courseEndTime.split(":")[0]);
+        int EndCourseMinute = Integer.parseInt(courseEndTime.split(":")[1]);
+        // check if course inside current
+    System.out.println("working");
+
+        if((StartCourseHour<=StartcurHour && EndtCourseHour >= StartcurHour) || ((StartCourseHour<=EndtcurHour && EndtCourseHour >= EndtcurHour))
+      ||  (EndtCourseHour==StartcurHour && EndCourseMinute>=EndcurMinute) ||(StartCourseHour==EndtcurHour && StartCourseMinute<=EndcurMinute)){
+            System.out.println("false time");
+            return false;
+        }
+
+        if((StartcurHour<=EndtCourseHour && EndtCourseHour >= StartcurHour) || ((StartCourseHour<=EndtcurHour && EndtCourseHour >= EndtcurHour))||( (EndtCourseHour==StartcurHour && EndcurMinute>=EndCourseMinute) ||(StartCourseHour==EndtcurHour && EndcurMinute<=StartCourseMinute))){
+            System.out.println("false2 time");
+
+            return false;
+        }
+        System.out.println("true time");
+        return true;
     }
 }
