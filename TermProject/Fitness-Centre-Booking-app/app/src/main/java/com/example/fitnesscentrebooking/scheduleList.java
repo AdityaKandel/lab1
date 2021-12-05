@@ -41,7 +41,6 @@ public class scheduleList extends ArrayAdapter<Course> {
     }
 
     public View getView(final int position, View convertView, ViewGroup parent) {
-        System.out.println(" infalitng layout ");
         LayoutInflater inflater = context.getLayoutInflater();
         View listViewItem = inflater.inflate(R.layout.schedule_class_view, null, true);
 
@@ -164,7 +163,7 @@ public class scheduleList extends ArrayAdapter<Course> {
     public void test(int position, final TextView enrollBtn, View listView) {
         for (Course postSnapshot : enrolledCourse) {
             Course newCourse = postSnapshot;
-            if (newCourse != null && LoginPage.getUser().getUsername().equals(newCourse.getUserName())
+            if (newCourse != null  && courseList.size() > 0 && LoginPage.getUser().getUsername().equals(newCourse.getUserName())
                     && courseList.get(position).getName().equals(newCourse.getName())
                     && courseList.get(position).getStartTime().equals(newCourse.getStartTime())&& courseList.get(position).getEndtime().equals(newCourse.getEndtime())) {
                 ((TextView) listView.findViewWithTag(position)).setBackground(ContextCompat.getDrawable(context, R.drawable.enrollbtn));
@@ -203,7 +202,7 @@ public class scheduleList extends ArrayAdapter<Course> {
             EnrollBtn.setText("Enroll");
 
             Course course = courseList.get(position);
-            course.setEnrolled(course.getEnrolled() - 1);
+            course.setEnrolled(decrementEnrolled(course));
             FirebaseDatabase.getInstance().getReference("scheduledClass").child(course.getId()).child("class").child("enrolled").setValue(course.getEnrolled());
             ((TextView) listView.findViewById(R.id.capacity_Schedule_view)).setText("Capacity: " + course.getEnrolled() + "/" + course.getCapacity());
             for (Course postSnapshot : enrolledCourse) {
@@ -218,6 +217,7 @@ public class scheduleList extends ArrayAdapter<Course> {
 
         } else {
             boolean check = false;
+            boolean timeConflict = false;
             Course course = courseList.get(position);
 
             for (Course postSnapshot : enrolledCourse) {
@@ -230,13 +230,15 @@ public class scheduleList extends ArrayAdapter<Course> {
                 System.out.println((newCourse==null) +" course is null :(");
                if(newCourse != null && LoginPage.getUser().getUsername().equals(newCourse.getUserName()) && !ValidateTime(course.getStartTime(), course.getEndtime(),newCourse.getStartTime() ,newCourse.getEndtime())){
                    System.out.println("check set to true");
-                   check=true;
+                    course = newCourse;
+                   timeConflict=true;
+                   break;
                }
             }
             System.out.println("check is set: " + check);
-            if (!check && EnrollBtn.getText().toString().equals("Enroll")) {
-                if (course.getEnrolled() < course.getCapacity()) {
-                    course.setEnrolled(course.getEnrolled() + 1);
+            if (!check && EnrollBtn.getText().toString().equals("Enroll") &&!timeConflict) {
+                if (CheckCapacityLimit(course)) {
+                    course.setEnrolled(incrementEnrolled(course));
                     FirebaseDatabase.getInstance().getReference("scheduledClass").child(course.getId()).child("class").child("enrolled").setValue(course.getEnrolled());
                     ((TextView) listView.findViewById(R.id.capacity_Schedule_view)).setText("Capacity: " + course.getEnrolled() + "/" + course.getCapacity());
                     String key = FirebaseDatabase.getInstance().getReference().push().getKey();
@@ -246,13 +248,16 @@ public class scheduleList extends ArrayAdapter<Course> {
                     ((TextView) listView.findViewWithTag(position)).setText("Unenroll");
                     System.out.println("enrolling into course");
                 }
+            }else if(timeConflict){
+                Toast toast=Toast. makeText(this.context,"Time conflicting with "+course.getName(),Toast. LENGTH_SHORT);
+                toast.show();
             }
 
         }
 
 
     }
-    private boolean ValidateTime(String curStartTime, String curEndTime, String courseStartTime, String courseEndTime){
+    public static boolean ValidateTime(String curStartTime, String curEndTime, String courseStartTime, String courseEndTime){
         //check if current inside course
         //current course time
         int StartcurHour  = Integer.parseInt(curStartTime.split(":")[0]);
@@ -266,20 +271,28 @@ public class scheduleList extends ArrayAdapter<Course> {
         int EndtCourseHour  = Integer.parseInt(courseEndTime.split(":")[0]);
         int EndCourseMinute = Integer.parseInt(courseEndTime.split(":")[1]);
         // check if course inside current
-    System.out.println("working");
 
         if((StartCourseHour<=StartcurHour && EndtCourseHour >= StartcurHour) || ((StartCourseHour<=EndtcurHour && EndtCourseHour >= EndtcurHour))
-      ||  (EndtCourseHour==StartcurHour && EndCourseMinute>=EndcurMinute) ||(StartCourseHour==EndtcurHour && StartCourseMinute<=EndcurMinute)){
-            System.out.println("false time");
+      &&  (EndtCourseHour==StartcurHour && EndCourseMinute>=EndcurMinute) ||(StartCourseHour==EndtcurHour && StartCourseMinute<=EndcurMinute)){
             return false;
         }
 
-        if((StartcurHour<=EndtCourseHour && EndtCourseHour >= StartcurHour) || ((StartCourseHour<=EndtcurHour && EndtCourseHour >= EndtcurHour))||( (EndtCourseHour==StartcurHour && EndcurMinute>=EndCourseMinute) ||(StartCourseHour==EndtcurHour && EndcurMinute<=StartCourseMinute))){
-            System.out.println("false2 time");
-
+        if((StartcurHour<=EndtCourseHour && EndtcurHour >= EndtCourseHour) || ((StartcurHour<=StartCourseHour && EndtcurHour >= StartCourseHour))||( (EndtCourseHour==StartcurHour && StartcurMinute<=EndtCourseHour) ||(StartCourseHour==EndtcurHour && EndcurMinute>=StartCourseMinute))){
             return false;
         }
-        System.out.println("true time");
         return true;
+    }
+
+
+
+    public static boolean CheckCapacityLimit(Course course){
+        return course.getCapacity()>course.getEnrolled();
+    }
+    public static int incrementEnrolled(Course course){
+        return course.getEnrolled()+1;
+    }
+
+    public static int decrementEnrolled(Course course){
+        return course.getEnrolled()-1;
     }
 }

@@ -177,7 +177,6 @@ public class ScheduleAddClassActivity extends AppCompatActivity implements Adapt
 
         //validate StartTime
         String[] splitedENDTime = endTime.trim().split(":");
-        System.out.println((splitedENDTime.length>2)+" time has extra :" + (endTime.trim().toString().chars().filter(ch -> ch == ':').count()==1));
         if(splitedENDTime.length>2){
             endtimeText.setError("Invalid Time");
             return false;

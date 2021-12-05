@@ -6,6 +6,8 @@ public class Course {
     private String date;
     private String userName;
 
+
+
     public String getStartTime() {
         return startTime;
     }
